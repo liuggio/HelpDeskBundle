@@ -1,0 +1,7 @@
+parameters:
+#    liuggio_help_desk_ticket_system.example.class: Liuggio\HelpDeskTicketSystemBundle\Example
+
+services:
+#    liuggio_help_desk_ticket_system.example:
+#        class: %liuggio_help_desk_ticket_system.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
