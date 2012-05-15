@@ -1,0 +1,49 @@
+<h1>Ticket</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Subject</th>
+            <td>{{ entity.subject }}</td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>{{ entity.body }}</td>
+        </tr>
+        <tr>
+            <th>Language</th>
+            <td>{{ entity.language }}</td>
+        </tr>
+        <tr>
+            <th>Createdat</th>
+            <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Updatedat</th>
+            <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('ticket') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('ticket_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('ticket_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

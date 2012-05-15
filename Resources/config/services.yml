@@ -5,3 +5,35 @@ services:
 #    liuggio_help_desk_ticket_system.example:
 #        class: %liuggio_help_desk_ticket_system.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+services:
+
+
+    sonata.ticket.ticketstate.admin:
+           class: Liuggio\HelpDeskTicketSystemBundle\Admin\TicketStateAdmin
+           tags:
+             - { name: sonata.admin, manager_type: orm, group: TicketSystem, label: TicketState }
+           arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState, LiuggioHelpDeskTicketSystemBundle:Admin\TicketStateAdmin]
+
+    sonata.ticket.comment.admin:
+           class: Liuggio\HelpDeskTicketSystemBundle\Admin\CommentAdmin
+           tags:
+             - { name: sonata.admin, manager_type: orm, group: TicketSystem, label: Comment }
+           arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\Comment, LiuggioHelpDeskTicketSystemBundle:Admin\CommentAdmin]
+
+    sonata.ticket.category.admin:
+           class: Liuggio\HelpDeskTicketSystemBundle\Admin\CategoryAdmin
+           tags:
+             - { name: sonata.admin, manager_type: orm, group: TicketSystem, label: Category }
+           arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\Category, LiuggioHelpDeskTicketSystemBundle:Admin\CategoryAdmin]
+
+    sonata.ticket.ticket.admin:
+          class: Liuggio\HelpDeskTicketSystemBundle\Admin\TicketAdmin
+          tags:
+            - { name: sonata.admin, manager_type: orm, group: TicketSystem, label: Ticket }
+          arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket, LiuggioHelpDeskTicketSystemBundle:Admin\TicketAdmin]
+          calls:
+            - [ setTemplates, [{"list": LiuggioHelpDeskTicketSystemBundle:TicketAdmin:list.html.twig,layout: SonataAdminBundle::standard_layout.html.twig, ajax: SonataAdminBundle::ajax_layout.html.twig, edit: SonataAdminBundle:CRUD:edit.html.twig, show: SonataAdminBundle:CRUD:show.html.twig}] ]
+
+
+
+

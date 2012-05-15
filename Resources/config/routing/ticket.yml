@@ -1,0 +1,30 @@
+ticket:
+    pattern:  /
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:index" }
+
+ticket_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:show" }
+
+ticket_new:
+    pattern:  /new
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:new" }
+
+ticket_create:
+    pattern:  /create
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:create" }
+    requirements: { _method: post }
+
+ticket_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:edit" }
+
+ticket_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:update" }
+    requirements: { _method: post }
+
+ticket_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:delete" }
+    requirements: { _method: post }

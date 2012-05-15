@@ -1,0 +1,37 @@
+Liuggio\HelpDeskTicketSystemBundle\Entity\Category:
+  type: entity
+  table: ticket__category
+  manyToMany:
+    operators:
+      targetEntity: Tvision\Bundle\UserBundle\Entity\User
+      joinTable:
+        name: ticket_category_user
+        joinColumns:
+          Category_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          User_id:
+            referencedColumnName: id
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    name:
+      type: string
+      length: 255
+    description:
+      type: string
+      length: 255
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+    isEnable:
+      type: boolean
+    weight:
+      type: integer
+  lifecycleCallbacks:
+    prePersist: [prePersist]
+    preUpdate: [preUpdate]

@@ -1,0 +1,18 @@
+Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState:
+  type: entity
+  table: ticket__state
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    code:
+      type: string
+      length: '7'
+    description:
+      type: string
+      length: 255
+    weight:
+      type: integer
+  lifecycleCallbacks: {  }

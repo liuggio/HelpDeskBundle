@@ -1,0 +1,23 @@
+Liuggio\HelpDeskTicketSystemBundle\Entity\Comment:
+  type: entity
+  table: ticket__comment
+  manyToOne:
+    createdBy:
+      targetEntity: Tvision\Bundle\UserBundle\Entity\User
+    ticket:
+      targetEntity: Ticket
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    body:
+      type: text
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+  lifecycleCallbacks:
+    prePersist: [prePersist]
+    preUpdate: [preUpdate]

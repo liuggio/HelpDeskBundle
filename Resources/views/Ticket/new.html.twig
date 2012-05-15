@@ -1,0 +1,16 @@
+<h1>Ticket creation</h1>
+
+<form action="{{ path('ticket_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('ticket') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
