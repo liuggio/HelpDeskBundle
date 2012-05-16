@@ -9,6 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class TicketState
 {
+    CONST STATE_NEW = 'new';
+    CONST STATE_PENDING = 'pending';
+    CONST STATE_REPLIED = 'replied';
+    CONST STATE_CLOSED = 'closed';
 
     /**
      * @var string $code

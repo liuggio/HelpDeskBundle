@@ -15,4 +15,7 @@ Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState:
       length: 255
     weight:
       type: integer
+  indexes:
+    code_index:
+      columns: [ code ]
   lifecycleCallbacks: {  }

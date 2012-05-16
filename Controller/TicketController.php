@@ -79,6 +79,18 @@ class TicketController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+
+            $locale = $this->getRequest()->getSession()->getLocale();
+            if (isset($locale)) {
+                $entity->setLanguage($locale);
+            }
+            $state_new = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState')
+                ->findOneByCode(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_NEW);
+
+            if ($state_new) {
+                $entity->setState($state_new);
+            }
+            // @TODO SEND EVENT
             $em->persist($entity);
             $em->flush();
 
