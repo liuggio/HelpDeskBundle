@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
 use Liuggio\HelpDeskTicketSystemBundle\Form\TicketType;
+use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
+use Liuggio\HelpDeskTicketSystemBundle\Entity\Comment;
 
 /**
  * Ticket controller.
@@ -37,20 +39,20 @@ class TicketController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $comment = new Comment();
+        $comment->setTicket($entity);
+        $comment->setCreatedBy(null);
+        $comment_form   = $this->createForm(new CommentType($entity->getId()), $comment);
 
         return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
+            'entity'       => $entity,
+            'comment_form' => $comment_form->createView()
         ));
     }
-
     /**
      * Displays a form to create a new Ticket entity.
      *

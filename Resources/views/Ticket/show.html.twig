@@ -11,6 +11,10 @@
             <td>{{ entity.subject }}</td>
         </tr>
         <tr>
+            <th>State</th>
+            <td>{{ entity.getState.getCode }}:{{ entity.getState.getDescription }}</td>
+        </tr>
+        <tr>
             <th>Body</th>
             <td>{{ entity.body }}</td>
         </tr>
@@ -29,21 +33,43 @@
     </tbody>
 </table>
 
+<table class="records_list">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Body</th>
+        <th>Createdat</th>
+        <th>Updatedat</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for comment in entity.getComments %}
+    <tr>
+        <td><a href="{{ path('comment_show', { 'id': comment.id }) }}">{{ comment.id }}</a></td>
+        <td>{{ comment.body }}</td>
+        <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif%}</td>
+        <td>{% if comment.updatedAt %}{{ comment.updatedAt|date('Y-m-d H:i:s') }}{% endif%}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+
 <ul class="record_actions">
+
+    <li>
+        <form action="{{ path('comment_create') }}" method="post" {{ form_enctype(comment_form) }}>
+            {{ form_widget(comment_form) }}
+            <p>
+                <button type="submit">Add Comment</button>
+            </p>
+        </form>
+    </li>
     <li>
         <a href="{{ path('ticket') }}">
             Back to the list
         </a>
-    </li>
-    <li>
-        <a href="{{ path('ticket_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('ticket_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
     </li>
 </ul>
