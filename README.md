@@ -1,12 +1,18 @@
 HelpDeskTicketSystemBundle
 ==========================
 
+Develpment status. Release will be on july.
+
+The objective of this bundle is support the Help desk.
+
 Open source support ticket system. (Symfony2 bundle)
 
 
 See wiki
 
 https://github.com/liuggio/HelpDeskTicketSystemBundle/wiki/Concept-key-RFC
+
+
 
 Install this bundle as always :)
 
