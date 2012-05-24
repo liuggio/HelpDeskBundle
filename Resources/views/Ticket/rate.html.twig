@@ -1,0 +1,16 @@
+<h1>Rate Page</h1>
+
+{% block rate_form %}
+<ul class="record_actions">
+
+    <li>
+        <form action="{{ path('ticket_rate') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <p>
+                <button type="submit" name="rate" value="rate" >Rate our service</button>
+                <a href = "{{ path('ticket') }}" > Skip </a>
+            </p>
+        </form>
+    </li>
+</ul>
+{% endblock rate_form %}
