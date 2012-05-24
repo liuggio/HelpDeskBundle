@@ -1,6 +1,8 @@
 ticket:
-    pattern:  /
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:index" }
+    pattern:  /{status}
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:index", status: open }
+    requirements:
+      status: open|closed|all
 
 ticket_show:
     pattern:  /{id}/show
