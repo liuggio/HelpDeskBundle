@@ -212,7 +212,7 @@ class TicketController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($id);
 
-         if (!$entity) {
+        if (!$entity){
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
         
@@ -224,7 +224,7 @@ class TicketController extends Controller
         $state_closed = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState')
             ->findOneByCode(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_CLOSED);
 
-        if ($state_closed) {
+        if ($state_closed){
             $entity->setState($state_closed);
         }
             
@@ -239,10 +239,10 @@ class TicketController extends Controller
         ));
     }
     
-     /**
-     * Rate the Ticket
-     *
-     */
+    /**
+    * Rate the Ticket
+    *
+    */
     public function rateAction()
     {
         $entity  = new Ticket();
@@ -251,43 +251,43 @@ class TicketController extends Controller
         $form->bindRequest($request);
 
         if ($form->isValid()){
-             $formData = $form->getData();
-        }
-           
-        $ticket_id = $formData['ticket_id'];
-        $rate_val = $formData['rate'];
+            
+            $formData = $form->getData();
+            $ticket_id = $formData['ticket_id'];
+            $rate_val = $formData['rate'];
         
-        $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($ticket_id);
+            $em = $this->getDoctrine()->getEntityManager();
+            $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($ticket_id);
         
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Ticket entity.');
-        }
+            if (!$entity){
+                throw $this->createNotFoundException('Unable to find Ticket entity.');
+            }
         
-        $session = $this->get('session');
+            $session = $this->get('session');
         
-        if ( $entity->getRate() != NULL)
-            {
-                if($session)
-                    {
-                        $session->setFlash('thankYouMsg', 'You can not re-Rate this Ticket!');
-                        $session->setFlash('ratedTickedId', $ticket_id);
-                        $session->setFlash('rating:', $entity->getRate() );
-                    }
+            if ( $entity->getRate() != NULL){
+                
+                if($session){                
+                    
+                    $session->setFlash('thankYouMsg', 'You can not re-Rate this Ticket!');
+                    $session->setFlash('ratedTickedId', $ticket_id);
+                    $session->setFlash('rating:', $entity->getRate() );
+                }
                 
                 return $this->redirect($this->generateUrl('ticket'));
             }
 
-        $entity->setRate($rate_val);
-        $em->persist($entity);
-        $em->flush();
-        if($session)
-            {
+            $entity->setRate($rate_val);
+            $em->persist($entity);
+            $em->flush();
+            if($session){
+                
                 $session->setFlash('thankYouMsg', 'Thank you for rating our services!');
                 $session->setFlash('ratedTickedId', $ticket_id);
                 $session->setFlash('rating', $rate_val);
-                
+
             }
+        }
             
         return $this->redirect($this->generateUrl('ticket'));
 
