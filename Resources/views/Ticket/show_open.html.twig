@@ -1,0 +1,35 @@
+{% extends 'LiuggioHelpDeskTicketSystemBundle:Ticket:show.html.twig' %}
+
+{% block comment %}
+<ul class="record_actions">
+
+    <li>
+        <form action="{{ path('comment_create') }}" method="post" {{ form_enctype(comment_form) }}>
+            {{ form_widget(comment_form) }}
+            <p>
+                <button type="submit">Add Comment</button>
+            </p>
+        </form>
+    </li>
+    <li>
+        <a href="{{ path('ticket') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock comment %}
+
+{% block close_form %}
+<ul class="record_actions">
+
+    <li>
+        <form action="{{ path('ticket_close', { 'id': entity.id }) }}" method="post" {{ form_enctype(comment_form) }}>
+            {{ form_widget(comment_form) }}
+            <p>
+                <input type="hidden" name="ticket_id" id="ticket_id" value="entity.id" />
+                <button type="submit">Close Ticket</button>
+            </p>
+        </form>
+    </li>
+</ul>
+{% endblock close_form %}

@@ -36,6 +36,16 @@
     </tbody>
 </table>
 
+{% if app.session.hasFlash('thankYouMsg') %}
+<div class="flash-notice">
+{{ app.session.flash('thankYouMsg') }}
+<br />
+Ticket rated:{{ app.session.flash('ratedTickedId') }}
+<br />
+Rating Assigned:{{ app.session.flash('rating') }}
+</div>
+{% endif %}
+
 <ul>
     <li>
         <a href="{{ path('ticket_new') }}">

@@ -4,12 +4,19 @@ namespace Liuggio\HelpDeskTicketSystemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Category;
+use Liuggio\HelpDeskTicketSystemBundle\Exception;
 
 /**
  * Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket
  */
 class Ticket
 {
+     CONST RATE_STAR_ONE = 1;
+     CONST RATE_STAR_TWO = 2;
+     CONST RATE_STAR_THREE = 3;
+     CONST RATE_STAR_FOUR = 4;
+     CONST RATE_STAR_FIVE = 5;
+     
     /**
      * @var integer $id
      */
@@ -54,6 +61,11 @@ class Ticket
      * @var Liuggio\HelpDeskTicketSystemBundle\Entity\Comment
      */
     private $comments;
+    
+     /**
+     * @var int or null if the ticket is not rated
+     */
+    private $rate;
 
     public function __construct()
     {
@@ -217,6 +229,16 @@ class Ticket
     }
 
     /**
+     * Check for comments
+     *
+     * @return boolean
+     */
+    public function hasComments()
+    {
+        return !$this->comments->isEmpty() ;
+    }
+    
+    /**
      * Set state
      *
      * @param Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState $state
@@ -274,4 +296,37 @@ class Ticket
     {
         return $this->createdBy;
     }
+    
+     /**
+     * Set createdBy
+     *
+     * @param Application\Sonata\UserBundle\Entity\User $createdBy
+     */
+    public function setRate($rate)
+    {
+        switch($rate){
+            case NULL:
+            case self::RATE_STAR_ONE:
+            case self::RATE_STAR_TWO:
+            case self::RATE_STAR_THREE:
+            case self::RATE_STAR_FOUR:
+            case self::RATE_STAR_FIVE:
+                $this->rate = $rate;
+                break;
+            default:
+               throw new Exception('Invalid rating value.');
+                
+        }
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return Application\Sonata\UserBundle\Entity\User 
+     */
+    public function getRate()
+    {
+        return $this->rate;
+    }
+    
 }

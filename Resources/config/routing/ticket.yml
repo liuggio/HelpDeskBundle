@@ -28,3 +28,13 @@ ticket_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:delete" }
     requirements: { _method: post }
+
+ticket_close:
+    pattern:  /{id}/close
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:close" }
+    requirements: { _method: post }
+    
+ticket_rate:
+    pattern:  /rate
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:rate" }
+    requirements: { _method: post }

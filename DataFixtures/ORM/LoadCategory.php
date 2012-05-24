@@ -19,6 +19,16 @@ class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
         $em->persist($category);
 
         $em->flush();
+        
+        $category = new Category();
+        $category->setName('Other');
+        $category->setDescription('Other problems');
+        $category->setWeight(2);
+        $category->setIsEnable(true);
+        $em->persist($category);
+
+        $em->flush();
+        
     }
     
     public function getOrder()
