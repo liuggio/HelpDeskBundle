@@ -7,7 +7,8 @@ use Symfony\Component\Form\FormBuilder;
 
 class CommentType extends AbstractType
 {
-
+    private $ticket_id;
+    
     public function __construct($ticket_id = null)
     {
         $this->ticket_id = $ticket_id;
@@ -20,7 +21,10 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('ticket')
+            ->add('ticket','hidden', array(
+                'data' => $this->ticket_id,
+                'property_path' => false
+            ))
             ->add('body')
             ->add('createdBy', 'hidden')
         ;

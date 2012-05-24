@@ -11,7 +11,8 @@ Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket:
   oneToMany:
     comments:
       targetEntity: Comment
-      mappedBy: ticket
+      mappedBy: ticket 
+      cascade: ["persist", "remove"]
   fields:
     id:
       type: integer
@@ -30,6 +31,9 @@ Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket:
       type: datetime
     updatedAt:
       type: datetime
+    rate:
+      type: integer
+      nullable: true
   lifecycleCallbacks:
     prePersist: [prePersist]
     preUpdate: [preUpdate]
