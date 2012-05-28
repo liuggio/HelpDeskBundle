@@ -14,7 +14,6 @@ class TicketAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('createdAt')
             ->add('createdBy')
             ->add('category')
             ->add('subject')
@@ -44,7 +43,7 @@ class TicketAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('createdAt')
+            ->add('rate')
             ->add('category')
             ->add('subject')
             ->add('language')
