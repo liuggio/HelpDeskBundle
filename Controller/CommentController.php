@@ -13,43 +13,8 @@ use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
  */
 class CommentController extends Controller
 {
-    /**
-     * Lists all Comment entities.
-     *
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Comment')->findAll();
 
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:Comment:index.html.twig', array(
-            'entities' => $entities
-        ));
-    }
-
-    /**
-     * Finds and displays a Comment entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Comment')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Comment entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:Comment:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
-        ));
-    }
 
     /**
      * Displays a form to create a new Comment entity.

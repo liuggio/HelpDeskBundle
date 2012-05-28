@@ -59,7 +59,7 @@
     <tbody>
     {% for comment in entity.getComments %}
     <tr>
-        <td><a href="{{ path('comment_show', { 'id': comment.id }) }}">{{ comment.id }}</a></td>
+        <td><strong>{{ comment.id }}</strong></td>
         <td>{{ comment.body }}</td>
         <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif%}</td>
         <td>{% if comment.updatedAt %}{{ comment.updatedAt|date('Y-m-d H:i:s') }}{% endif%}</td>

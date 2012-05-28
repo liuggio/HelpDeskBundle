@@ -5,7 +5,6 @@ namespace Liuggio\HelpDeskTicketSystemBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
 use Liuggio\HelpDeskTicketSystemBundle\Form\TicketType;
 use Liuggio\HelpDeskTicketSystemBundle\Form\CloseTicketType;
