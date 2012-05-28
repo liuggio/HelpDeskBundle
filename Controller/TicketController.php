@@ -28,9 +28,16 @@ class TicketController extends Controller
      * Lists all Ticket entities.
      *
      */
+<<<<<<< HEAD
+    public function indexAction($status)
+    {
+        
+        $statusId = 
+=======
     public function indexAction($status = self::USER_TAB_STATE_OPEN)
     {
         //$status could be : Open, Closed, All
+>>>>>>> 23d6dda872222a39cfda4d05f6582dab87b03527
         $em = $this->getDoctrine()->getEntityManager();
         $entities=null;
         if ($status == self::USER_TAB_STATE_ALL) {
@@ -46,10 +53,15 @@ class TicketController extends Controller
             $query = $em->createQuery($query);
             $query->setParameter('state_closed', TicketState::STATE_CLOSED);
 
+<<<<<<< HEAD
+        $entities = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->findBy(array( Ticket=> $status));
+
+=======
             //var_dump($query->getSql());
             $entities = $query->getResult();
         }
         // @TODO Pagination
+>>>>>>> 23d6dda872222a39cfda4d05f6582dab87b03527
         return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:index.html.twig', array(
             'entities' => $entities
         ));
@@ -67,17 +79,22 @@ class TicketController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
-
         $comment = new Comment();
         $comment->setCreatedBy(null);
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
             return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:show_closed.html.twig', array(
+<<<<<<< HEAD
+                'entity'       => $entity,
+        ));
+        } else{            
+=======
                 'entity' => $entity,
             ));
         }
         else {
 
+>>>>>>> 23d6dda872222a39cfda4d05f6582dab87b03527
             return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:show_open.html.twig', array(
                 'entity' => $entity,
                 'comment_form' => $comment_form->createView()
@@ -143,6 +160,90 @@ class TicketController extends Controller
      * Displays a form to edit an existing Ticket entity.
      *
      */
+<<<<<<< HEAD
+//    public function editAction($id)
+//    {
+//        $em = $this->getDoctrine()->getEntityManager();
+//
+//        $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($id);
+//
+//        if (!$entity) {
+//            throw $this->createNotFoundException('Unable to find Ticket entity.');
+//        }
+//
+//        $editForm = $this->createForm(new TicketType(), $entity);
+//        $deleteForm = $this->createDeleteForm($id);
+//
+//        return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:edit.html.twig', array(
+//            'entity'      => $entity,
+//            'edit_form'   => $editForm->createView(),
+//            'delete_form' => $deleteForm->createView(),
+//        ));
+//    }
+
+//    /**
+//     * Edits an existing Ticket entity.
+//     *
+//     */
+//    public function updateAction($id)
+//    {
+//        $em = $this->getDoctrine()->getEntityManager();
+//
+//        $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($id);
+//
+//        if (!$entity) {
+//            throw $this->createNotFoundException('Unable to find Ticket entity.');
+//        }
+//
+//        $editForm   = $this->createForm(new TicketType(), $entity);
+//        $deleteForm = $this->createDeleteForm($id);
+//
+//        $request = $this->getRequest();
+//
+//        $editForm->bindRequest($request);
+//
+//        if ($editForm->isValid()) {
+//            $em->persist($entity);
+//            $em->flush();
+//
+//            return $this->redirect($this->generateUrl('ticket_edit', array('id' => $id)));
+//        }
+//
+//        return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:edit.html.twig', array(
+//            'entity'      => $entity,
+//            'edit_form'   => $editForm->createView(),
+//            'delete_form' => $deleteForm->createView(),
+//        ));
+//    }
+
+//    /**
+//     * Deletes a Ticket entity.
+//     *
+//     */
+//    public function deleteAction($id)
+//    {
+//        $form = $this->createDeleteForm($id);
+//        $request = $this->getRequest();
+//
+//        $form->bindRequest($request);
+//
+//        if ($form->isValid()) {
+//            $em = $this->getDoctrine()->getEntityManager();
+//            $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($id);
+//
+//            if (!$entity) {
+//                throw $this->createNotFoundException('Unable to find Ticket entity.');
+//            }
+//
+//            $em->remove($entity);
+//            $em->flush();
+//        }
+//
+//        return $this->redirect($this->generateUrl('ticket'));
+//    }
+    
+     /**
+=======
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
@@ -225,6 +326,7 @@ class TicketController extends Controller
     }
 
     /**
+>>>>>>> 23d6dda872222a39cfda4d05f6582dab87b03527
      * Close the Ticket
      *
      */
@@ -314,10 +416,20 @@ class TicketController extends Controller
 
     }
 
+<<<<<<< HEAD
+//    private function createDeleteForm($id)
+//    {
+//        return $this->createFormBuilder(array('id' => $id))
+//            ->add('id', 'hidden')
+//            ->getForm()
+//        ;
+//    }
+=======
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
             ->getForm();
     }
+>>>>>>> 23d6dda872222a39cfda4d05f6582dab87b03527
 }
