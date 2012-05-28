@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
 use Liuggio\HelpDeskTicketSystemBundle\Form\TicketType;
+use Liuggio\HelpDeskTicketSystemBundle\Form\CloseTicketType;
 use Liuggio\HelpDeskTicketSystemBundle\Form\RateType;
+use Liuggio\HelpDeskTicketSystemBundle\Form\SearchType;
 use Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState;
 use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Comment;
@@ -20,14 +22,15 @@ use Liuggio\HelpDeskTicketSystemBundle\Exception;
  */
 class TicketController extends Controller
 {
-    CONST USER_TAB_STATE_OPEN = 'open';
-    CONST USER_TAB_STATE_CLOSE = 'close';
-    CONST USER_TAB_STATE_ALL = 'all';
+    CONST STATE_OPEN = 'open';
+    CONST STATE_CLOSE = 'closed';
+    CONST STATE_ALL = 'all';
 
     /**
      * Lists all Ticket entities.
      *
      */
+<<<<<<< HEAD
     public function indexAction($status = self::USER_TAB_STATE_OPEN)
     {
         //$status could be : Open, Closed, All
@@ -48,10 +51,63 @@ class TicketController extends Controller
 
             //var_dump($query->getSql());
             $entities = $query->getResult();
+=======
+    public function indexAction($state = self::STATE_OPEN)
+    {
+       
+        $form = $this->createForm(new SearchType());
+        $request = $this->getRequest();
+        $form->bindRequest($request); 
+        
+        $request_pattern = null;
+        
+        if ($form->isValid()) {
+            $formData = $form->getData();
+            $request_pattern = $formData['request_pattern'];           
+        } else {
+            $this->get('session')->setFlash('notice', 'Invalid Form!');
         }
+        
+        //$state could be : open | closed | all
+        $em = $this->getDoctrine()->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        
+        $qb->select('t')
+            ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
+            ->leftjoin('t.state','st');
+        
+        switch($state) {
+            case self::STATE_OPEN:
+                $qb->where('st.code != :state');
+                $qb->setParameter('state', TicketState::STATE_CLOSED);
+                break;
+            case self::STATE_CLOSE:
+                $qb->where('st.code = :state');
+                $qb->setParameter('state', TicketState::STATE_CLOSED);
+                break;
+            case self::STATE_ALL:
+                break;
+            default:
+                throw $this->createNotFoundException('Routing Problem (You should not be here)');
+                break;
+        }
+
+        if($request_pattern){
+            $qb->andWhere(
+                $qb->expr()->orx( $qb->expr()->like('t.subject', ':pattern'), $qb->expr()->like('t.body', ':pattern') )
+                    
+                )
+               ->setParameter('pattern', "%".$request_pattern."%");
+>>>>>>> 57a7a96cf49fd1a164a04c190ad04788e0b9dd50
+        }
+
+        $tickets = $qb->getQuery()->getResult();
+        
         // @TODO Pagination
         return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:index.html.twig', array(
-            'entities' => $entities
+            'entities' => $tickets,
+            'form' => $form->createView(),
+            'state' => $state
         ));
     }
 
@@ -70,6 +126,7 @@ class TicketController extends Controller
 
         $comment = new Comment();
         $comment->setCreatedBy(null);
+        $ticket_form = $this->createForm(new CloseTicketType($entity->getId()));
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
             return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:show_closed.html.twig', array(
@@ -80,7 +137,8 @@ class TicketController extends Controller
 
             return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:show_open.html.twig', array(
                 'entity' => $entity,
-                'comment_form' => $comment_form->createView()
+                'comment_create' => $comment_form->createView(),
+                'ticket_close' => $ticket_form->createView()
             ));
         }
     }
@@ -140,6 +198,7 @@ class TicketController extends Controller
     }
 
     /**
+<<<<<<< HEAD
      * Displays a form to edit an existing Ticket entity.
      *
      */
@@ -225,6 +284,8 @@ class TicketController extends Controller
     }
 
     /**
+=======
+>>>>>>> 57a7a96cf49fd1a164a04c190ad04788e0b9dd50
      * Close the Ticket
      *
      */
@@ -313,6 +374,7 @@ class TicketController extends Controller
         return $this->redirect($this->generateUrl('ticket'));
 
     }
+<<<<<<< HEAD
 
     private function createDeleteForm($id)
     {
@@ -320,4 +382,6 @@ class TicketController extends Controller
             ->add('id', 'hidden')
             ->getForm();
     }
+=======
+>>>>>>> 57a7a96cf49fd1a164a04c190ad04788e0b9dd50
 }
