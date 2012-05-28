@@ -1,14 +1,16 @@
 ticket:
-    pattern:  /{status}
-<<<<<<< HEAD
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:index", status: open }
+    pattern:  /{state}
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:index", state: open }
     requirements:
-      status: open|closed|all
-=======
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:index", status:open }
-    requirements: { status: open|close|all }
+      state: open|closed|all
+      _method: get
 
->>>>>>> 23d6dda872222a39cfda4d05f6582dab87b03527
+ticket_search:
+    pattern:  /{state}/search/
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:index", state: open}
+    requirements:
+      state: open|closed|all
+      _method: get
 
 ticket_show:
     pattern:  /{id}/show
