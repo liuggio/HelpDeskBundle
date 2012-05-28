@@ -13,6 +13,13 @@
 </form>
 <hr /> 
 
+<br />
+{% if app.session.hasFlash('notice') %}
+<div class="flash-notice">
+{{ app.session.flash('notice') }}
+</div>
+{% endif %}
+<br />
 
 <table class="records_list">
     <thead>

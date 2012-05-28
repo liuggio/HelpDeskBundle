@@ -39,11 +39,11 @@ class TicketController extends Controller
         
         $request_pattern = null;
         
-        if (/*$form->isValid()*/true) {
+        if ($form->isValid()) {
             $formData = $form->getData();
             $request_pattern = $formData['request_pattern'];           
         } else {
-            return $this->redirect($this->generateUrl('ticket', array('state' => $state)));
+            $this->get('session')->setFlash('notice', 'Invalid Form!');
         }
         
         //$state could be : open | closed | all
