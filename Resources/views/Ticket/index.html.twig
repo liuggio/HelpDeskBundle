@@ -1,4 +1,18 @@
 <h1>Ticket list</h1>
+<br />
+<hr /> 
+<br />
+<a href="{{ path('ticket', { 'state': 'open' }) }}">Open Tickets</a>
+<a href="{{ path('ticket', { 'state': 'closed' }) }}">Closed Tickets</a>
+<a href="{{ path('ticket', { 'state': 'all' }) }}">All Tickets</a>
+<br />
+<form action="{{ path('ticket_search', { 'state': state }) }}" method="get" {{ form_enctype(form) }}>{{ form_widget(form) }}
+    <p>
+        <button type="submit">Search Ticket</button>
+    </p>
+</form>
+<hr /> 
+
 
 <table class="records_list">
     <thead>
@@ -25,9 +39,6 @@
                 <ul>
                     <li>
                         <a href="{{ path('ticket_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('ticket_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
             </td>

@@ -39,7 +39,7 @@ class TicketController extends Controller
         
         $request_pattern = null;
         
-        if ($form->isValid()) {
+        if (/*$form->isValid()*/true) {
             $formData = $form->getData();
             $request_pattern = $formData['request_pattern'];           
         } else {

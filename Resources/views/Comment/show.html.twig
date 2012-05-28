@@ -20,22 +20,3 @@
         </tr>
     </tbody>
 </table>
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('comment') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('comment_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('comment_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-                <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
