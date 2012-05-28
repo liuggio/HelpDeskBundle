@@ -135,26 +135,33 @@ class TicketControllerTest extends WebTestCase
         }
        
         
-     }
-     
-
-    
-    
-    
+     }   
     
    /**
     * @dataProvider getTicketData
     */  
-    public function testIndex($testSubject, $testBody)
+    public function test_Index_Search($testSubject, $testBody)
     {
 
-        $crawler = $this->client->request('GET', '/customer-care/ticket/');
+        $crawler = $this->client->request('GET', '/customer-care/ticket/all');
         // assert();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         // assert();
         $this->assertGreaterThan(0, $crawler->filter('html:contains("' . $testSubject . '")')->count());
         // assert();
         $this->assertGreaterThan(0, $crawler->filter('html:contains("' . $testBody . '")')->count());
+        
+        $crawler = $this->client->request('GET', '/customer-care/ticket/open');
+        // assert();
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        // assert();
+        $this->assertEquals(0, $crawler->filter('html:contains("' . $testSubject . '")')->count());
+        // assert();
+        $this->assertEquals(0, $crawler->filter('html:contains("' . $testBody . '")')->count());
+        
+        $crawler = $this->client->request('GET', '/customer-care/ticket/all');
+        // assert();
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         
         $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
         $ticket =  $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
