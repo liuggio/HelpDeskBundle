@@ -5,7 +5,7 @@ namespace Liuggio\HelpDeskTicketSystemBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-
+use Tvision\Bundle\UserBundle\Entity\User;
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
 use Liuggio\HelpDeskTicketSystemBundle\Form\TicketType;
 use Liuggio\HelpDeskTicketSystemBundle\Form\CloseTicketType;
@@ -32,7 +32,10 @@ class TicketController extends Controller
      */
     public function indexAction($state = self::STATE_OPEN)
     {
-       
+        //Retrive the User from the Session
+        $user = $this->get('security.context')->getToken()->getUser();
+        
+        //Create the Search Form
         $form = $this->createForm(new SearchType());
         $request = $this->getRequest();
         $form->bindRequest($request); 
@@ -46,21 +49,33 @@ class TicketController extends Controller
             $this->get('session')->setFlash('notice', 'Invalid Form!');
         }
         
-        //$state could be : open | closed | all
+        //$state GET parameter could be : open | closed | all
         $em = $this->getDoctrine()->getEntityManager();
         $qb = $em->createQueryBuilder();
         
+        /***** Build the query *****/
+        /*
+         * SELECT * FROM Ticket t
+         * WHERE t.createdBy = user
+         * LEFT-JOIN     Ticket_State st ON t.state = st.code
+         * AND WHERE      (  st.code = '$query_state'
+         *                AND ( t.subject  LIKE  %request_pattern%
+         *                      OR t.body LIKE  %request_pattern% 
+         *                     )
+         *             )
+         */
         $qb->select('t')
             ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
-            ->leftjoin('t.state','st');
-        
+            ->where('t.createdBy = :user')
+            ->leftjoin('t.state','st')
+            ->setParameter('user', $user);
         switch($state) {
             case self::STATE_OPEN:
-                $qb->where('st.code != :state');
+                $qb->andWhere('st.code != :state');
                 $qb->setParameter('state', TicketState::STATE_CLOSED);
                 break;
             case self::STATE_CLOSE:
-                $qb->where('st.code = :state');
+                $qb->andWhere('st.code = :state');
                 $qb->setParameter('state', TicketState::STATE_CLOSED);
                 break;
             case self::STATE_ALL:
@@ -93,13 +108,17 @@ class TicketController extends Controller
      *
      */
     public function showAction($id)
-    {
+    {       
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($id);
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
+        
+        $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
+        $aclManager->checkPermissions($entity);
+        
 
         $comment = new Comment();
         $comment->setCreatedBy(null);
@@ -141,6 +160,9 @@ class TicketController extends Controller
      */
     public function createAction()
     {
+        //Retrive the User from the Session
+        $user = $this->get('security.context')->getToken()->getUser();
+        
         $entity = new Ticket();
         $request = $this->getRequest();
         $form = $this->createForm(new TicketType(), $entity);
@@ -160,9 +182,14 @@ class TicketController extends Controller
             } else {
                 throw new Exception();
             }
+            //Set the createdBy user
+            $entity->setCreatedBy($user);
             // @TODO SEND EVENT
             $em->persist($entity);
             $em->flush();
+            //Set the ACE
+            $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
+            $aclManager->insertAce($entity, $user);
 
             return $this->redirect($this->generateUrl('ticket_show', array('id' => $entity->getId())));
 
@@ -186,7 +213,10 @@ class TicketController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
-
+        
+        $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
+        $aclManager->checkPermissions($entity);
+        
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
 
             return $this->redirect($this->generateUrl('ticket'));
@@ -229,6 +259,9 @@ class TicketController extends Controller
 
             $em = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($ticket_id);
+            
+            $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
+            $aclManager->checkPermissions($entity);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Ticket entity.');
