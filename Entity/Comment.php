@@ -25,6 +25,11 @@ class Comment
     private $createdAt;
 
     /**
+     * @var Application\Sonata\UserBundle\Entity\User $createdBy
+     */
+    private $createdBy;
+
+    /**
      * @var datetime $modifiedAt
      */
     private $modifiedAt;
@@ -127,11 +132,6 @@ class Comment
     {
         return $this->ticket;
     }
-    /**
-     * @var Application\Sonata\UserBundle\Entity\User
-     */
-    private $createdBy;
-
 
     /**
      * Set createdBy

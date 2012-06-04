@@ -1,0 +1,4 @@
+comment_create_admin:
+    pattern:  /create
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:CommentAdmin:create" }
+    requirements: { _method: post }

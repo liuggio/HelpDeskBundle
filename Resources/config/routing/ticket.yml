@@ -25,20 +25,6 @@ ticket_create:
     defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:create" }
     requirements: { _method: post }
 
-ticket_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:edit" }
-
-ticket_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:update" }
-    requirements: { _method: post }
-
-ticket_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:delete" }
-    requirements: { _method: post }
-
 ticket_close:
     pattern:  /{id}/close
     defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:close" }

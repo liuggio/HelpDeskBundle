@@ -108,7 +108,10 @@ class TicketController extends Controller
      *
      */
     public function showAction($id)
-    {       
+    {
+        //Retrive the User from the Session
+        $user = $this->get('security.context')->getToken()->getUser();
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($id);
@@ -118,10 +121,9 @@ class TicketController extends Controller
         
         $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
         $aclManager->checkPermissions($entity);
-        
 
         $comment = new Comment();
-        $comment->setCreatedBy(null);
+        $comment->setCreatedBy($user);
         $ticket_form = $this->createForm(new CloseTicketType($entity->getId()));
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
@@ -184,12 +186,24 @@ class TicketController extends Controller
             }
             //Set the createdBy user
             $entity->setCreatedBy($user);
-            // @TODO SEND EVENT
             $em->persist($entity);
             $em->flush();
             //Set the ACE
             $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
             $aclManager->insertAce($entity, $user);
+
+//            // notify the customercares of the corresponding category
+//            $category = $entity->getCategory();
+//            $operators = $category->getOperators();
+
+//            $message = \Swift_Message::newInstance()
+//                    ->setSubject('Hello Email')
+//                    ->setFrom('send@example.com')
+//                    ->setTo('recipient@example.com')
+//                    ->setBody($this->renderView('HelloBundle:Hello:email.txt.twig', array('name' => $name)))
+//            ;
+//
+//            $this->get('mailer')->send($message);
 
             return $this->redirect($this->generateUrl('ticket_show', array('id' => $entity->getId())));
 

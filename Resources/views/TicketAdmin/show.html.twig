@@ -1,0 +1,81 @@
+<h1>Ticket</h1>
+
+{% block ticket %}
+
+<table class="record_properties">
+    <tbody>
+    <tr>
+        <th>Id</th>
+        <td>{{ entity.id }}</td>
+    </tr>
+    <tr>
+        <th>Subject</th>
+        <td>{{ entity.subject }}</td>
+    </tr>
+    <tr>
+        <th>State</th>
+        <td>{{ entity.getState.getCode }}:{{ entity.getState.getDescription }}</td>
+    </tr>
+    {% if entity.getRate != NULL %}
+    <tr>
+        <th>Rating</th>
+        <td>{{ entity.getRate }}</td>
+    </tr>
+    {% endif%}
+    <tr>
+        <th>Category</th>
+        <td>{{ entity.getCategory }}:{{ entity.Category.getDescription }}</td>
+    </tr>
+    <tr>
+        <th>Body</th>
+        <td>{{ entity.body }}</td>
+    </tr>
+    <tr>
+        <th>Language</th>
+        <td>{{ entity.language }}</td>
+    </tr>
+    <tr>
+        <th>Createdat</th>
+        <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    <tr>
+        <th>Updatedat</th>
+        <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    </tbody>
+</table>
+
+{% if entity.hasComments %}
+<table class="records_list">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Body</th>
+        <th>Createdat</th>
+        <th>CreatedBy</th>
+        <th>Updatedat</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for comment in entity.getComments %}
+    <tr>
+        <td><strong>{{ comment.id }}</strong></td>
+        <td>{{ comment.body }}</td>
+        <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif%}</td>
+        <td>{% if comment.createdBy %}{{ comment.createdBy }}{% endif%}</td>
+        <td>{% if comment.updatedAt %}{{ comment.updatedAt|date('Y-m-d H:i:s') }}{% endif%}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>There are no Comments aviable for this ticket.</p>
+{% endif %}
+{% endblock ticket %}
+{% block comment %}
+{% endblock comment %}
+<a href="{{ path('ticket_admin') }}">
+    Back to the list
+</a>
+

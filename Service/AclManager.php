@@ -5,7 +5,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-use FOS\UserBundle\Entity\User;
+use Tvision\Bundle\UserBundle\Entity\User;
+
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Created by JetBrains PhpStorm.
@@ -14,11 +17,12 @@ use FOS\UserBundle\Entity\User;
  * Time: 10:59 AM
  * To change this template use File | Settings | File Templates.
  */
-class AclManager
+class AclManager implements ContainerAwareInterface
 {
 
     private $aclProvider;
     private $securityContext;
+    private $container;
 
     public function __construct($aclProvider, $securityContext)
     {
@@ -49,9 +53,9 @@ class AclManager
      * @param $user
      * @param int $permissions
      */
-    public function insertAce($object, User $user, $permissions = MaskBuilder::MASK_OWNER )
+    public function insertAce($ticket, User $user, $permissions = MaskBuilder::MASK_OWNER )
     {
-        $acl = $this->getOrCreateAcl($object);
+        $acl = $this->getOrCreateAcl($ticket);
         $securityIdentity = UserSecurityIdentity::fromAccount($user);
 
         // setting Owner
@@ -60,17 +64,44 @@ class AclManager
 
     }
 
-    public function checkPermissions($object, $permissions = 'OWNER')
+    public function checkOpPermissions($ticket, $user, $qb)
     {
-        // verifica per l'accesso in modifica
-        if (false === $this->securityContext->isGranted($permissions, $object))
-        {
-            throw new AccessDeniedException(); 
+        $qb->select('t')
+            ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
+            ->leftjoin('t.category', 'ct')
+            ->leftjoin('ct.operators','opr')
+            ->where('t = :ticket')
+            ->andWhere('opr = :user')
+            ->setParameter('ticket', $ticket)
+            ->setParameter('user', $user);
+
+        $result = $qb->getQuery()->getResult();
+
+            if(empty($result)) {
+                throw new AccessDeniedException("Category Permission not granted!");
+            }
+
+        return true;
+    }
+
+    public function checkPermissions($ticket, $permissions = 'OWNER')
+    {
+        if(false === $this->securityContext->isGranted($permissions, $ticket)) {
+            throw new AccessDeniedException();
         }
 
         return true;
-
     }
 
-
+    /**
+     * Sets the Container.
+     *
+     * @param ContainerInterface $container A ContainerInterface instance
+     *
+     * @api
+     */
+    function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
 }
