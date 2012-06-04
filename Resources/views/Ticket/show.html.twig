@@ -52,6 +52,7 @@
         <th>Id</th>
         <th>Body</th>
         <th>Createdat</th>
+        <th>CreatedBy</th>
         <th>Updatedat</th>
         <th>Actions</th>
     </tr>
@@ -62,6 +63,7 @@
         <td><strong>{{ comment.id }}</strong></td>
         <td>{{ comment.body }}</td>
         <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif%}</td>
+        <td>{% if comment.createdBy %}{{ comment.createdBy }}{% endif%}</td>
         <td>{% if comment.updatedAt %}{{ comment.updatedAt|date('Y-m-d H:i:s') }}{% endif%}</td>
     </tr>
     {% endfor %}
@@ -75,4 +77,7 @@
 {% endblock comment %}
 {% block close_form %}
 {% endblock close_form %}
+<a href="{{ path('ticket') }}">
+    Back to the list
+</a>
 

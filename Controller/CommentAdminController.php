@@ -11,7 +11,7 @@ use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
  * Comment controller.
  *
  */
-class CommentController extends Controller
+class CommentAdminController extends Controller
 {
     /**
      * Creates a new Comment entity.
@@ -37,11 +37,11 @@ class CommentController extends Controller
                 throw $this->createNotFoundException('Unable to find Ticket entity.');
             }
 
-            $state_pending = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState')
-            ->findOneByCode(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_PENDING);
+            $state_replied = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState')
+                ->findOneByCode(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_REPLIED);
 
-            if ($state_pending) {
-                $ticket->setState($state_pending);
+            if ($state_replied) {
+                $ticket->setState($state_replied);
             }
             //Set the createdBy user
             $entity->setCreatedBy($user);
@@ -50,11 +50,11 @@ class CommentController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ticket_show', array('id' => $ticket_id)));
+            return $this->redirect($this->generateUrl('ticket_show_admin', array('id' => $ticket_id)));
 
         }
 
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:Comment:new.html.twig', array(
+        return $this->render('LiuggioHelpDeskTicketSystemBundle:CommentAdmin:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView()
         ));
