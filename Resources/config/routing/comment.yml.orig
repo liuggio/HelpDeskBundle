@@ -1,0 +1,8 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 33e2876859150022f4cae24d33d9672e550f3b79
+comment_create:
+    pattern:  /create
+    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Comment:create" }
+    requirements: { _method: post }

@@ -1,0 +1,29 @@
+{
+    "name": "Liuggio/help-desk-ticket-system-bundle",
+    "description": "This bundle provides an help desk and ticketing system for support your customer.",
+    "keywords": ["menu"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Giulio De Donato",
+            "homepage": "http://www.welcometothebundle.com",
+            "email": "liuggio@gmail.com"
+        },
+        {
+            "name": "Erin Hima",
+            "email": "erinhima@gmail.com"
+        },
+        {
+            "name": "Tvision developers",
+            "homepage": "https://github.com/tvision"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": ">=2.0,<2.2-dev"
+    },
+    "autoload": {
+        "psr-0": { "Liuggio\\HelpDeskTicketSystemBundle": "" }
+    },
+    "target-dir": "Liuggio/HelpDeskTicketSystemBundle"
+}
