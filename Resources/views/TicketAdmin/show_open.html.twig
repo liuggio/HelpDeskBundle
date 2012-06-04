@@ -1,0 +1,15 @@
+{% extends 'LiuggioHelpDeskTicketSystemBundle:TicketAdmin:show.html.twig' %}
+
+{% block comment %}
+<ul class="record_actions">
+
+    <li>
+        <form action="{{ path('comment_create_admin') }}" method="post" {{ form_enctype(comment_create_admin) }}>
+            {{ form_widget(comment_create_admin) }}
+            <p>
+                <button type="submit">Reply</button>
+            </p>
+        </form>
+    </li>
+</ul>
+{% endblock comment %}

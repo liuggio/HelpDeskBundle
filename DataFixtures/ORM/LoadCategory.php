@@ -1,6 +1,6 @@
 <?php
 
-namespace Tvision\Bundle\UserBundle\DataFixtures\ORM;
+namespace Liuggio\HelpDeskTicketSystemBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -17,6 +17,7 @@ class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
         $category->setWeight(1);
         $category->setIsEnable(true);
         $em->persist($category);
+        $this->addReference('administrative_category', $category);
 
         $em->flush();
         
@@ -26,6 +27,7 @@ class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
         $category->setWeight(2);
         $category->setIsEnable(true);
         $em->persist($category);
+        $this->addReference('other_category', $category);
 
         $em->flush();
         
@@ -33,6 +35,6 @@ class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
     
     public function getOrder()
     {
-        return 100; // the order in which fixtures will be loaded
+        return 40; // the order in which fixtures will be loaded
     }
 }

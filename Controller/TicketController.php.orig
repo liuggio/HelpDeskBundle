@@ -5,7 +5,10 @@ namespace Liuggio\HelpDeskTicketSystemBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
+<<<<<<< HEAD
 use Tvision\Bundle\UserBundle\Entity\User;
+=======
+>>>>>>> 33e2876859150022f4cae24d33d9672e550f3b79
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
 use Liuggio\HelpDeskTicketSystemBundle\Form\TicketType;
 use Liuggio\HelpDeskTicketSystemBundle\Form\CloseTicketType;
@@ -32,22 +35,27 @@ class TicketController extends Controller
      */
     public function indexAction($state = self::STATE_OPEN)
     {
+<<<<<<< HEAD
         //Retrive the User from the Session
         $user = $this->get('security.context')->getToken()->getUser();
         
         //Create the Search Form
+=======
+
+>>>>>>> 33e2876859150022f4cae24d33d9672e550f3b79
         $form = $this->createForm(new SearchType());
         $request = $this->getRequest();
-        $form->bindRequest($request); 
-        
+        $form->bindRequest($request);
+
         $request_pattern = null;
-        
+
         if ($form->isValid()) {
             $formData = $form->getData();
-            $request_pattern = $formData['request_pattern'];           
+            $request_pattern = $formData['request_pattern'];
         } else {
             $this->get('session')->setFlash('notice', 'Invalid Form!');
         }
+<<<<<<< HEAD
         
         //$state GET parameter could be : open | closed | all
         $em = $this->getDoctrine()->getEntityManager();
@@ -69,6 +77,17 @@ class TicketController extends Controller
             ->where('t.createdBy = :user')
             ->leftjoin('t.state','st')
             ->setParameter('user', $user);
+=======
+
+        //$state could be : open | closed | all
+        $em = $this->getDoctrine()->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('t')
+            ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
+            ->leftjoin('t.state','st');
+
+>>>>>>> 33e2876859150022f4cae24d33d9672e550f3b79
         switch($state) {
             case self::STATE_OPEN:
                 $qb->andWhere('st.code != :state');
@@ -88,13 +107,13 @@ class TicketController extends Controller
         if($request_pattern){
             $qb->andWhere(
                 $qb->expr()->orx( $qb->expr()->like('t.subject', ':pattern'), $qb->expr()->like('t.body', ':pattern') )
-                    
-                )
-               ->setParameter('pattern', "%".$request_pattern."%");
+
+            )
+                ->setParameter('pattern', "%".$request_pattern."%");
         }
 
         $tickets = $qb->getQuery()->getResult();
-        
+
         // @TODO Pagination
         return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:index.html.twig', array(
             'entities' => $tickets,

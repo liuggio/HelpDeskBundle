@@ -43,6 +43,11 @@ class Ticket
     private $createdAt;
 
     /**
+     * @var Application\Sonata\UserBundle\Entity\User
+     */
+    private $createdBy;
+
+    /**
      * @var datetime $updatedAt
      */
     private $updatedAt;
@@ -271,11 +276,6 @@ class Ticket
         $now = new \DateTime('NOW');
         $this->setUpdatedAt($now);
     }
-    /**
-     * @var Application\Sonata\UserBundle\Entity\User
-     */
-    private $createdBy;
-
 
     /**
      * Set createdBy

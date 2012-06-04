@@ -13,6 +13,28 @@ use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
  */
 class CommentController extends Controller
 {
+<<<<<<< HEAD
+=======
+
+
+
+    /**
+     * Displays a form to create a new Comment entity.
+     *
+     */
+    public function newAction()
+    {
+        $entity = new Comment();
+        
+        $form   = $this->createForm(new CommentType(), $entity);
+
+        return $this->render('LiuggioHelpDeskTicketSystemBundle:Comment:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView()
+        ));
+    }
+
+>>>>>>> 33e2876859150022f4cae24d33d9672e550f3b79
     /**
      * Creates a new Comment entity.
      *

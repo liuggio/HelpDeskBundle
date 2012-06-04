@@ -1,10 +1,3 @@
-parameters:
-#    liuggio_help_desk_ticket_system.example.class: Liuggio\HelpDeskTicketSystemBundle\Example
-
-services:
-#    liuggio_help_desk_ticket_system.example:
-#        class: %liuggio_help_desk_ticket_system.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
 services:
 
 
@@ -33,7 +26,10 @@ services:
           arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket, LiuggioHelpDeskTicketSystemBundle:Admin\TicketAdmin]
           calls:
             - [ setTemplates, [{"list": LiuggioHelpDeskTicketSystemBundle:TicketAdmin:list.html.twig,layout: SonataAdminBundle::standard_layout.html.twig, ajax: SonataAdminBundle::ajax_layout.html.twig, edit: SonataAdminBundle:CRUD:edit.html.twig, show: SonataAdminBundle:CRUD:show.html.twig}] ]
-
+            
+    liuggio_help_desk_ticket_system.acl.manager:
+          class: Liuggio\HelpDeskTicketSystemBundle\Service\AclManager
+          arguments: [@security.acl.provider, @security.context]
 
 
 

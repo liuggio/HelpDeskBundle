@@ -30,5 +30,6 @@ class TicketAdminController extends Controller
         ));
     }
 
+
 }
 
