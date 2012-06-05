@@ -23,7 +23,14 @@ class RateType extends AbstractType
             ->add('ticket_id', 'hidden', array(
                 'data' => $this->ticket_id
             ))
-            ->add('rate', 'choice', array('choices'   => array('1' => 'Poor', '2' => 'Fair', '3' => 'Average', '4' => 'Good', '5' => 'Very Efficient'),'required'  => false,'expanded'=> true));
+            ->add('rate', 'choice', array('choices'   => array(
+                                                                '1' => 'Poor',
+                                                                '2' => 'Fair', '3' => 'Average',
+                                                                '4' => 'Good',
+                                                                '5' => 'Very Efficient'),
+                                           'required'  => true,
+                                           'expanded'=> true)
+            );
     }
 
     public function getName()

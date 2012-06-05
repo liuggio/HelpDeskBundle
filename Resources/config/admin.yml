@@ -1,8 +1,0 @@
-LiuggioHelpDeskTicketSystemBundle_admin_customer_care_ticket:
-    resource: "@LiuggioHelpDeskTicketSystemBundle/Resources/config/routing/ticket_admin.yml"
-    prefix:   /admin/customer-care/ticket
-
-
-LiuggioHelpDeskTicketSystemBundle_admin_customer_care_coment:
-    resource: "@LiuggioHelpDeskTicketSystemBundle/Resources/config/routing/comment_admin.yml"
-    prefix:   /admin/customer-care/comment

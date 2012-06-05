@@ -25,6 +25,10 @@ class LoadTicket extends AbstractFixture implements OrderedFixtureInterface, Con
 
     public function load(\Doctrine\Common\Persistence\ObjectManager $em)
     {
+
+        $administrative_category = $em->merge($this->getReference('administrative_category'));
+        $other_category = $em->merge($this->getReference('other_category'));
+
         // Load group
         $group_customercare = new Group("customercare_group", array("ROLE_CUSTOMERCARE"));
         $em->persist( $group_customercare);
@@ -42,6 +46,9 @@ class LoadTicket extends AbstractFixture implements OrderedFixtureInterface, Con
         $this->addReference('user_operator1', $user1);
 
         $em->flush();
+        //add operator to a category
+        $administrative_category->addUser($user1);
+        $other_category->addUser($user1);
 
         $user2 = new User();
         $encoder = $this->container->get('security.encoder_factory')->getEncoder($user2);
@@ -53,6 +60,8 @@ class LoadTicket extends AbstractFixture implements OrderedFixtureInterface, Con
         $this->addReference('user_operator2', $user2);
 
         $em->flush();
+        //add operator to a category
+        $other_category->addUser($user2);
 
         $user3 = new User();
         $encoder = $this->container->get('security.encoder_factory')->getEncoder($user3);
@@ -112,7 +121,7 @@ class LoadTicket extends AbstractFixture implements OrderedFixtureInterface, Con
         $ticket->setBody("administrative: open ticket : with comments");
         $ticket->setState( $em->merge($this->getReference("new_ticket_state")) );
         $ticket->setCategory( $em->merge($this->getReference('administrative_category')) );
-        $ticket->setCreatedBy( $user2 );
+        $ticket->setCreatedBy( $user4 );
         $ticket->setLanguage('en');
         $em->persist($ticket);
         $this->addReference('ticket3', $ticket);
@@ -125,7 +134,7 @@ class LoadTicket extends AbstractFixture implements OrderedFixtureInterface, Con
         $ticket->setBody("administrative: closed ticket : with comments");
         $ticket->setState( $em->merge($this->getReference("closed_ticket_state")) );
         $ticket->setCategory( $em->merge($this->getReference('administrative_category')) );
-        $ticket->setCreatedBy( $user2);
+        $ticket->setCreatedBy( $user4);
         $ticket->setLanguage('en');
         $em->persist($ticket);
         $this->addReference('ticket4', $ticket);
