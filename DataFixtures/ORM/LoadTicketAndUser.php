@@ -14,7 +14,7 @@ use Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState;
 use Tvision\Bundle\UserBundle\Entity\User;
 use Tvision\Bundle\UserBundle\Entity\Group;
 
-class LoadTicketandUser extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadTicketAndUser extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     private $container;
 
