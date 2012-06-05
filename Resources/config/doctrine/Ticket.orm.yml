@@ -1,6 +1,7 @@
 Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket:
   type: entity
   table: ticket__ticket
+  repositoryClass: Liuggio\HelpDeskTicketSystemBundle\Entity\TicketRepository
   manyToOne:
     category:
       targetEntity: Category

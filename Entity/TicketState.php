@@ -29,9 +29,9 @@ class TicketState
      */
     private $weight;
 
-   /**
-    * @return string
-    */
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getCode();
@@ -51,7 +51,7 @@ class TicketState
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -71,7 +71,7 @@ class TicketState
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -91,12 +91,13 @@ class TicketState
     /**
      * Get weight
      *
-     * @return integer 
+     * @return integer
      */
     public function getWeight()
     {
         return $this->weight;
     }
+
     /**
      * @var integer $id
      */
@@ -106,7 +107,7 @@ class TicketState
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

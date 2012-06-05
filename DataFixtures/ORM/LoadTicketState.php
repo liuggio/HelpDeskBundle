@@ -20,15 +20,12 @@ class LoadTicketState extends AbstractFixture implements OrderedFixtureInterface
         $em->persist($state);
         $this->addReference('new_ticket_state', $state);
 
-        $em->flush();
-
         $state = new TicketState();
         $state->setCode('pending');
         $state->setDescription('This ticket must be processed');
         $state->setWeight(2);
         $em->persist($state);
         $this->addReference('pending_ticket_state', $state);
-        $em->flush();
 
         $state = new TicketState();
         $state->setCode('replied');
@@ -36,8 +33,6 @@ class LoadTicketState extends AbstractFixture implements OrderedFixtureInterface
         $state->setWeight(3);
         $em->persist($state);
         $this->addReference('replied_ticket_state', $state);
-
-        $em->flush();
 
         $state = new TicketState();
         $state->setCode('closed');

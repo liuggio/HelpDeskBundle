@@ -1,6 +1,23 @@
+parameters:
+  liuggio_help_desk_ticket_system.ticket.class: Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket
+  liuggio_help_desk_ticket_system.comment.class: Liuggio\HelpDeskTicketSystemBundle\Entity\Comment
+  liuggio_help_desk_ticket_system.ticket.manager.class: Liuggio\HelpDeskTicketSystemBundle\Entity\TicketManager
+  liuggio_help_desk_ticket_system.ticket.listener.class: Liuggio\HelpDeskTicketSystemBundle\Listener\TicketNotifier
+
 services:
-
-
+#acl manager
+    liuggio_help_desk_ticket_system.acl.manager:
+          class: Liuggio\HelpDeskTicketSystemBundle\Service\AclManager
+          arguments: [@security.acl.provider, @security.context]
+#listener
+#    liuggio_help_desk_ticket_system.ticket.listener:
+#        class: %liuggio_help_desk_ticket_system.ticket.listener.class%
+#        arguments: [@doctrine.orm.default_entity_manager, @mailer]
+#manager
+    liuggio_help_desk_ticket_system.ticket.manager:
+        class: %liuggio_help_desk_ticket_system.ticket.manager.class%
+        arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk_ticket_system.ticket.class%, %liuggio_help_desk_ticket_system.comment.class%, @security.context]
+#Sonata Admin
     sonata.ticket.ticketstate.admin:
            class: Liuggio\HelpDeskTicketSystemBundle\Admin\TicketStateAdmin
            tags:
@@ -26,10 +43,7 @@ services:
           arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket, LiuggioHelpDeskTicketSystemBundle:Admin\TicketAdmin]
           calls:
             - [ setTemplates, [{"list": LiuggioHelpDeskTicketSystemBundle:TicketAdmin:list.html.twig,layout: SonataAdminBundle::standard_layout.html.twig, ajax: SonataAdminBundle::ajax_layout.html.twig, edit: SonataAdminBundle:CRUD:edit.html.twig, show: SonataAdminBundle:CRUD:show.html.twig}] ]
-            
-    liuggio_help_desk_ticket_system.acl.manager:
-          class: Liuggio\HelpDeskTicketSystemBundle\Service\AclManager
-          arguments: [@security.acl.provider, @security.context]
+
 
 
 

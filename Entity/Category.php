@@ -57,7 +57,7 @@ class Category
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +71,8 @@ class Category
     {
         return $this->getName();
     }
-        /**
+
+    /**
      * Set name
      *
      * @param string $name
@@ -84,7 +85,7 @@ class Category
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -104,7 +105,7 @@ class Category
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -124,7 +125,7 @@ class Category
     /**
      * Get createdAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -144,7 +145,7 @@ class Category
     /**
      * Get updatedAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdatedAt()
     {
@@ -164,7 +165,7 @@ class Category
     /**
      * Get isEnable
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsEnable()
     {
@@ -184,14 +185,14 @@ class Category
     /**
      * Get weight
      *
-     * @return integer 
+     * @return integer
      */
     public function getWeight()
     {
         return $this->weight;
     }
 
-    
+
     /**
      * Add operators
      *
@@ -205,7 +206,7 @@ class Category
     /**
      * Get operators
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getOperators()
     {

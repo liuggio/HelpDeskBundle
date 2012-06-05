@@ -24,8 +24,8 @@ class TicketAdminController extends Controller
         $this->get('twig')->getExtension('form')->setTheme($formView, $this->admin->getFilterTheme());
 
         return $this->render($this->admin->getListTemplate(), array(
-            'action'   => 'list',
-            'form'     => $formView,
+            'action' => 'list',
+            'form' => $formView,
             'datagrid' => $datagrid
         ));
     }

@@ -5,18 +5,13 @@ namespace Liuggio\HelpDeskTicketSystemBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Category;
 use Liuggio\HelpDeskTicketSystemBundle\Exception;
+use Liuggio\HelpDeskTicketSystemBundle\Model\Ticket as BaseTicket;
 
 /**
  * Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket
  */
-class Ticket
+class Ticket extends BaseTicket
 {
-     CONST RATE_STAR_ONE = 1;
-     CONST RATE_STAR_TWO = 2;
-     CONST RATE_STAR_THREE = 3;
-     CONST RATE_STAR_FOUR = 4;
-     CONST RATE_STAR_FIVE = 5;
-     
     /**
      * @var integer $id
      */
@@ -66,8 +61,8 @@ class Ticket
      * @var Liuggio\HelpDeskTicketSystemBundle\Entity\Comment
      */
     private $comments;
-    
-     /**
+
+    /**
      * @var int or null if the ticket is not rated
      */
     private $rate;
@@ -88,7 +83,7 @@ class Ticket
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -108,7 +103,7 @@ class Ticket
     /**
      * Get subject
      *
-     * @return string 
+     * @return string
      */
     public function getSubject()
     {
@@ -128,7 +123,7 @@ class Ticket
     /**
      * Get body
      *
-     * @return text 
+     * @return text
      */
     public function getBody()
     {
@@ -148,7 +143,7 @@ class Ticket
     /**
      * Get language
      *
-     * @return string 
+     * @return string
      */
     public function getLanguage()
     {
@@ -168,7 +163,7 @@ class Ticket
     /**
      * Get createdAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -188,14 +183,13 @@ class Ticket
     /**
      * Get updatedAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
- 
 
     /**
      * @param \Liuggio\HelpDeskTicketSystemBundle\Entity\Category $category
@@ -212,7 +206,7 @@ class Ticket
     {
         return $this->category;
     }
-    
+
     /**
      * Add comments
      *
@@ -226,7 +220,7 @@ class Ticket
     /**
      * Get comments
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
@@ -240,9 +234,9 @@ class Ticket
      */
     public function hasComments()
     {
-        return !$this->comments->isEmpty() ;
+        return !$this->comments->isEmpty();
     }
-    
+
     /**
      * Set state
      *
@@ -256,7 +250,7 @@ class Ticket
     /**
      * Get state
      *
-     * @return Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState 
+     * @return Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState
      */
     public function getState()
     {
@@ -290,21 +284,21 @@ class Ticket
     /**
      * Get createdBy
      *
-     * @return Application\Sonata\UserBundle\Entity\User 
+     * @return Application\Sonata\UserBundle\Entity\User
      */
     public function getCreatedBy()
     {
         return $this->createdBy;
     }
-    
-     /**
+
+    /**
      * Set createdBy
      *
      * @param Application\Sonata\UserBundle\Entity\User $createdBy
      */
     public function setRate($rate)
     {
-        switch($rate){
+        switch ($rate) {
             case NULL:
             case self::RATE_STAR_ONE:
             case self::RATE_STAR_TWO:
@@ -314,19 +308,19 @@ class Ticket
                 $this->rate = $rate;
                 break;
             default:
-               throw new Exception('Invalid rating value.');
-                
+                throw new Exception('Invalid rating value.');
+
         }
     }
 
     /**
      * Get createdBy
      *
-     * @return Application\Sonata\UserBundle\Entity\User 
+     * @return Application\Sonata\UserBundle\Entity\User
      */
     public function getRate()
     {
         return $this->rate;
     }
-    
+
 }

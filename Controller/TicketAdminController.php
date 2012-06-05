@@ -6,6 +6,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Tvision\Bundle\UserBundle\Entity\User;
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
@@ -21,15 +22,20 @@ use Liuggio\HelpDeskTicketSystemBundle\Exception;
 
 class TicketAdminController extends Controller
 {
-    CONST STATE_OPEN = 'open';
-    CONST STATE_CLOSE = 'closed';
-
     /**
      * Lists all Ticket entities.
      *
      */
-    public function indexAction($state = self::STATE_OPEN)
+    public function indexAction($state = Ticket::STATE_OPEN)
     {
+        if ($state == Ticket::STATE_OPEN) {
+            $states = Ticket::$STATE[Ticket::STATE_OPERATOR_OPEN];
+        } elseif ($state == Ticket::STATE_CLOSE) {
+            $states = Ticket::$STATE[Ticket::STATE_OPERATOR_CLOSE];
+        } else {
+            $states = Ticket::$STATE[Ticket::STATE_OPERATOR_ALL];
+        }
+
         //Create the Search Form
         $form = $this->createForm(new SearchType());
         $request = $this->getRequest();
@@ -44,40 +50,12 @@ class TicketAdminController extends Controller
             $this->get('session')->setFlash('notice', 'Invalid Form!');
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
-        $qb = $em->createQueryBuilder();
+        $user = $this->get('security.context')->getToken()->getUser();
+        $ticketRepository = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+            ->getTicketRepository();
 
-        //Retrieve the CUSTOMERCARE from the Session
-        $operator = $this->get('security.context')->getToken()->getUser();
+        $tickets = $ticketRepository->findTicketsByStatesAndOperator($user, $states, $request_pattern);
 
-        $qb->select('t')
-            ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
-            ->leftjoin('t.state','st')
-            ->leftjoin('t.category', 'ct')
-            ->leftjoin('ct.operators','opr')
-            ->where('opr = :user')
-            ->setParameter('user', $operator);
-
-        //$state GET parameter could be : open | closed
-        if($state == self::STATE_OPEN) {
-            // Retrieve NEW and PENDING Tickets
-            $qb->andWhere( $qb->expr()->orx(
-                    $qb->expr()->eq('st.code', ':new'),
-                    $qb->expr()->eq('st.code', ':pending')
-                )
-            );
-            $qb->setParameters(array('new' => TicketState::STATE_NEW, 'pending' => TicketState::STATE_PENDING));
-        } else{//STATE_CLOSED
-            // Retrieve REPLIED and CLOSED Tickets
-            $qb->andWhere( $qb->expr()->orx(
-                    $qb->expr()->eq('st.code', ':replied'),
-                    $qb->expr()->eq('st.code', ':closed')
-                )
-            );
-            $qb->setParameters(array('replied' => TicketState::STATE_REPLIED, 'closed' => TicketState::STATE_CLOSED));
-        }
-
-        $tickets = $qb->getQuery()->getResult();
 
         // @TODO Pagination
         return $this->render('LiuggioHelpDeskTicketSystemBundle:TicketAdmin:index.html.twig', array(
@@ -97,26 +75,30 @@ class TicketAdminController extends Controller
     {
         $operator = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($id);
-        $qb = $em->createQueryBuilder();
+        $entity = $ticketRepository = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+            ->getTicketRepository()
+            ->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
         // check CustomerCare permissions
-        $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
-        $aclManager->checkOpPermissions($entity, $operator, $qb);
-
-        $comment = new Comment();
+        $isGranted = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+            ->isOperatorGrantedForThisTicket($entity, $operator);
+        if (!$isGranted) {
+            throw new AccessDeniedException("Category Permission not granted!");
+        }
+        $comment = $ticketRepository = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+            ->createComment();
         $comment->setCreatedBy($operator);
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
+        //Closed is logic maybe into Manager
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
             return $this->render('LiuggioHelpDeskTicketSystemBundle:TicketAdmin:show_closed.html.twig', array(
                 'entity' => $entity,
             ));
-        }else {
-
+        } else {
             return $this->render('LiuggioHelpDeskTicketSystemBundle:TicketAdmin:show_open.html.twig', array(
                 'entity' => $entity,
                 'comment_create_admin' => $comment_form->createView()

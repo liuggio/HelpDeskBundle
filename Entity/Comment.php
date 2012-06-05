@@ -3,11 +3,12 @@
 namespace Liuggio\HelpDeskTicketSystemBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
+use Liuggio\HelpDeskTicketSystemBundle\Model\Comment as BaseComment;
+
 /**
  * Liuggio\HelpDeskTicketSystemBundle\Entity\Comment
  */
-class Comment
+class Comment extends BaseComment
 {
     /**
      * @var integer $id
@@ -47,10 +48,11 @@ class Comment
     {
         return '#' . $this->getId();
     }
-        /**
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -70,7 +72,7 @@ class Comment
     /**
      * Get body
      *
-     * @return text 
+     * @return text
      */
     public function getBody()
     {
@@ -90,7 +92,7 @@ class Comment
     /**
      * Get createdAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -110,7 +112,7 @@ class Comment
     /**
      * Get modifiedAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getModifiedAt()
     {
@@ -165,6 +167,7 @@ class Comment
         $now = new \DateTime('NOW');
         $this->setUpdatedAt($now);
     }
+
     /**
      * @var datetime $updatedAt
      */
@@ -184,7 +187,7 @@ class Comment
     /**
      * Get updatedAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdatedAt()
     {

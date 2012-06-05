@@ -22,9 +22,9 @@ class CommentAdminController extends Controller
         //Retrive the User from the Session
         $user = $this->get('security.context')->getToken()->getUser();
 
-        $entity  = new Comment();
+        $entity = new Comment();
         $request = $this->getRequest();
-        $form    = $this->createForm(new CommentType(), $entity);
+        $form = $this->createForm(new CommentType(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -56,7 +56,7 @@ class CommentAdminController extends Controller
 
         return $this->render('LiuggioHelpDeskTicketSystemBundle:CommentAdmin:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView()
+            'form' => $form->createView()
         ));
     }
 

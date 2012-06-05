@@ -5,7 +5,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-use Tvision\Bundle\UserBundle\Entity\User;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -28,7 +27,6 @@ class AclManager implements ContainerAwareInterface
     {
         $this->aclProvider = $aclProvider;
         $this->securityContext = $securityContext;
-
     }
 
     /**
@@ -53,7 +51,7 @@ class AclManager implements ContainerAwareInterface
      * @param $user
      * @param int $permissions
      */
-    public function insertAce($ticket, User $user, $permissions = MaskBuilder::MASK_OWNER )
+    public function insertAce($ticket, $user, $permissions = MaskBuilder::MASK_OWNER )
     {
         $acl = $this->getOrCreateAcl($ticket);
         $securityIdentity = UserSecurityIdentity::fromAccount($user);
@@ -62,26 +60,6 @@ class AclManager implements ContainerAwareInterface
         $acl->insertObjectAce($securityIdentity,$permissions);
         $this->aclProvider->updateAcl($acl);
 
-    }
-
-    public function checkOpPermissions($ticket, $user, $qb)
-    {
-        $qb->select('t')
-            ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
-            ->leftjoin('t.category', 'ct')
-            ->leftjoin('ct.operators','opr')
-            ->where('t = :ticket')
-            ->andWhere('opr = :user')
-            ->setParameter('ticket', $ticket)
-            ->setParameter('user', $user);
-
-        $result = $qb->getQuery()->getResult();
-
-            if(empty($result)) {
-                throw new AccessDeniedException("Category Permission not granted!");
-            }
-
-        return true;
     }
 
     public function checkPermissions($ticket, $permissions = 'OWNER')
