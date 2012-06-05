@@ -57,3 +57,13 @@ Install this bundle as always :)
      prefix:   /
 
  ```
+
+
+6 Add the following entries to security.yml
+
+    access_control:
+            //...
+            # HelpDesk Ticket system
+            - { path: ^/customer-care/, role: [IS_AUTHENTICATED_FULLY]}
+            - { path: ^/admin/customer-care/, role: [ROLE_CUSTOMERCARE, ROLE_SONATA_ADMIN, ROLE_ADMIN,] }
+

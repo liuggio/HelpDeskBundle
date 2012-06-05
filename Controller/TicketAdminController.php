@@ -2,8 +2,6 @@
 
 namespace Liuggio\HelpDeskTicketSystemBundle\Controller;
 
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;

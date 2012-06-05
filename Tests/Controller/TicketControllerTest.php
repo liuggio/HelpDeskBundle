@@ -7,26 +7,28 @@ use Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState;
 
 class TicketControllerTest extends WebTestCase
 {
-    private $categoryLabel;
+    private $categoryLabel = "Category";
     private $client;
-    private $backLinkLabel;
-    private $addCommentButton;
-    private $closeTicketButton;
-    private $rateButton;
+    private $backLinkLabel = "Back to the list";
+    private $addCommentButton = "Add Comment";
+    private $closeTicketButton = "Close Ticket";
+    private $rateButton = "Rate our service";
     private $commentBody = "Hello comment";
-    private $commentTextField;
+    private $commentTextField = "liuggio_helpdeskticketsystembundle_commenttype[body]";
+    private $loginButton = "submit";
+
+    private $user_operator1 = array("username" => "operator1@mail.com", "password" => "operator1");
+    private $user_operator2 = array("username" => "operator2@mail.com", "password" => "operator2");
+    private $user_customer1 = array("username" => "customer1@mail.com", "password" => "customer1");
+    private $user_customer2 = array("username" => "customer2@mail.com", "password" => "customer2");
 
 
     public function setUp()
     {
         parent::setUp();
+
         $this->client = static::createClient();
-        $this->categoryLabel = "Category";
-        $this->backLinkLabel = "Back to the list";
-        $this->addCommentButton = "Add Comment";
-        $this->closeTicketButton = "Close Ticket";
-        $this->rateButton = "Rate our service";
-        $this->commentTextField = "liuggio_helpdeskticketsystembundle_commenttype[body]";
+
     }
 
     /**
@@ -34,6 +36,9 @@ class TicketControllerTest extends WebTestCase
      */
     public function testNew($testSubject, $testBody)
     {
+        //Client Login
+        $this->setAuthClient($this->user_customer1);
+
         $crawler = $this->client->request('GET', '/customer-care/ticket/new');
         // assert();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
@@ -73,37 +78,63 @@ class TicketControllerTest extends WebTestCase
      */
     public function testShow($testSubject, $testBody)
     {
+        $this->setAuthClient($this->user_customer2);
         $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
+
+        // assert() user can NOT access the resource
         $ticket = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
             ->findOneBy(array('subject' => $testSubject, 'body' => $testBody));
         $ticketId = $ticket->getId();
-
         $crawler = $this->client->request('GET', '/customer-care/ticket/' . $ticketId . '/show');
-        // assert();
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
 
+        // assert() user can access the resource
+        $ticket = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
+            ->findOneBy(array('subject' => 'ticket3'));
+        $ticketId = $ticket->getId();
+        $crawler = $this->client->request('GET', '/customer-care/ticket/' . $ticketId . '/show');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        //echo $ticket->getId();die;
+        // Test show view;
+        $this->assertGreaterThan(0, $crawler->filter('td:contains("administrative: open ticket : with comments")')->count());
         // assert();
-        $this->assertGreaterThan(0, $crawler->filter('td:contains("' . $testSubject . '")')->count());
-        // assert();
-        $this->assertGreaterThan(0, $crawler->filter('td:contains("' . $testSubject . '")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('td:contains("ticket3")')->count());
+    }
+
+    /**
+     * @dataProvider getTicketData
+     * @depends testNew
+     *
+     */
+    public function testAddComment($testSubject, $testBody)
+    {
+
+        $this->setAuthClient($this->user_customer2);
+        $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
+
+        $ticket = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
+            ->findOneBy(array('subject' => "ticket3"));
+        $ticketId = $ticket->getId();
+        $crawler = $this->client->request('GET', '/customer-care/ticket/' . $ticketId . '/show');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         if ($ticket->getState()->getCode() != TicketState::STATE_CLOSED) {
 
-            // Let's add a comment to our ticket
-            // assert();
+            // Test add comment
             $this->assertGreaterThan(0, $crawler->filter('button:contains("' . $this->addCommentButton . '")')->count());
+
             $form = $crawler->selectButton($this->addCommentButton)->form();
             $crawler = $this->client->submit(
                 $form, array($this->commentTextField => $this->commentBody));
+
             $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
             $crawler = $this->client->followRedirect();
             // assert();
             $this->assertGreaterThan(0, $crawler->filter('td:contains("' . $this->commentBody . '")')->count());
+
             // Remove the comment just created
-            $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
             $comment = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Comment')
                 ->findOneBy(array('body' => $this->commentBody));
-
             if ($comment) {
                 //cleaning
                 $em->remove($comment);
@@ -127,15 +158,12 @@ class TicketControllerTest extends WebTestCase
             $crawler = $this->client->followRedirect();
             // select Here we should be inside /ticket/
 
-
-        }
-        else {
+        } else {
             // assert();
             $this->assertEquals(0, $crawler->filter('button:contains("' . $this->addCommentButton . '")')->count());
             // assert();
             $this->assertEquals(0, $crawler->filter('button:contains("' . $this->closeTicketButton . '")')->count());
         }
-
 
     }
 
@@ -144,8 +172,11 @@ class TicketControllerTest extends WebTestCase
      */
     public function test_Index_Search($testSubject, $testBody)
     {
+        $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
 
-        $crawler = $this->client->request('GET', '/customer-care/ticket/all');
+        $this->setAuthClient($this->user_operator1);
+
+        $crawler = $this->client->request('GET', '/customer-care/operator/ticket');
         // assert();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         // assert();
@@ -153,7 +184,7 @@ class TicketControllerTest extends WebTestCase
         // assert();
         $this->assertGreaterThan(0, $crawler->filter('html:contains("' . $testBody . '")')->count());
 
-        $crawler = $this->client->request('GET', '/customer-care/ticket/open');
+        $crawler = $this->client->request('GET', '/customer-care/operator/ticket/closed');
         // assert();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         // assert();
@@ -161,25 +192,31 @@ class TicketControllerTest extends WebTestCase
         // assert();
         $this->assertEquals(0, $crawler->filter('html:contains("' . $testBody . '")')->count());
 
-        $crawler = $this->client->request('GET', '/customer-care/ticket/all');
+
+        $crawler = $this->client->request('GET', '/customer-care/operator/ticket/open');
         // assert();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-        $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
+        //Test search
+        $form = $crawler->selectButton('Search Ticket')->form();
+        $this->client->submit($form, array(
+                's[request_pattern]' => $testSubject
+            )
+        );
+
+        $this->GreaterThan(0, $crawler->filter('html:contains("' . $testSubject . '")')->count());
+
+
         $ticket = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
             ->findOneBy(array('subject' => $testSubject, 'body' => $testBody));
         $ticketId = $ticket->getId();
-        // assert();
-        $this->assertGreaterThan(0, $crawler->filter('a:contains("' . $ticketId . '")')->count());
-        $crawler = $this->client->request('GET', '/customer-care/ticket/' . $ticketId . '/show');
-        // assert();
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         //cleaning
         $em->remove($ticket);
         $em->flush();
 
     }
+
 
     public function getTicketData()
     {
@@ -190,6 +227,24 @@ class TicketControllerTest extends WebTestCase
             array($subject . "_2", $body . "_2"),
             array($subject . "_3", $body . "_3")
         );
+    }
+
+
+    protected function setAuthClient($credentials)
+    {
+        $crawler = $this->client->request('GET', '/login');
+
+        $form = $crawler->selectButton('_submit')->form();
+
+        $this->client->submit($form, array(
+            '_username' => $credentials['username'],
+            '_password' => $credentials['password'],
+        ));
+
+        // assert();
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $crawler = $this->client->followRedirect();
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
 }
