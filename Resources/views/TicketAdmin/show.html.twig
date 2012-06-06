@@ -1,45 +1,45 @@
-<h1>Ticket</h1>
+<h1>{{ "ticket_entity"|trans }}</h1>
 
 {% block ticket %}
 
 <table class="record_properties">
     <tbody>
     <tr>
-        <th>Id</th>
+        <th>{{ "id_property"|trans }}</th>
         <td>{{ entity.id }}</td>
     </tr>
     <tr>
-        <th>Subject</th>
+        <th>{{ "subject_property"|trans }}</th>
         <td>{{ entity.subject }}</td>
     </tr>
     <tr>
-        <th>State</th>
+        <th>{{ "state_property"|trans }}</th>
         <td>{{ entity.getState.getCode }}:{{ entity.getState.getDescription }}</td>
     </tr>
     {% if entity.getRate != NULL %}
     <tr>
-        <th>Rating</th>
+        <th>{{ "rate_property"|trans }}</th>
         <td>{{ entity.getRate }}</td>
     </tr>
     {% endif%}
     <tr>
-        <th>Category</th>
+        <th>{{ "category_property"|trans }}</th>
         <td>{{ entity.getCategory }}:{{ entity.Category.getDescription }}</td>
     </tr>
     <tr>
-        <th>Body</th>
+        <th>{{ "body_property"|trans }}</th>
         <td>{{ entity.body }}</td>
     </tr>
     <tr>
-        <th>Language</th>
+        <th>{{ "language_property"|trans }}</th>
         <td>{{ entity.language }}</td>
     </tr>
     <tr>
-        <th>Createdat</th>
+        <th>{{ "createdAt_property"|trans }}</th>
         <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
     </tr>
     <tr>
-        <th>Updatedat</th>
+        <th>{{ "updatedAt_property"|trans }}</th>
         <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
     </tr>
     </tbody>
@@ -49,12 +49,12 @@
 <table class="records_list">
     <thead>
     <tr>
-        <th>Id</th>
-        <th>Body</th>
-        <th>Createdat</th>
-        <th>CreatedBy</th>
-        <th>Updatedat</th>
-        <th>Actions</th>
+        <th>{{ "id_property"|trans }}</th>
+        <th>{{ "body_property"|trans }}</th>
+        <th>{{ "createdAt_property"|trans }}</th>
+        <th>{{ "createdBy_property"|trans }}</th>
+        <th>{{ "updatedAt_property"|trans }}</th>
+        <th>{{ "actions_action"|trans }}</th>
     </tr>
     </thead>
     <tbody>
@@ -70,12 +70,12 @@
     </tbody>
 </table>
 {% else %}
-<p>There are no Comments aviable for this ticket.</p>
+<p>{{ "no_comments_available"|trans }}</p>
 {% endif %}
 {% endblock ticket %}
 {% block comment %}
 {% endblock comment %}
 <a href="{{ path('ticket_admin') }}">
-    Back to the list
+    {{ "back_to_list_action"|trans }}
 </a>
 

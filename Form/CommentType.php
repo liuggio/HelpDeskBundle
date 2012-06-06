@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilder;
 class CommentType extends AbstractType
 {
     private $ticket_id;
-    
+
     public function __construct($ticket_id = null)
     {
         $this->ticket_id = $ticket_id;
@@ -22,12 +22,13 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('ticket','hidden', array(
-                'data' => $this->ticket_id,
-                'property_path' => false
-            ))
-            ->add('body')
+            'data' => $this->ticket_id,
+            'property_path' => false
+        ))
             ->add('createdBy', 'hidden')
-        ;
+            ->add('body', 'textarea', array(
+            'label' => 'comment_textarea_label'
+        ));
     }
 
     public function getName()
