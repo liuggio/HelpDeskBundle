@@ -1,4 +1,4 @@
-<h1>Rate Page</h1>
+<h1>{{ "rate_action"|trans }}</h1>
 
 {% block rate_form %}
 <ul class="record_actions">
@@ -7,8 +7,8 @@
         <form action="{{ path('ticket_rate') }}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
             <p>
-                <button type="submit" name="rate" value="rate" >Rate our service</button>
-                <a href = "{{ path('ticket') }}" > Skip </a>
+                <button type="submit" name="rate" value="rate" >{{ "rate_action"|trans }}</button>
+                <a href = "{{ path('ticket') }}" >{{ "skip_action"|trans }}</a>
             </p>
         </form>
     </li>

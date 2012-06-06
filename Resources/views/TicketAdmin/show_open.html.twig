@@ -7,7 +7,7 @@
         <form action="{{ path('comment_create_admin') }}" method="post" {{ form_enctype(comment_create_admin) }}>
             {{ form_widget(comment_create_admin) }}
             <p>
-                <button type="submit">Reply</button>
+                <button type="submit">{{ "replyComment_button"|trans }}</button>
             </p>
         </form>
     </li>

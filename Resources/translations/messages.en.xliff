@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+
+    <!-- :::::::::: ENTITIES :::::::::: -->
+            <trans-unit id="1">
+                <source>ticket_entity</source>
+                <target>ticket</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>tickets_entity</source>
+                <target>tickets</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>comment_entity</source>
+                <target>comment</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>comments_entity</source>
+                <target>comments</target>
+            </trans-unit>
+
+    <!-- :::::::::: ACTIONS  :::::::::: -->
+            <trans-unit id="5">
+                <source>open_action</source>
+                <target>open</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>close_action</source>
+                <target>close</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>show_action</source>
+                <target>show</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>new_action</source>
+                <target>new</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>rate_action</source>
+                <target>rate our service</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>skip_action</source>
+                <target>skip this step</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>search_action</source>
+                <target>search</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>action_action</source>
+                <target>action</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>actions_action</source>
+                <target>actions</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>list_action</source>
+                <target>list_action</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>add_action</source>
+                <target>add</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>insert_action</source>
+                <target>insert</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>create_action</source>
+                <target>create</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>back_to_list_action</source>
+                <target>back to the list</target>
+            </trans-unit>
+
+    <!-- :::::::::: STATES :::::::::: -->
+            <trans-unit id="19">
+                <source>open_state</source>
+                <target>open</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>closed_state</source>
+                <target>closed</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>new_state</source>
+                <target>new</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>all_state</source>
+                <target>all</target>
+            </trans-unit>
+
+    <!-- :::::::::: PROPERTIES :::::::::: -->
+            <trans-unit id="23">
+                <source>id_property</source>
+                <target>id</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>subject_property</source>
+                <target>subject</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>body_property</source>
+                <target>body</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>language_property</source>
+                <target>language</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>state_property</source>
+                <target>state</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>createdAt_property</source>
+                <target>created at</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>updatedAt_property</source>
+                <target>updated at</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>rating_property</source>
+                <target>rating</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>category_property</source>
+                <target>category</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>categories_property</source>
+                <target>categories</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>rate_one_star</source>
+                <target>poor</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>rate_two_stars</source>
+                <target>fair</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>rate_three_stars</source>
+                <target>average</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>rate_four_stars</source>
+                <target>good</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>rate_five_stars</source>
+                <target>very efficient</target>
+            </trans-unit>
+
+    <!-- :::::::::: OTHER MESSAGES :::::::::: -->
+
+            <trans-unit id="38">
+                <source>invalid_search_form_notice</source>
+                <target>Invalid Form!</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>no_comments_available</source>
+                <target>There are no Comments available for this ticket</target>
+            </trans-unit>
+
+    <!-- :::::::::: FORM LABELS :::::::::: -->
+            <trans-unit id="40">
+                <source>search_ticket_label</source>
+                <target>search pattern</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>closeTicket_button</source>
+                <target>close ticket</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>comment_textarea_label</source>
+                <target>comment</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>addComment_button</source>
+                <target>add comment</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>replyComment_button</source>
+                <target>reply</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

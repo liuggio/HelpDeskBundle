@@ -24,10 +24,11 @@ class RateType extends AbstractType
                 'data' => $this->ticket_id
             ))
             ->add('rate', 'choice', array('choices'   => array(
-                                                                '1' => 'Poor',
-                                                                '2' => 'Fair', '3' => 'Average',
-                                                                '4' => 'Good',
-                                                                '5' => 'Very Efficient'),
+                                                                '1' => 'rate_one_star',
+                                                                '2' => 'rate_two_stars',
+                                                                '3' => 'rate_three_stars',
+                                                                '4' => 'rate_four_stars',
+                                                                '5' => 'rate_five_stars'),
                                            'required'  => true,
                                            'expanded'=> true)
             );

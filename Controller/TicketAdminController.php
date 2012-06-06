@@ -45,7 +45,7 @@ class TicketAdminController extends Controller
             $formData = $form->getData();
             $request_pattern = $formData['request_pattern'];
         } else {
-            $this->get('session')->setFlash('notice', 'Invalid Form!');
+            $this->get('session')->setFlash('invalid_search_form_notice', 'invalid_search_form_notice');
         }
 
         $user = $this->get('security.context')->getToken()->getUser();

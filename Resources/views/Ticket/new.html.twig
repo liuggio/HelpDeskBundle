@@ -3,14 +3,14 @@
 <form action="{{ path('ticket_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
-        <button type="submit" id="_submit">Create</button>
+        <button type="submit" id="_submit">{{ "create_action"|trans }}</button>
     </p>
 </form>
 
 <ul class="record_actions">
     <li>
         <a href="{{ path('ticket') }}">
-            Back to the list
+            {{ "back_to_list_action"|trans }}
         </a>
     </li>
 </ul>
