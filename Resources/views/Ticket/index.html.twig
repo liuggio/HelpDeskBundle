@@ -4,7 +4,7 @@
 
 <h1>{{ "tickets_entity"|trans }}</h1>
 <br />
-<hr /> 
+<hr />
 <br />
 <a href="{{ path('ticket', { 'state': 'open' }) }}">{{ "open_state"|trans }}</a>
 <a href="{{ path('ticket', { 'state': 'closed' }) }}">{{ "closed_state"|trans }}</a>
@@ -15,57 +15,65 @@
         <button type="submit">{{ "search_action"|trans }}</button>
     </p>
 </form>
-<hr /> 
+<hr />
 <hr />
 
 <br />
 {% if app.session.hasFlash('notice') %}
 <div class="flash-notice">
-{{ app.session.flash('notice') }}
+    {{ app.session.flash('notice') }}
 </div>
 {% endif %}
 <br />
 
+{% if entities|length %}
 <table class="records_list">
     <thead>
-        <tr>
-            <th>{{ "id_property"|trans }}</th>
-            <th>{{ "subject_property"|trans }}</th>
-            <th>{{ "body_property"|trans }}</th>
-            <th>{{ "language_property"|trans }}</th>
-            <th>{{ "createdAt_property"|trans }}</th>
-            <th>{{ "updatedAt_property"|trans }}</th>
-            <th>{{ "actions_action"|trans }}</th>
-        </tr>
+    <tr>
+        <th>{{ "id_property"|trans }}</th>
+        <th>{{ "subject_property"|trans }}</th>
+        <th>{{ "body_property"|trans }}</th>
+        <th>{{ "language_property"|trans }}</th>
+        <th>{{ "createdAt_property"|trans }}</th>
+        <th>{{ "updatedAt_property"|trans }}</th>
+        <th>{{ "actions_action"|trans }}</th>
+    </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('ticket_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.subject }}</td>
-            <td>{{ entity.body }}</td>
-            <td>{{ entity.language }}</td>
-            <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif%}</td>
-            <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif%}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('ticket_show', { 'id': entity.id }) }}">{{ "show_action"|trans }}</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
+    <tr>
+        <td><a href="{{ path('ticket_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+        <td>{{ entity.subject }}</td>
+        <td>{{ entity.body }}</td>
+        <td>{{ entity.language }}</td>
+        <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif%}</td>
+        <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif%}</td>
+        <td>
+            <ul>
+                <li>
+                    <a href="{{ path('ticket_show', { 'id': entity.id }) }}">{{ "show_action"|trans }}</a>
+                </li>
+            </ul>
+        </td>
+    </tr>
     {% endfor %}
     </tbody>
 </table>
+{% else %}
+<br />
+<p>
+    <h3>{{ "no_ticket_found_message"|trans }}</h3>
+</p>
+<br />
+{% endif %}
 
 {% if app.session.hasFlash('reRate_error_msg') %}
 <div class="flash-notice">
-{{ app.session.flash('reRate_error_msg'|trans) }}
-<br />
-{{ "ticket_id"|trans }}:{{ app.session.flash('ratedTickedId') }}
-<br />
-{{ "rating_assigned"|trans }}:{{ app.session.flash('rating') }}
+    {{ app.session.flash('reRate_error_msg'|trans) }}
+    <br />
+    {{ "ticket_id"|trans }}:{{ app.session.flash('ratedTickedId') }}
+    <br />
+    {{ "rating_assigned"|trans }}:{{ app.session.flash('rating') }}
 </div>
 {% endif %}
 {% if app.session.hasFlash('thank_rate_msg') %}
