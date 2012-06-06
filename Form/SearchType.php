@@ -15,7 +15,9 @@ class SearchType extends AbstractType
      */
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('request_pattern', 'search');
+        $builder->add('request_pattern', 'search', array(
+                      'label' => 'search_ticket_label'
+        ));
                 
     }
 

@@ -7,7 +7,7 @@
         <form action="{{ path('comment_create') }}" method="post" {{ form_enctype(comment_create) }}>
             {{ form_widget(comment_create) }}
             <p>
-                <button type="submit">Add Comment</button>
+                <button type="submit">{{ "addComment_button"|trans }}</button>
             </p>
         </form>
     </li>
@@ -21,7 +21,7 @@
         <form action="{{ path('ticket_close', { 'id': entity.id }) }}" method="post" {{ form_enctype(ticket_close) }}>
             {{ form_widget(ticket_close) }}
             <p>
-                <button type="submit">Close Ticket</button>
+                <button type="submit">{{ "closeTicket_button"|trans }}</button>
             </p>
         </form>
     </li>

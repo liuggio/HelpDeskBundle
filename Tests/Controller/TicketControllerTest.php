@@ -7,12 +7,14 @@ use Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState;
 
 class TicketControllerTest extends WebTestCase
 {
-    private $categoryLabel = "Category";
+    private $categoryLabel = "category";
     private $client;
-    private $backLinkLabel = "Back to the list";
-    private $addCommentButton = "Add Comment";
-    private $closeTicketButton = "Close Ticket";
-    private $rateButton = "Rate our service";
+    private $backLinkLabel = "back to the list";
+    private $createTicketButton = "create";
+    private $addCommentButton = "add comment";
+    private $closeTicketButton = "close ticket";
+    private $rateButton = "rate our service";
+    private $searchTicketButton = "search";
     private $commentBody = "Hello comment";
     private $commentTextField = "liuggio_helpdeskticketsystembundle_commenttype[body]";
     private $loginButton = "submit";
@@ -47,7 +49,7 @@ class TicketControllerTest extends WebTestCase
         // assert();
         $this->assertTrue($crawler->filter('a:contains("' . $this->backLinkLabel . '")')->count() > 0);
 
-        $form = $crawler->selectButton('Create')->form();
+        $form = $crawler->selectButton($this->createTicketButton)->form();
 
         $crawler = $this->client->submit(
             $form, array(
@@ -198,7 +200,7 @@ class TicketControllerTest extends WebTestCase
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         //Test search
-        $form = $crawler->selectButton('Search Ticket')->form();
+        $form = $crawler->selectButton($this->searchTicketButton)->form();
         $this->client->submit($form, array(
                 's[request_pattern]' => $testSubject
             )

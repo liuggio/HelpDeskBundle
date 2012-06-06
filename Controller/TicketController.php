@@ -48,7 +48,7 @@ class TicketController extends Controller
             $formData = $form->getData();
             $request_pattern = $formData['request_pattern'];
         } else {
-            $this->get('session')->setFlash('notice', 'Invalid Form!');
+            $this->get('session')->setFlash('invalid_search_form_notice', 'invalid_search_form_notice');
         }
         $ticketRepository = $this->get('liuggio_help_desk_ticket_system.ticket.manager')->getTicketRepository();
         $tickets = $ticketRepository->findTicketsByStatesAndCustomer($user, $states, $request_pattern);
@@ -249,7 +249,7 @@ class TicketController extends Controller
 
                 if ($session) {
 
-                    $session->setFlash('thankYouMsg', 'You can not re-Rate this Ticket!');
+                    $session->setFlash('reRate_error_msg', 'You can not re-Rate this Ticket!');
                     $session->setFlash('ratedTickedId', $ticket_id);
                     $session->setFlash('rating:', $entity->getRate());
                 }
@@ -262,7 +262,7 @@ class TicketController extends Controller
             $em->flush();
             if ($session) {
 
-                $session->setFlash('thankYouMsg', 'Thank you for rating our services!');
+                $session->setFlash('thank_rate_msg', 'Thank you for rating our services!');
                 $session->setFlash('ratedTickedId', $ticket_id);
                 $session->setFlash('rating', $rate_val);
 
