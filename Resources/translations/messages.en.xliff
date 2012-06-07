@@ -169,25 +169,30 @@
                 <source>no_comments_available</source>
                 <target>There are no Comments available for this ticket</target>
             </trans-unit>
+            <trans-unit id="40">
+                <source>no_ticket_found_message</source>
+                <target>no tickets found</target>
+            </trans-unit>
+
 
     <!-- :::::::::: FORM LABELS :::::::::: -->
-            <trans-unit id="40">
+            <trans-unit id="41">
                 <source>search_ticket_label</source>
                 <target>search pattern</target>
             </trans-unit>
-            <trans-unit id="41">
+            <trans-unit id="42">
                 <source>closeTicket_button</source>
                 <target>close ticket</target>
             </trans-unit>
-            <trans-unit id="42">
+            <trans-unit id="43">
                 <source>comment_textarea_label</source>
                 <target>comment</target>
             </trans-unit>
-            <trans-unit id="43">
+            <trans-unit id="44">
                 <source>addComment_button</source>
                 <target>add comment</target>
             </trans-unit>
-            <trans-unit id="44">
+            <trans-unit id="45">
                 <source>replyComment_button</source>
                 <target>reply</target>
             </trans-unit>

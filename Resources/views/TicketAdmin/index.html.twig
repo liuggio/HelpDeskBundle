@@ -21,6 +21,7 @@
 {% endif %}
 <br />
 
+{% if entities|length %}
 <table class="records_list">
     <thead>
     <tr>
@@ -53,3 +54,10 @@
     {% endfor %}
     </tbody>
 </table>
+% else %}
+<br />
+<p>
+<h3>{{ "no_ticket_found_message"|trans }}</h3>
+</p>
+<br />
+{% endif %}
