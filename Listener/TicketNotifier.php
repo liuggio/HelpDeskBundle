@@ -8,7 +8,9 @@ class TicketNotifier
 {
     private $ticketManager;
     private $logger;
-
+    private $container;
+    private $emailSender;
+    private $emailSubjectPrefix;
 
 
     CONST EVENT_IS_UPDATE = 0;
@@ -18,11 +20,10 @@ class TicketNotifier
      * @param $mailer
      * @param $translator
      */
-    public function __construct($logger, $ticketManager)
+    public function __construct($container)
     {
+        $this->container = $container;
 
-        $this->setLogger($logger);
-        $this->ticketManager = $ticketManager;
 
     }
 
@@ -44,8 +45,22 @@ class TicketNotifier
 
     }
 
-
-
+    /**
+     * thi function notifies the user
+     * @param $user
+     */
+    public function sendEmailToUser($ticket, $user, $template, $subject = '')
+    {
+        $to = $user->getEmail();
+        $subject = sprintf('%s %s', $this->getEmailSubjectPrefix(), $subject);
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($this->getEmailSender())
+            ->setTo($to)
+            ->setBody($this->getTemplating()->render($template, array('user' => $user, 'ticket' => $ticket)));
+        $this->getMailer()->send($message);
+        $this->getLogger()->debug('???????? email sent to' . $to);
+    }
     /**
      *
      *
@@ -54,6 +69,11 @@ class TicketNotifier
      */
     public function postPersistUpdate(LifecycleEventArgs $args, $isUpdate = self::EVENT_IS_UPDATE)
     {
+
+        $this->setLogger($this->container->get('logger'));
+        $this->ticketManager = $this->container->get('liuggio_help_desk_ticket_system.ticket.manager_no_doctrine');
+        $this->setTemplating($this->container->get('templating'));
+        $this->setMailer($this->container->get('mailer'));
 
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
@@ -148,5 +168,15 @@ class TicketNotifier
     public function getTemplating()
     {
         return $this->templating;
+    }
+
+    public function setContainer($container)
+    {
+        $this->container = $container;
+    }
+
+    public function getContainer()
+    {
+        return $this->container;
     }
 }

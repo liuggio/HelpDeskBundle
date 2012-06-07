@@ -1,3 +1,7 @@
+
+{% extends 'LiuggioHelpDeskTicketSystemBundle:Default:index.html.twig' %}
+{% block content %}
+
 <h1>Ticket creation</h1>
 
 <form action="{{ path('ticket_create') }}" method="post" {{ form_enctype(form) }}>
@@ -14,3 +18,5 @@
         </a>
     </li>
 </ul>
+
+{% endblock %}

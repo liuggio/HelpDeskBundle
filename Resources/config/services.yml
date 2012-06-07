@@ -20,11 +20,11 @@ services:
 
     liuggio_help_desk_ticket_system.ticket.manager_no_doctrine:
         class: %liuggio_help_desk_ticket_system.ticket.manager.class%
-        arguments: [null, %liuggio_help_desk_ticket_system.ticket.class%, %liuggio_help_desk_ticket_system.comment.class%, null, @mailer, @translator, @templating, %liuggio_help_desk_ticket_system.email.sender%, %liuggio_help_desk_ticket_system.email.subject.prefix%]
+        arguments: [null, %liuggio_help_desk_ticket_system.ticket.class%, %liuggio_help_desk_ticket_system.comment.class%, null]
 
     liuggio_help_desk_ticket_system.ticket.listener:
         class: %liuggio_help_desk_ticket_system.ticket.listener.class%
-        arguments: [@logger, @liuggio_help_desk_ticket_system.ticket.manager_no_doctrine]
+        arguments: [@service_container, %liuggio_help_desk_ticket_system.email.sender%, %liuggio_help_desk_ticket_system.email.subject.prefix%]
         tags:
           - { name: doctrine.event_listener, event:postUpdate}
           - { name: doctrine.event_listener, event:postPersist}
