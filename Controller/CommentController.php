@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Liuggio\HelpDeskTicketSystemBundle\Entity\Comment;
 use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
-
+use Liuggio\HelpDeskTicketSystemBundle\Exception;
 /**
  * Comment controller.
  *
@@ -40,9 +40,11 @@ class CommentController extends Controller
             $state_pending = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState')
                 ->findOneByCode(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_PENDING);
 
-            if ($state_pending) {
-                $ticket->setState($state_pending);
+            if (!$state_pending) {
+                throw new Exception('Ticket State Not Found');
             }
+
+            $ticket->setState($state_pending);
             //Set the createdBy user
             $entity->setCreatedBy($user);
             $em->persist($ticket);

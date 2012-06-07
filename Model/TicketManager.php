@@ -14,14 +14,11 @@ abstract class TicketManager implements TicketManagerInterface
     protected $ticketRepository;
     protected $commentRepository;
 
-    function __construct(ObjectManager $objectManager, $ticketClass, $commentClass, $securityContext)
+    function __construct($objectManager, $ticketClass, $commentClass)
     {
         $this->objectManager = $objectManager;
         $this->ticketClass = $ticketClass;
         $this->commentClass = $commentClass;
-        $this->securityContext = $securityContext;
-        $this->ticketRepository = $this->objectManager->getRepository($ticketClass);
-        $this->commentRepository = $this->objectManager->getRepository($commentClass);
     }
 
     public function setTicketClass($ticketClass)
@@ -61,6 +58,9 @@ abstract class TicketManager implements TicketManagerInterface
 
     public function getTicketRepository()
     {
+        if (null == $this->ticketRepository) {
+            $this->setTicketRepository($this->objectManager->getRepository($this->getTicketClass()));
+        }
         return $this->ticketRepository;
     }
 
@@ -81,6 +81,9 @@ abstract class TicketManager implements TicketManagerInterface
 
     public function getCommentRepository()
     {
+        if (null == $this->commentRepository) {
+            $this->setCommentRepository($this->objectManager->getRepository($this->getCommentClass()));
+        }
         return $this->commentRepository;
     }
 

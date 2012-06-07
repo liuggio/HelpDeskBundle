@@ -36,5 +36,12 @@ class TicketManager extends BaseTicketManager
         return true;
     }
 
+    /**
+     * thi function notifies the user
+     * @param $user
+     */
+    public function sendEmailToUser($user, $isOperator=false)
+    {
 
+    }
 }

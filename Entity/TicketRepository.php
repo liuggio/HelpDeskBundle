@@ -70,39 +70,5 @@ class TicketRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @param $operator
-     * @param $states
-     * @param string $filter
-     * @return array
-     * @throws \Liuggio\HelpDeskTicketSystemBundle\Exception
-     */
-    public function findAllOperatorsOfThisTicket($ticket)
-    {
-        $em = $this->getEntityManager();
-        $qb = $em->createQueryBuilder();
 
-        $qb->select('u')
-            ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
-            ->leftjoin('t.state', 'st')
-            ->leftjoin('t.category', 'ct')
-            ->leftjoin('ct.operators', 'opr')
-            ->where('opr = :user')
-            ->setParameter('user', $operator);
-
-        if (!is_array($states) || count($states) <= 0) {
-            throw new \Liuggio\HelpDeskTicketSystemBundle\Exception('Impossible to read state');
-        }
-        //$qb->andWhereIn('st.code', $statesOr);
-        $qb->andWhere($qb->expr()->in('st.code', $states));
-
-        if (!empty($filter)) {
-            $qb->andWhere(
-                $qb->expr()->orx($qb->expr()->like('t.subject', ':pattern'), $qb->expr()->like('t.body', ':pattern'))
-            )
-                ->setParameter('pattern', "%" . $filter . "%");
-        }
-
-        return $qb->getQuery()->getResult();
-    }
 }
