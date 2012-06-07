@@ -1,4 +1,8 @@
 parameters:
+
+  liuggio_help_desk_ticket_system.email.sender: terravision-developers@googlegroups.com
+  liuggio_help_desk_ticket_system.email.subject.prefix: '[Ticket System]'
+
   liuggio_help_desk_ticket_system.ticket.class: Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket
   liuggio_help_desk_ticket_system.comment.class: Liuggio\HelpDeskTicketSystemBundle\Entity\Comment
   liuggio_help_desk_ticket_system.ticket.manager.class: Liuggio\HelpDeskTicketSystemBundle\Entity\TicketManager
@@ -16,11 +20,11 @@ services:
 
     liuggio_help_desk_ticket_system.ticket.manager_no_doctrine:
         class: %liuggio_help_desk_ticket_system.ticket.manager.class%
-        arguments: [null, %liuggio_help_desk_ticket_system.ticket.class%, %liuggio_help_desk_ticket_system.comment.class%, null]
+        arguments: [null, %liuggio_help_desk_ticket_system.ticket.class%, %liuggio_help_desk_ticket_system.comment.class%, null, @mailer, @translator, @templating, %liuggio_help_desk_ticket_system.email.sender%, %liuggio_help_desk_ticket_system.email.subject.prefix%]
 
     liuggio_help_desk_ticket_system.ticket.listener:
         class: %liuggio_help_desk_ticket_system.ticket.listener.class%
-        arguments: [@mailer, @translator, @logger, @liuggio_help_desk_ticket_system.ticket.manager_no_doctrine]
+        arguments: [@logger, @liuggio_help_desk_ticket_system.ticket.manager_no_doctrine]
         tags:
           - { name: doctrine.event_listener, event:postUpdate}
           - { name: doctrine.event_listener, event:postPersist}

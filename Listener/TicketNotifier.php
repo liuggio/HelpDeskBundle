@@ -7,9 +7,9 @@ use Liuggio\HelpDeskTicketSystemBundle\Model\TicketInterface;
 class TicketNotifier
 {
     private $ticketManager;
-    private $mailer;
-    private $translator;
     private $logger;
+
+
 
     CONST EVENT_IS_UPDATE = 0;
     CONST EVENT_IS_PERSIST = 1;
@@ -18,12 +18,12 @@ class TicketNotifier
      * @param $mailer
      * @param $translator
      */
-    public function __construct($mailer, $translator, $logger, $ticketManager)
+    public function __construct($logger, $ticketManager)
     {
-        $this->setMailer($mailer);
-        $this->setTranslator($translator);
+
         $this->setLogger($logger);
         $this->ticketManager = $ticketManager;
+
     }
 
     /**
@@ -44,6 +44,8 @@ class TicketNotifier
 
     }
 
+
+
     /**
      *
      *
@@ -56,64 +58,25 @@ class TicketNotifier
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
 
+        $op_mail_tpl = 'LiuggioHelpDeskTicketSystemBundle:Email:email_operator.html.twig';
+        $owner_mail_tpl = 'LiuggioHelpDeskTicketSystemBundle:Email:email_operator.html.twig';
+
         //always notify the owner
         if ($entity instanceof TicketInterface) {
             $this->getLogger()->info('+++++++++++++++++++++++++' . $isUpdate . 'ENTITY YEAH');
-            
+
             $this->getTicketManager()->setObjectManager($entityManager);
 
             $operators = $entity->getCategory()->getOperators();
             foreach ($operators as $operator) {
-                $this->getTicketManager()->sendEmailToUser($entity, $operator);
+                $this->sendEmailToUser($entity, $operator, $op_mail_tpl);
             }
 
-            $owner = $entity->getCreatedBy();
+            $this->sendEmailToUser($entity, $entity->getCreatedBy(), $owner_mail_tpl);
 
             // 1. notify all the operator of this ticket
             // 2. notify the owner of this ticket
         }
-
-
-//
-//        if ($entity instanceof $this->getTicketManager()->getTicketClass()) {
-//
-//            echo "wooow";
-//            //extract all the operators that belongs to this ticket
-////            // notify the customercares of the corresponding category
-////            $category = $entity->getCategory();
-////            $operators = $category->getOperators();
-//
-////            $message = \Swift_Message::newInstance()
-////                    ->setSubject('Hello Email')
-////                    ->setFrom('send@example.com')
-////                    ->setTo('recipient@example.com')
-////                    ->setBody($this->renderView('HelloBundle:Hello:email.txt.twig', array('name' => $name)))
-////            ;
-////
-////            $this->get('mailer')->send($message);
-//            //extract the customer that
-//
-////
-////            $body = $event->getBody();
-////
-////            if (!is_null($event->getOrder()->getSeller())) {
-////                $recipients = array($event->getOrder()->getSeller()->getEmail());
-////            } else {
-////                $recipients = array($event->getOrder()->getOwner()->getEmail());
-////            }
-////            $message = \Swift_Message::newInstance()
-////                ->setFrom('tv.devs@gmail.com')
-////                ->setTo($recipients)
-////                ->setSubject($this->translator->trans('Terravision: Order Information'))
-////                ->setBody($body, 'text/html')
-////            ;
-////
-////            $this->mailer->send($message);
-//
-//
-
-
-        //   }
     }
 
 
@@ -155,5 +118,35 @@ class TicketNotifier
     public function getTicketManager()
     {
         return $this->ticketManager;
+    }
+
+    public function setEmailSender($emailSender)
+    {
+        $this->emailSender = $emailSender;
+    }
+
+    public function getEmailSender()
+    {
+        return $this->emailSender;
+    }
+
+    public function setEmailSubjectPrefix($emailSubjectPrefix)
+    {
+        $this->emailSubjectPrefix = $emailSubjectPrefix;
+    }
+
+    public function getEmailSubjectPrefix()
+    {
+        return $this->emailSubjectPrefix;
+    }
+
+    public function setTemplating($templating)
+    {
+        $this->templating = $templating;
+    }
+
+    public function getTemplating()
+    {
+        return $this->templating;
     }
 }

@@ -1,0 +1,83 @@
+<h1>{{ "ticket_ticket"|trans }}</h1>
+
+{% block ticket %}
+
+<table class="record_properties">
+    <tbody>
+    <tr>
+        <th>{{ "id_property"|trans }}</th>
+        <td>{{ ticket.id }}</td>
+    </tr>
+    <tr>
+        <th>{{ "subject_property"|trans }}</th>
+        <td>{{ ticket.subject }}</td>
+    </tr>
+    <tr>
+        <th>{{ "state_property"|trans }}</th>
+        <td>{{ ticket.getState.getCode }}:{{ ticket.getState.getDescription }}</td>
+    </tr>
+    {% if ticket.getRate != NULL %}
+    <tr>
+        <th>{{ "rate_property"|trans }}</th>
+        <td>{{ ticket.getRate }}</td>
+    </tr>
+    {% endif%}
+    <tr>
+        <th>{{ "category_property"|trans }}</th>
+        <td>{{ ticket.getCategory }}:{{ ticket.Category.getDescription }}</td>
+    </tr>
+    <tr>
+        <th>{{ "body_property"|trans }}</th>
+        <td>{{ ticket.body }}</td>
+    </tr>
+    <tr>
+        <th>{{ "language_property"|trans }}</th>
+        <td>{{ ticket.language }}</td>
+    </tr>
+    <tr>
+        <th>{{ "createdAt_property"|trans }}</th>
+        <td>{{ ticket.createdAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    <tr>
+        <th>{{ "updatedAt_property"|trans }}</th>
+        <td>{{ ticket.updatedAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    </tbody>
+</table>
+
+{% if ticket.hasComments %}
+<table class="records_list">
+    <thead>
+    <tr>
+        <th>{{ "id_property"|trans }}</th>
+        <th>{{ "body_property"|trans }}</th>
+        <th>{{ "createdAt_property"|trans }}</th>
+        <th>{{ "createdBy_property"|trans }}</th>
+        <th>{{ "updatedAt_property"|trans }}</th>
+        <th>{{ "actions_action"|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for comment in ticket.getComments %}
+    <tr>
+        <td><strong>{{ comment.id }}</strong></td>
+        <td>{{ comment.body }}</td>
+        <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif%}</td>
+        <td>{% if comment.createdBy %}{{ comment.createdBy }}{% endif%}</td>
+        <td>{% if comment.updatedAt %}{{ comment.updatedAt|date('Y-m-d H:i:s') }}{% endif%}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>{{ "no_comments_available"|trans }}</p>
+{% endif %}
+{% endblock ticket %}
+{% block comment %}
+{% endblock comment %}
+{% block close_form %}
+{% endblock close_form %}
+<a href="{{ path('ticket') }}">
+    {{ "back_to_list_action"|trans }}
+</a>
+
