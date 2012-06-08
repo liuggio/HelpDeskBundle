@@ -1,8 +1,7 @@
 {% extends 'LiuggioHelpDeskTicketSystemBundle:Default:index.html.twig' %}
 {% block content %}
 
-
-<h1>{{ "ticket_entity"|trans }}</h1>
+<h1>{{ "ticket_ticket"|trans }}</h1>
 
 {% block ticket %}
 
@@ -10,46 +9,46 @@
     <tbody>
     <tr>
         <th>{{ "id_property"|trans }}</th>
-        <td>{{ entity.id }}</td>
+        <td>{{ ticket.id }}</td>
     </tr>
     <tr>
         <th>{{ "subject_property"|trans }}</th>
-        <td>{{ entity.subject }}</td>
+        <td>{{ ticket.subject }}</td>
     </tr>
     <tr>
         <th>{{ "state_property"|trans }}</th>
-        <td>{{ entity.getState.getCode }}:{{ entity.getState.getDescription }}</td>
+        <td>{{ ticket.getState.getCode }}:{{ ticket.getState.getDescription }}</td>
     </tr>
-    {% if entity.getRate != NULL %}
+    {% if ticket.getRate != NULL %}
     <tr>
         <th>{{ "rate_property"|trans }}</th>
-        <td>{{ entity.getRate }}</td>
+        <td>{{ ticket.getRate }}</td>
     </tr>
     {% endif%}
     <tr>
         <th>{{ "category_property"|trans }}</th>
-        <td>{{ entity.getCategory }}:{{ entity.Category.getDescription }}</td>
+        <td>{{ ticket.getCategory }}:{{ ticket.Category.getDescription }}</td>
     </tr>
     <tr>
         <th>{{ "body_property"|trans }}</th>
-        <td>{{ entity.body }}</td>
+        <td>{{ ticket.body }}</td>
     </tr>
     <tr>
         <th>{{ "language_property"|trans }}</th>
-        <td>{{ entity.language }}</td>
+        <td>{{ ticket.language }}</td>
     </tr>
     <tr>
         <th>{{ "createdAt_property"|trans }}</th>
-        <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+        <td>{{ ticket.createdAt|date('Y-m-d H:i:s') }}</td>
     </tr>
     <tr>
         <th>{{ "updatedAt_property"|trans }}</th>
-        <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+        <td>{{ ticket.updatedAt|date('Y-m-d H:i:s') }}</td>
     </tr>
     </tbody>
 </table>
 
-{% if entity.hasComments %}
+{% if ticket.hasComments %}
 <table class="records_list">
     <thead>
     <tr>
@@ -62,7 +61,7 @@
     </tr>
     </thead>
     <tbody>
-    {% for comment in entity.getComments %}
+    {% for comment in ticket.getComments %}
     <tr>
         <td><strong>{{ comment.id }}</strong></td>
         <td>{{ comment.body }}</td>
@@ -79,7 +78,9 @@
 {% endblock ticket %}
 {% block comment %}
 {% endblock comment %}
-<a href="{{ path('ticket_admin') }}">
+{% block close_form %}
+{% endblock close_form %}
+<a href="{{ path('ticket') }}">
     {{ "back_to_list_action"|trans }}
 </a>
 

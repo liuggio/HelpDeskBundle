@@ -24,7 +24,7 @@ services:
 
     liuggio_help_desk_ticket_system.ticket.listener:
         class: %liuggio_help_desk_ticket_system.ticket.listener.class%
-        arguments: [@service_container, %liuggio_help_desk_ticket_system.email.sender%, %liuggio_help_desk_ticket_system.email.subject.prefix%]
+        arguments: [@service_container]
         tags:
           - { name: doctrine.event_listener, event:postUpdate}
           - { name: doctrine.event_listener, event:postPersist}

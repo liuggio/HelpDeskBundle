@@ -10,7 +10,8 @@
 <a href="{{ path('ticket', { 'state': 'closed' }) }}">{{ "closed_state"|trans }}</a>
 <a href="{{ path('ticket', { 'state': 'all' }) }}">{{ "all_state"|trans }}</a>
 <br />
-<form action="{{ path('ticket_search', { 'state': state }) }}" method="get" {{ form_enctype(form) }}>{{ form_widget(form) }}
+<form action="{{ path('ticket_search', { 'state': state }) }}" method="get" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
     <p>
         <button type="submit">{{ "search_action"|trans }}</button>
     </p>
@@ -25,11 +26,12 @@
 </div>
 {% endif %}
 <br />
-
 {% if entities|length %}
 <table class="records_list">
     <thead>
     <tr>
+
+        <th>{{ "category"|trans }}</th>
         <th>{{ "id_property"|trans }}</th>
         <th>{{ "subject_property"|trans }}</th>
         <th>{{ "body_property"|trans }}</th>
@@ -42,8 +44,9 @@
     <tbody>
     {% for entity in entities %}
     <tr>
-        <td><a href="{{ path('ticket_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-        <td>{{ entity.subject }}</td>
+        <td><a href="?s[request_pattern]={{ entity.category.name }}">{{ entity.category.name|trans }}</a></td>
+        <td align="center"><a href="{{ path('ticket_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+        <td><a href="{{ path('ticket_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
         <td>{{ entity.body }}</td>
         <td>{{ entity.language }}</td>
         <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif%}</td>

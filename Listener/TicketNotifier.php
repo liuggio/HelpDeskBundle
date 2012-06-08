@@ -49,18 +49,18 @@ class TicketNotifier
      * thi function notifies the user
      * @param $user
      */
-    public function sendEmailToUser($ticket, $user, $template, $subject = '')
+    public function sendEmailToUser($bodyTemplate, $bodyTemplateArgs, $from, $to, $subject = '', $subjectPrefix = '')
     {
-        $to = $user->getEmail();
-        $subject = sprintf('%s %s', $this->getEmailSubjectPrefix(), $subject);
+        $subject = sprintf('%s %s', $subjectPrefix, $subject);
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
-            ->setFrom($this->getEmailSender())
+            ->setFrom($from)
             ->setTo($to)
-            ->setBody($this->getTemplating()->render($template, array('user' => $user, 'ticket' => $ticket)));
+            ->setBody($this->getTemplating()->render($bodyTemplate, $bodyTemplateArgs));
         $this->getMailer()->send($message);
-        $this->getLogger()->debug('???????? email sent to' . $to);
+        $this->getLogger()->debug('HelpDeskTicketSystem: Email sent to' . $to);
     }
+
     /**
      *
      *
@@ -75,27 +75,38 @@ class TicketNotifier
         $this->setTemplating($this->container->get('templating'));
         $this->setMailer($this->container->get('mailer'));
 
+        $this->setEmailSender($this->container->getParameter('liuggio_help_desk_ticket_system.email.sender'));
+        $this->setEmailSubjectPrefix($this->container->getParameter('liuggio_help_desk_ticket_system.email.subject.prefix'));
+
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
 
-        $op_mail_tpl = 'LiuggioHelpDeskTicketSystemBundle:Email:email_operator.html.twig';
-        $owner_mail_tpl = 'LiuggioHelpDeskTicketSystemBundle:Email:email_operator.html.twig';
+        $mailTemplateOperator = 'LiuggioHelpDeskTicketSystemBundle:Email:email_operator.html.twig';
+        $mailTemplateCreator = 'LiuggioHelpDeskTicketSystemBundle:Email:email_customer.html.twig';
 
         //always notify the owner
         if ($entity instanceof TicketInterface) {
-            $this->getLogger()->info('+++++++++++++++++++++++++' . $isUpdate . 'ENTITY YEAH');
+            $this->getLogger()->info('HelpDeskTicketSystem: persist update' . $isUpdate);
 
             $this->getTicketManager()->setObjectManager($entityManager);
 
             $operators = $entity->getCategory()->getOperators();
             foreach ($operators as $operator) {
-                $this->sendEmailToUser($entity, $operator, $op_mail_tpl);
+                $bodyTemplateArgs = array('ticket' => $entity, 'user' => $operator->getEmail(), 'action' => $isUpdate);
+                $from = $this->getEmailSender();
+                $to = $operator->getEmail();
+                $subject = sprintf('Ticket Event on #%d %s', $entity->getId(), $entity->getState());
+                $subjectPrefix = $this->getEmailSubjectPrefix();
+                $this->sendEmailToUser($mailTemplateOperator, $bodyTemplateArgs, $from, $to, $subject, $subjectPrefix);
             }
 
-            $this->sendEmailToUser($entity, $entity->getCreatedBy(), $owner_mail_tpl);
+            $bodyTemplateArgs = array('ticket' => $entity, 'user' => $entity->getCreatedBy(), 'action' => $isUpdate);
+            $from = $this->getEmailSender();
+            $to =  $entity->getCreatedBy()->getEmail();
+            $subject = sprintf('Ticket Event on #%d %s', $entity->getId(), $entity->getState());
+            $subjectPrefix = $this->getEmailSubjectPrefix();
+            $this->sendEmailToUser($mailTemplateOperator, $bodyTemplateArgs, $from, $to, $subject, $subjectPrefix);
 
-            // 1. notify all the operator of this ticket
-            // 2. notify the owner of this ticket
         }
     }
 

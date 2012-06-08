@@ -1,3 +1,6 @@
+{% extends 'LiuggioHelpDeskTicketSystemBundle:Default:index.html.twig' %}
+{% block content %}
+
 <h1>Ticket list</h1>
 <br />
 <hr />
@@ -54,10 +57,12 @@
     {% endfor %}
     </tbody>
 </table>
-% else %}
+{% else %}
 <br />
 <p>
 <h3>{{ "no_ticket_found_message"|trans }}</h3>
 </p>
 <br />
 {% endif %}
+
+{% endblock %}

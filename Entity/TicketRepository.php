@@ -21,6 +21,7 @@ class TicketRepository extends EntityRepository
         $qb->select('t')
             ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
             ->leftjoin('t.state', 'st')
+            ->leftJoin('t.category', 'c')
             ->where('t.createdBy = :user')
             ->setParameter('user', $user);
 
@@ -32,7 +33,9 @@ class TicketRepository extends EntityRepository
 
         if (!empty($filter)) {
             $qb->andWhere(
-                $qb->expr()->orx($qb->expr()->like('t.subject', ':pattern'), $qb->expr()->like('t.body', ':pattern'))
+                $qb->expr()->orx($qb->expr()->like('t.subject', ':pattern'),
+                $qb->expr()->like('t.body', ':pattern'),
+                $qb->expr()->like('c.name', ':pattern'))
             )
                 ->setParameter('pattern', "%" . $filter . "%");
         }
