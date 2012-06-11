@@ -1,9 +1,9 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Tests\Controller;
+namespace Liuggio\HelpDeskBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState;
+use Liuggio\HelpDeskBundle\Entity\TicketState;
 
 class TicketControllerTest extends WebTestCase
 {
@@ -16,7 +16,7 @@ class TicketControllerTest extends WebTestCase
     private $rateButton = "rate our service";
     private $searchTicketButton = "search";
     private $commentBody = "Hello comment";
-    private $commentTextField = "liuggio_helpdeskticketsystembundle_commenttype[body]";
+    private $commentTextField = "liuggio_HelpDeskBundle_commenttype[body]";
     private $loginButton = "submit";
 
     private $user_operator1 = array("username" => "operator1@mail.com", "password" => "operator1");
@@ -53,8 +53,8 @@ class TicketControllerTest extends WebTestCase
 
         $crawler = $this->client->submit(
             $form, array(
-                'liuggio_helpdeskticketsystembundle_tickettype[subject]' => $testSubject,
-                'liuggio_helpdeskticketsystembundle_tickettype[body]' => $testBody
+                'liuggio_HelpDeskBundle_tickettype[subject]' => $testSubject,
+                'liuggio_HelpDeskBundle_tickettype[body]' => $testBody
             )
         );
 
@@ -65,11 +65,11 @@ class TicketControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('td:contains("' . $testBody . '")')->count() > 0);
 
         $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
-        $ticketCreated = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
+        $ticketCreated = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\Ticket')
             ->findOneBy(array('subject' => $testSubject, 'body' => $testBody));
 
         //asserting that the ticket has the state to NEW
-        $this->assertTrue($ticketCreated->getState()->getCode() == \Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_NEW);
+        $this->assertTrue($ticketCreated->getState()->getCode() == \Liuggio\HelpDeskBundle\Entity\TicketState::STATE_NEW);
     }
 
 
@@ -84,14 +84,14 @@ class TicketControllerTest extends WebTestCase
         $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
 
         // assert() user can NOT access the resource
-        $ticket = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
+        $ticket = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\Ticket')
             ->findOneBy(array('subject' => $testSubject, 'body' => $testBody));
         $ticketId = $ticket->getId();
         $crawler = $this->client->request('GET', '/customer-care/ticket/' . $ticketId . '/show');
         $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
 
         // assert() user can access the resource
-        $ticket = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
+        $ticket = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\Ticket')
             ->findOneBy(array('subject' => 'ticket3'));
         $ticketId = $ticket->getId();
         $crawler = $this->client->request('GET', '/customer-care/ticket/' . $ticketId . '/show');
@@ -114,7 +114,7 @@ class TicketControllerTest extends WebTestCase
         $this->setAuthClient($this->user_customer2);
         $em = $this->client->getContainer()->get('doctrine.orm.entity_manager');
 
-        $ticket = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
+        $ticket = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\Ticket')
             ->findOneBy(array('subject' => "ticket3"));
         $ticketId = $ticket->getId();
         $crawler = $this->client->request('GET', '/customer-care/ticket/' . $ticketId . '/show');
@@ -135,7 +135,7 @@ class TicketControllerTest extends WebTestCase
             $this->assertGreaterThan(0, $crawler->filter('td:contains("' . $this->commentBody . '")')->count());
 
             // Remove the comment just created
-            $comment = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Comment')
+            $comment = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\Comment')
                 ->findOneBy(array('body' => $this->commentBody));
             if ($comment) {
                 //cleaning
@@ -209,7 +209,7 @@ class TicketControllerTest extends WebTestCase
         $this->GreaterThan(0, $crawler->filter('html:contains("' . $testSubject . '")')->count());
 
 
-        $ticket = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket')
+        $ticket = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\Ticket')
             ->findOneBy(array('subject' => $testSubject, 'body' => $testBody));
         $ticketId = $ticket->getId();
 

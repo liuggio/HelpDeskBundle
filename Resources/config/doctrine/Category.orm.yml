@@ -1,4 +1,4 @@
-Liuggio\HelpDeskTicketSystemBundle\Entity\Category:
+Liuggio\HelpDeskBundle\Entity\Category:
   type: entity
   table: ticket__category
   manyToMany:

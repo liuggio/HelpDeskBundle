@@ -1,59 +1,59 @@
 parameters:
 
-  liuggio_help_desk_ticket_system.email.sender: terravision-developers@googlegroups.com
-  liuggio_help_desk_ticket_system.email.subject.prefix: '[Ticket System]'
+  liuggio_help_desk.email.sender: terravision-developers@googlegroups.com
+  liuggio_help_desk.email.subject.prefix: '[Ticket System]'
 
-  liuggio_help_desk_ticket_system.ticket.class: Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket
-  liuggio_help_desk_ticket_system.comment.class: Liuggio\HelpDeskTicketSystemBundle\Entity\Comment
-  liuggio_help_desk_ticket_system.ticket.manager.class: Liuggio\HelpDeskTicketSystemBundle\Entity\TicketManager
-  liuggio_help_desk_ticket_system.ticket.listener.class: Liuggio\HelpDeskTicketSystemBundle\Listener\TicketNotifier
+  liuggio_help_desk.ticket.class: Liuggio\HelpDeskBundle\Entity\Ticket
+  liuggio_help_desk.comment.class: Liuggio\HelpDeskBundle\Entity\Comment
+  liuggio_help_desk.ticket.manager.class: Liuggio\HelpDeskBundle\Entity\TicketManager
+  liuggio_help_desk.ticket.listener.class: Liuggio\HelpDeskBundle\Listener\TicketNotifier
 
 services:
 #acl manager
-    liuggio_help_desk_ticket_system.acl.manager:
-          class: Liuggio\HelpDeskTicketSystemBundle\Service\AclManager
+    liuggio_help_desk.acl.manager:
+          class: Liuggio\HelpDeskBundle\Service\AclManager
           arguments: [@security.acl.provider, @security.context]
 #manager
-    liuggio_help_desk_ticket_system.ticket.manager:
-        class: %liuggio_help_desk_ticket_system.ticket.manager.class%
-        arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk_ticket_system.ticket.class%, %liuggio_help_desk_ticket_system.comment.class%, @security.context]
+    liuggio_help_desk.ticket.manager:
+        class: %liuggio_help_desk.ticket.manager.class%
+        arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk.ticket.class%, %liuggio_help_desk.comment.class%, @security.context]
 
-    liuggio_help_desk_ticket_system.ticket.manager_no_doctrine:
-        class: %liuggio_help_desk_ticket_system.ticket.manager.class%
-        arguments: [null, %liuggio_help_desk_ticket_system.ticket.class%, %liuggio_help_desk_ticket_system.comment.class%, null]
+    liuggio_help_desk.ticket.manager_no_doctrine:
+        class: %liuggio_help_desk.ticket.manager.class%
+        arguments: [null, %liuggio_help_desk.ticket.class%, %liuggio_help_desk.comment.class%, null]
 
-    liuggio_help_desk_ticket_system.ticket.listener:
-        class: %liuggio_help_desk_ticket_system.ticket.listener.class%
+    liuggio_help_desk.ticket.listener:
+        class: %liuggio_help_desk.ticket.listener.class%
         arguments: [@service_container]
         tags:
           - { name: doctrine.event_listener, event:postUpdate}
           - { name: doctrine.event_listener, event:postPersist}
 #Sonata Admin
     sonata.ticket.ticketstate.admin:
-           class: Liuggio\HelpDeskTicketSystemBundle\Admin\TicketStateAdmin
+           class: Liuggio\HelpDeskBundle\Admin\TicketStateAdmin
            tags:
              - { name: sonata.admin, manager_type: orm, group: TicketSystem, label: TicketState }
-           arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState, LiuggioHelpDeskTicketSystemBundle:Admin\TicketStateAdmin]
+           arguments: [null, Liuggio\HelpDeskBundle\Entity\TicketState, LiuggioHelpDeskBundle:Admin\TicketStateAdmin]
 
     sonata.ticket.comment.admin:
-           class: Liuggio\HelpDeskTicketSystemBundle\Admin\CommentAdmin
+           class: Liuggio\HelpDeskBundle\Admin\CommentAdmin
            tags:
              - { name: sonata.admin, manager_type: orm, group: TicketSystem, label: Comment }
-           arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\Comment, LiuggioHelpDeskTicketSystemBundle:Admin\CommentAdmin]
+           arguments: [null, Liuggio\HelpDeskBundle\Entity\Comment, LiuggioHelpDeskBundle:Admin\CommentAdmin]
 
     sonata.ticket.category.admin:
-           class: Liuggio\HelpDeskTicketSystemBundle\Admin\CategoryAdmin
+           class: Liuggio\HelpDeskBundle\Admin\CategoryAdmin
            tags:
              - { name: sonata.admin, manager_type: orm, group: TicketSystem, label: Category }
-           arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\Category, LiuggioHelpDeskTicketSystemBundle:Admin\CategoryAdmin]
+           arguments: [null, Liuggio\HelpDeskBundle\Entity\Category, LiuggioHelpDeskBundle:Admin\CategoryAdmin]
 
     sonata.ticket.ticket.admin:
-          class: Liuggio\HelpDeskTicketSystemBundle\Admin\TicketAdmin
+          class: Liuggio\HelpDeskBundle\Admin\TicketAdmin
           tags:
             - { name: sonata.admin, manager_type: orm, group: TicketSystem, label: Ticket }
-          arguments: [null, Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket, LiuggioHelpDeskTicketSystemBundle:Admin\TicketAdmin]
+          arguments: [null, Liuggio\HelpDeskBundle\Entity\Ticket, LiuggioHelpDeskBundle:Admin\TicketAdmin]
           calls:
-            - [ setTemplates, [{"list": LiuggioHelpDeskTicketSystemBundle:TicketAdmin:list.html.twig,layout: SonataAdminBundle::standard_layout.html.twig, ajax: SonataAdminBundle::ajax_layout.html.twig, edit: SonataAdminBundle:CRUD:edit.html.twig, show: SonataAdminBundle:CRUD:show.html.twig}] ]
+            - [ setTemplates, [{"list": LiuggioHelpDeskBundle:TicketAdmin:list.html.twig,layout: SonataAdminBundle::standard_layout.html.twig, ajax: SonataAdminBundle::ajax_layout.html.twig, edit: SonataAdminBundle:CRUD:edit.html.twig, show: SonataAdminBundle:CRUD:show.html.twig}] ]
 
 
 

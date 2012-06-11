@@ -1,5 +1,5 @@
 <?php
-namespace Liuggio\HelpDeskTicketSystemBundle\Service;
+namespace Liuggio\HelpDeskBundle\Service;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;

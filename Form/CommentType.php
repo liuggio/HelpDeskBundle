@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Form;
+namespace Liuggio\HelpDeskBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
@@ -33,13 +33,13 @@ class CommentType extends AbstractType
 
     public function getName()
     {
-        return 'liuggio_helpdeskticketsystembundle_commenttype';
+        return 'liuggio_HelpDeskBundle_commenttype';
     }
 
     public function getDefaultOptions(array $options)
     {
         $fixedOptions = array(
-            'data_class' => 'Liuggio\HelpDeskTicketSystemBundle\Entity\Comment',
+            'data_class' => 'Liuggio\HelpDeskBundle\Entity\Comment',
         );
         return array_merge($options, $fixedOptions);
     }

@@ -1,20 +1,20 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Controller;
+namespace Liuggio\HelpDeskBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
-use Liuggio\HelpDeskTicketSystemBundle\Form\TicketType;
-use Liuggio\HelpDeskTicketSystemBundle\Form\CloseTicketType;
-use Liuggio\HelpDeskTicketSystemBundle\Form\RateType;
-use Liuggio\HelpDeskTicketSystemBundle\Form\SearchType;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState;
-use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
+use Liuggio\HelpDeskBundle\Entity\Ticket;
+use Liuggio\HelpDeskBundle\Form\TicketType;
+use Liuggio\HelpDeskBundle\Form\CloseTicketType;
+use Liuggio\HelpDeskBundle\Form\RateType;
+use Liuggio\HelpDeskBundle\Form\SearchType;
+use Liuggio\HelpDeskBundle\Entity\TicketState;
+use Liuggio\HelpDeskBundle\Form\CommentType;
 
-use Liuggio\HelpDeskTicketSystemBundle\Exception;
+use Liuggio\HelpDeskBundle\Exception;
 
 /**
  * Ticket controller.
@@ -50,10 +50,10 @@ class TicketController extends Controller
         } else {
             $this->get('session')->setFlash('invalid_search_form_notice', 'invalid_search_form_notice');
         }
-        $ticketRepository = $this->get('liuggio_help_desk_ticket_system.ticket.manager')->getTicketRepository();
+        $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')->getTicketRepository();
         $tickets = $ticketRepository->findTicketsByStatesAndCustomer($user, $states, $request_pattern);
 
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:index.html.twig', array(
+        return $this->render('LiuggioHelpDeskBundle:Ticket:index.html.twig', array(
             'entities' => $tickets,
             'form' => $form->createView(),
             'state' => $state
@@ -73,28 +73,28 @@ class TicketController extends Controller
 
         $user = $this->get('security.context')->getToken()->getUser();
 
-        $entity = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+        $entity = $this->get('liuggio_help_desk.ticket.manager')
             ->getTicketRepository()
             ->find($id);
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
-        $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
+        $aclManager = $this->get('liuggio_help_desk.acl.manager');
         $aclManager->checkPermissions($entity);
 
-        $comment = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+        $comment = $this->get('liuggio_help_desk.ticket.manager')
             ->createComment();
 
         $comment->setCreatedBy($user);
         $ticket_form = $this->createForm(new CloseTicketType($entity->getId()));
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
-            return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:show_closed.html.twig', array(
+            return $this->render('LiuggioHelpDeskBundle:Ticket:show_closed.html.twig', array(
                 'entity' => $entity,
             ));
         } else {
-            return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:show_open.html.twig', array(
+            return $this->render('LiuggioHelpDeskBundle:Ticket:show_open.html.twig', array(
                 'entity' => $entity,
                 'comment_create' => $comment_form->createView(),
                 'ticket_close' => $ticket_form->createView()
@@ -108,12 +108,12 @@ class TicketController extends Controller
      */
     public function newAction()
     {
-        $entity = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+        $entity = $this->get('liuggio_help_desk.ticket.manager')
             ->createTicket();
 
         $form = $this->createForm(new TicketType(), $entity);
 
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:new.html.twig', array(
+        return $this->render('LiuggioHelpDeskBundle:Ticket:new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView()
         ));
@@ -131,7 +131,7 @@ class TicketController extends Controller
         }
 
         $user = $this->get('security.context')->getToken()->getUser();
-        $entity = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+        $entity = $this->get('liuggio_help_desk.ticket.manager')
             ->createTicket();
 
         $request = $this->getRequest();
@@ -144,8 +144,8 @@ class TicketController extends Controller
             if (isset($locale)) {
                 $entity->setLanguage($locale);
             }
-            $state_new = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState')
-                ->findOneByCode(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_NEW);
+            $state_new = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
+                ->findOneByCode(\Liuggio\HelpDeskBundle\Entity\TicketState::STATE_NEW);
 
             if ($state_new) {
                 $entity->setState($state_new);
@@ -157,7 +157,7 @@ class TicketController extends Controller
             $em->persist($entity);
             $em->flush();
             //Set the ACE
-            $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
+            $aclManager = $this->get('liuggio_help_desk.acl.manager');
             $aclManager->insertAce($entity, $user);
 
 
@@ -166,7 +166,7 @@ class TicketController extends Controller
 
         }
 
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:new.html.twig', array(
+        return $this->render('LiuggioHelpDeskBundle:Ticket:new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView()
         ));
@@ -179,7 +179,7 @@ class TicketController extends Controller
     public function closeAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $entity = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+        $entity = $this->get('liuggio_help_desk.ticket.manager')
             ->getTicketRepository()
             ->find($id);
 
@@ -187,7 +187,7 @@ class TicketController extends Controller
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
-        $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
+        $aclManager = $this->get('liuggio_help_desk.acl.manager');
         $aclManager->checkPermissions($entity);
 
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
@@ -195,8 +195,8 @@ class TicketController extends Controller
             return $this->redirect($this->generateUrl('ticket'));
         }
 
-        $state_closed = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState')
-            ->findOneByCode(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_CLOSED);
+        $state_closed = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
+            ->findOneByCode(\Liuggio\HelpDeskBundle\Entity\TicketState::STATE_CLOSED);
 
         if ($state_closed) {
             $entity->setState($state_closed);
@@ -207,7 +207,7 @@ class TicketController extends Controller
 
         $form = $this->createForm(new RateType($entity->getId()));
 
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:Ticket:rate.html.twig', array(
+        return $this->render('LiuggioHelpDeskBundle:Ticket:rate.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView()
         ));
@@ -232,11 +232,11 @@ class TicketController extends Controller
 
             $em = $this->getDoctrine()->getEntityManager();
 
-            $entity = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+            $entity = $this->get('liuggio_help_desk.ticket.manager')
                 ->getTicketRepository()
                 ->find($ticket_id);
 
-            $aclManager = $this->get('liuggio_help_desk_ticket_system.acl.manager');
+            $aclManager = $this->get('liuggio_help_desk.acl.manager');
             $aclManager->checkPermissions($entity);
 
             if (!$entity) {

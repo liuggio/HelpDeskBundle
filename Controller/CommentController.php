@@ -1,12 +1,12 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Controller;
+namespace Liuggio\HelpDeskBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Comment;
-use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
-use Liuggio\HelpDeskTicketSystemBundle\Exception;
+use Liuggio\HelpDeskBundle\Entity\Comment;
+use Liuggio\HelpDeskBundle\Form\CommentType;
+use Liuggio\HelpDeskBundle\Exception;
 /**
  * Comment controller.
  *
@@ -30,15 +30,15 @@ class CommentController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $comment = $form->getData();
-            $form = $this->getRequest()->get('liuggio_helpdeskticketsystembundle_commenttype');
+            $form = $this->getRequest()->get('liuggio_HelpDeskBundle_commenttype');
             $ticket_id = $form['ticket'];
-            $ticket = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($ticket_id);
+            $ticket = $em->getRepository('LiuggioHelpDeskBundle:Ticket')->find($ticket_id);
             if (!$ticket) {
                 throw $this->createNotFoundException('Unable to find Ticket entity.');
             }
 
-            $state_pending = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState')
-                ->findOneByCode(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_PENDING);
+            $state_pending = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
+                ->findOneByCode(\Liuggio\HelpDeskBundle\Entity\TicketState::STATE_PENDING);
 
             if (!$state_pending) {
                 throw new Exception('Ticket State Not Found');
@@ -56,7 +56,7 @@ class CommentController extends Controller
 
         }
 
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:Comment:new.html.twig', array(
+        return $this->render('LiuggioHelpDeskBundle:Comment:new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView()
         ));

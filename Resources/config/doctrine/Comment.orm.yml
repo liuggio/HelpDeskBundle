@@ -1,4 +1,4 @@
-Liuggio\HelpDeskTicketSystemBundle\Entity\Comment:
+Liuggio\HelpDeskBundle\Entity\Comment:
   type: entity
   table: ticket__comment
   manyToOne:

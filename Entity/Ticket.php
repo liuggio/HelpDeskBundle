@@ -1,14 +1,14 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Entity;
+namespace Liuggio\HelpDeskBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Category;
-use Liuggio\HelpDeskTicketSystemBundle\Exception;
-use Liuggio\HelpDeskTicketSystemBundle\Model\Ticket as BaseTicket;
+use Liuggio\HelpDeskBundle\Entity\Category;
+use Liuggio\HelpDeskBundle\Exception;
+use Liuggio\HelpDeskBundle\Model\Ticket as BaseTicket;
 
 /**
- * Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket
+ * Liuggio\HelpDeskBundle\Entity\Ticket
  */
 class Ticket extends BaseTicket
 {
@@ -53,12 +53,12 @@ class Ticket extends BaseTicket
     private $state;
 
     /**
-     * @var \Liuggio\HelpDeskTicketSystemBundle\Entity\Category $category
+     * @var \Liuggio\HelpDeskBundle\Entity\Category $category
      */
     private $category;
 
     /**
-     * @var Liuggio\HelpDeskTicketSystemBundle\Entity\Comment
+     * @var Liuggio\HelpDeskBundle\Entity\Comment
      */
     private $comments;
 
@@ -192,15 +192,15 @@ class Ticket extends BaseTicket
 
 
     /**
-     * @param \Liuggio\HelpDeskTicketSystemBundle\Entity\Category $category
+     * @param \Liuggio\HelpDeskBundle\Entity\Category $category
      */
-    public function setCategory(\Liuggio\HelpDeskTicketSystemBundle\Entity\Category $category)
+    public function setCategory(\Liuggio\HelpDeskBundle\Entity\Category $category)
     {
         $this->category = $category;
     }
 
     /**
-     * @return \Liuggio\HelpDeskTicketSystemBundle\Entity\Category
+     * @return \Liuggio\HelpDeskBundle\Entity\Category
      */
     public function getCategory()
     {
@@ -210,9 +210,9 @@ class Ticket extends BaseTicket
     /**
      * Add comments
      *
-     * @param Liuggio\HelpDeskTicketSystemBundle\Entity\Comment $comments
+     * @param Liuggio\HelpDeskBundle\Entity\Comment $comments
      */
-    public function addComment(\Liuggio\HelpDeskTicketSystemBundle\Entity\Comment $comments)
+    public function addComment(\Liuggio\HelpDeskBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
     }
@@ -240,9 +240,9 @@ class Ticket extends BaseTicket
     /**
      * Set state
      *
-     * @param Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState $state
+     * @param Liuggio\HelpDeskBundle\Entity\TicketState $state
      */
-    public function setState(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState $state)
+    public function setState(\Liuggio\HelpDeskBundle\Entity\TicketState $state)
     {
         $this->state = $state;
     }
@@ -250,7 +250,7 @@ class Ticket extends BaseTicket
     /**
      * Get state
      *
-     * @return Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState
+     * @return Liuggio\HelpDeskBundle\Entity\TicketState
      */
     public function getState()
     {

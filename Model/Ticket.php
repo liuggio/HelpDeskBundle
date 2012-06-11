@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Model;
+namespace Liuggio\HelpDeskBundle\Model;
 
 
 
@@ -47,7 +47,7 @@ abstract class Ticket implements TicketInterface
     }
 
     /**
-     * @param \Liuggio\HelpDeskTicketSystemBundle\Model\text $body
+     * @param \Liuggio\HelpDeskBundle\Model\text $body
      */
     public function setBody($body)
     {
@@ -55,7 +55,7 @@ abstract class Ticket implements TicketInterface
     }
 
     /**
-     * @return \Liuggio\HelpDeskTicketSystemBundle\Model\text
+     * @return \Liuggio\HelpDeskBundle\Model\text
      */
     public function getBody()
     {

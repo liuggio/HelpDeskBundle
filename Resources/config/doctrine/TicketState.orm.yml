@@ -1,4 +1,4 @@
-Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState:
+Liuggio\HelpDeskBundle\Entity\TicketState:
   type: entity
   table: ticket__state
   fields:

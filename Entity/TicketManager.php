@@ -1,10 +1,10 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Entity;
+namespace Liuggio\HelpDeskBundle\Entity;
 
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Liuggio\HelpDeskTicketSystemBundle\Model\TicketManager as BaseTicketManager;
+use Liuggio\HelpDeskBundle\Model\TicketManager as BaseTicketManager;
 
 class TicketManager extends BaseTicketManager
 {
@@ -22,7 +22,7 @@ class TicketManager extends BaseTicketManager
         $qb = $this->getObjectManager()->createQueryBuilder();
 
         $qb->select('t')
-            ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
+            ->from('LiuggioHelpDeskBundle:Ticket', 't')
             ->leftjoin('t.category', 'ct')
             ->leftjoin('ct.operators','opr')
             ->where('t = :ticket')

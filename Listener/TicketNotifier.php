@@ -1,8 +1,8 @@
 <?php
-namespace Liuggio\HelpDeskTicketSystemBundle\Listener;
+namespace Liuggio\HelpDeskBundle\Listener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Liuggio\HelpDeskTicketSystemBundle\Model\TicketInterface;
+use Liuggio\HelpDeskBundle\Model\TicketInterface;
 
 class TicketNotifier
 {
@@ -71,18 +71,18 @@ class TicketNotifier
     {
 
         $this->setLogger($this->container->get('logger'));
-        $this->ticketManager = $this->container->get('liuggio_help_desk_ticket_system.ticket.manager_no_doctrine');
+        $this->ticketManager = $this->container->get('liuggio_help_desk.ticket.manager_no_doctrine');
         $this->setTemplating($this->container->get('templating'));
         $this->setMailer($this->container->get('mailer'));
 
-        $this->setEmailSender($this->container->getParameter('liuggio_help_desk_ticket_system.email.sender'));
-        $this->setEmailSubjectPrefix($this->container->getParameter('liuggio_help_desk_ticket_system.email.subject.prefix'));
+        $this->setEmailSender($this->container->getParameter('liuggio_help_desk.email.sender'));
+        $this->setEmailSubjectPrefix($this->container->getParameter('liuggio_help_desk.email.subject.prefix'));
 
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
 
-        $mailTemplateOperator = 'LiuggioHelpDeskTicketSystemBundle:Email:email_operator.html.twig';
-        $mailTemplateCreator = 'LiuggioHelpDeskTicketSystemBundle:Email:email_customer.html.twig';
+        $mailTemplateOperator = 'LiuggioHelpDeskBundle:Email:email_operator.html.twig';
+        $mailTemplateCreator = 'LiuggioHelpDeskBundle:Email:email_customer.html.twig';
 
         //always notify the owner
         if ($entity instanceof TicketInterface) {

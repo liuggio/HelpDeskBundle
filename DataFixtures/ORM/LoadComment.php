@@ -1,11 +1,11 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\DataFixtures\ORM;
+namespace Liuggio\HelpDeskBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Comment;
+use Liuggio\HelpDeskBundle\Entity\Comment;
 
 class LoadComment extends AbstractFixture implements OrderedFixtureInterface
 {

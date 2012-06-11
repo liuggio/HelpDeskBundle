@@ -1,5 +1,5 @@
 <?php
-namespace Liuggio\HelpDeskTicketSystemBundle\Controller\Admin;
+namespace Liuggio\HelpDeskBundle\Controller\Admin;
 
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 

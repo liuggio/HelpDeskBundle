@@ -1,13 +1,13 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\DataFixtures\ORM;
+namespace Liuggio\HelpDeskBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-use Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Category;
+use Liuggio\HelpDeskBundle\Entity\TicketState;
+use Liuggio\HelpDeskBundle\Entity\Ticket;
+use Liuggio\HelpDeskBundle\Entity\Category;
 
 class LoadTicketState extends AbstractFixture implements OrderedFixtureInterface
 {

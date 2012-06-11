@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Form;
+namespace Liuggio\HelpDeskBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
@@ -36,7 +36,7 @@ class RateType extends AbstractType
 
     public function getName()
     {
-        return 'liuggio_helpdeskticketsystembundle_ratetype';
+        return 'liuggio_HelpDeskBundle_ratetype';
     }
 
 

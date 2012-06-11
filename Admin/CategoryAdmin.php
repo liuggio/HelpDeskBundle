@@ -1,5 +1,5 @@
 <?php
-namespace Liuggio\HelpDeskTicketSystemBundle\Admin;
+namespace Liuggio\HelpDeskBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;

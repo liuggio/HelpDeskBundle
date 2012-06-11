@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Entity;
+namespace Liuggio\HelpDeskBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -19,14 +19,14 @@ class TicketRepository extends EntityRepository
         $qb = $em->createQueryBuilder();
 
         $qb->select('t')
-            ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
+            ->from('LiuggioHelpDeskBundle:Ticket', 't')
             ->leftjoin('t.state', 'st')
             ->leftJoin('t.category', 'c')
             ->where('t.createdBy = :user')
             ->setParameter('user', $user);
 
         if (!is_array($states) || count($states) <= 0) {
-            throw new \Liuggio\HelpDeskTicketSystemBundle\Exception('Impossible to read state');
+            throw new \Liuggio\HelpDeskBundle\Exception('Impossible to read state');
         }
         //$qb->andWhereIn('st.code', $statesOr);
         $qb->andWhere($qb->expr()->in('st.code', $states));
@@ -50,7 +50,7 @@ class TicketRepository extends EntityRepository
         $qb = $em->createQueryBuilder();
 
         $qb->select('t')
-            ->from('LiuggioHelpDeskTicketSystemBundle:Ticket', 't')
+            ->from('LiuggioHelpDeskBundle:Ticket', 't')
             ->leftjoin('t.state', 'st')
             ->leftjoin('t.category', 'ct')
             ->leftjoin('ct.operators', 'opr')
@@ -58,7 +58,7 @@ class TicketRepository extends EntityRepository
             ->setParameter('user', $operator);
 
         if (!is_array($states) || count($states) <= 0) {
-            throw new \Liuggio\HelpDeskTicketSystemBundle\Exception('Impossible to read state');
+            throw new \Liuggio\HelpDeskBundle\Exception('Impossible to read state');
         }
         //$qb->andWhereIn('st.code', $statesOr);
         $qb->andWhere($qb->expr()->in('st.code', $states));

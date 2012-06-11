@@ -1,11 +1,11 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\DataFixtures\ORM;
+namespace Liuggio\HelpDeskBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Category;
+use Liuggio\HelpDeskBundle\Entity\Category;
 
 class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
 {

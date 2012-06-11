@@ -1,21 +1,21 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Controller;
+namespace Liuggio\HelpDeskBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Tvision\Bundle\UserBundle\Entity\User;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
-use Liuggio\HelpDeskTicketSystemBundle\Form\TicketType;
-use Liuggio\HelpDeskTicketSystemBundle\Form\CloseTicketType;
-use Liuggio\HelpDeskTicketSystemBundle\Form\RateType;
-use Liuggio\HelpDeskTicketSystemBundle\Form\SearchType;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState;
-use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Comment;
-use Liuggio\HelpDeskTicketSystemBundle\Exception;
+use Liuggio\HelpDeskBundle\Entity\Ticket;
+use Liuggio\HelpDeskBundle\Form\TicketType;
+use Liuggio\HelpDeskBundle\Form\CloseTicketType;
+use Liuggio\HelpDeskBundle\Form\RateType;
+use Liuggio\HelpDeskBundle\Form\SearchType;
+use Liuggio\HelpDeskBundle\Entity\TicketState;
+use Liuggio\HelpDeskBundle\Form\CommentType;
+use Liuggio\HelpDeskBundle\Entity\Comment;
+use Liuggio\HelpDeskBundle\Exception;
 
 
 class TicketAdminController extends Controller
@@ -49,14 +49,14 @@ class TicketAdminController extends Controller
         }
 
         $user = $this->get('security.context')->getToken()->getUser();
-        $ticketRepository = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+        $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')
             ->getTicketRepository();
 
         $tickets = $ticketRepository->findTicketsByStatesAndOperator($user, $states, $request_pattern);
 
 
         // @TODO Pagination
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:TicketAdmin:index.html.twig', array(
+        return $this->render('LiuggioHelpDeskBundle:TicketAdmin:index.html.twig', array(
             'entities' => $tickets,
             'form' => $form->createView(),
             'state' => $state
@@ -73,7 +73,7 @@ class TicketAdminController extends Controller
     {
         $operator = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getEntityManager();
-        $entity = $ticketRepository = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+        $entity = $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')
             ->getTicketRepository()
             ->find($id);
 
@@ -82,22 +82,22 @@ class TicketAdminController extends Controller
         }
 
         // check CustomerCare permissions
-        $isGranted = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+        $isGranted = $this->get('liuggio_help_desk.ticket.manager')
             ->isOperatorGrantedForThisTicket($entity, $operator);
         if (!$isGranted) {
             throw new AccessDeniedException("Category Permission not granted!");
         }
-        $comment = $ticketRepository = $this->get('liuggio_help_desk_ticket_system.ticket.manager')
+        $comment = $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')
             ->createComment();
         $comment->setCreatedBy($operator);
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
         //Closed is logic maybe into Manager
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
-            return $this->render('LiuggioHelpDeskTicketSystemBundle:TicketAdmin:show_closed.html.twig', array(
+            return $this->render('LiuggioHelpDeskBundle:TicketAdmin:show_closed.html.twig', array(
                 'entity' => $entity,
             ));
         } else {
-            return $this->render('LiuggioHelpDeskTicketSystemBundle:TicketAdmin:show_open.html.twig', array(
+            return $this->render('LiuggioHelpDeskBundle:TicketAdmin:show_open.html.twig', array(
                 'entity' => $entity,
                 'comment_create_admin' => $comment_form->createView()
             ));

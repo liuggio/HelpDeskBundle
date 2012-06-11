@@ -1,11 +1,11 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Entity;
+namespace Liuggio\HelpDeskBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState
+ * Liuggio\HelpDeskBundle\Entity\TicketState
  */
 class TicketState
 {

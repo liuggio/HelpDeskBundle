@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\DataFixtures\ORM;
+namespace Liuggio\HelpDeskBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
@@ -9,8 +9,8 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket;
-use Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState;
+use Liuggio\HelpDeskBundle\Entity\Ticket;
+use Liuggio\HelpDeskBundle\Entity\TicketState;
 use Tvision\Bundle\UserBundle\Entity\User;
 use Tvision\Bundle\UserBundle\Entity\Group;
 
@@ -86,7 +86,7 @@ class LoadTicketAndUser extends AbstractFixture implements OrderedFixtureInterfa
         $em->flush();
 
 
-        $aclManager = $this->container->get('liuggio_help_desk_ticket_system.acl.manager');
+        $aclManager = $this->container->get('liuggio_help_desk.acl.manager');
 
         $ticket = new Ticket();
         $ticket->setSubject("ticket1");

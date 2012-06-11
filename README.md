@@ -1,4 +1,4 @@
-HelpDeskTicketSystemBundle
+HelpDeskBundle
 ==========================
 
 Develpment status. Release will be on july.
@@ -10,7 +10,7 @@ Open source support ticket system. (Symfony2 bundle)
 
 See wiki
 
-https://github.com/liuggio/HelpDeskTicketSystemBundle/wiki/Concept-key-RFC
+https://github.com/liuggio/HelpDeskBundle/wiki/Concept-key-RFC
 
 
 
@@ -22,9 +22,9 @@ Install this bundle as always :)
 1 Add the following entry to ``deps`` the run ``php bin/vendors install``.
 
 ``` yaml
- [HelpDeskTicketSystemBundle.git]
-     git=https://github.com/liuggio/HelpDeskTicketSystemBundle.git
-     target=/bundles/Liuggio/HelpDeskTicketSystemBundle
+ [HelpDeskBundle.git]
+     git=https://github.com/liuggio/HelpDeskBundle.git
+     target=/bundles/Liuggio/HelpDeskBundle
 ```
 
 2 run bin/vendors install
@@ -34,7 +34,7 @@ Install this bundle as always :)
 ``` php
     $bundles = array(
         // ...
-        new Liuggio\HelpDeskTicketSystemBundle\LiuggioHelpDeskTicketSystemBundle(),
+        new Liuggio\HelpDeskBundle\LiuggioHelpDeskBundle(),
     );
 ```
 
@@ -52,8 +52,8 @@ Install this bundle as always :)
 
  ``` yaml
 
- LiuggioHelpDeskTicketSystemBundle_customer_care_ticket:
-     resource: "@LiuggioHelpDeskTicketSystemBundle/Resources/config/routing.yml"
+ LiuggioHelpDeskBundle_customer_care_ticket:
+     resource: "@LiuggioHelpDeskBundle/Resources/config/routing.yml"
      prefix:   /
 
  ```

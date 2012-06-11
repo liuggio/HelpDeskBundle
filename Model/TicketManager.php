@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Model;
+namespace Liuggio\HelpDeskBundle\Model;
 
 use Doctrine\Common\Persistence\ObjectManager;
 

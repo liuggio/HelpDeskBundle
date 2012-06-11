@@ -1,11 +1,11 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Controller;
+namespace Liuggio\HelpDeskBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Liuggio\HelpDeskTicketSystemBundle\Entity\Comment;
-use Liuggio\HelpDeskTicketSystemBundle\Form\CommentType;
+use Liuggio\HelpDeskBundle\Entity\Comment;
+use Liuggio\HelpDeskBundle\Form\CommentType;
 
 /**
  * Comment controller.
@@ -30,15 +30,15 @@ class CommentAdminController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $comment = $form->getData();
-            $form = $this->getRequest()->get('liuggio_helpdeskticketsystembundle_commenttype');
+            $form = $this->getRequest()->get('liuggio_HelpDeskBundle_commenttype');
             $ticket_id = $form['ticket'];
-            $ticket = $em->getRepository('LiuggioHelpDeskTicketSystemBundle:Ticket')->find($ticket_id);
+            $ticket = $em->getRepository('LiuggioHelpDeskBundle:Ticket')->find($ticket_id);
             if (!$ticket) {
                 throw $this->createNotFoundException('Unable to find Ticket entity.');
             }
 
-            $state_replied = $em->getRepository('\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState')
-                ->findOneByCode(\Liuggio\HelpDeskTicketSystemBundle\Entity\TicketState::STATE_REPLIED);
+            $state_replied = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
+                ->findOneByCode(\Liuggio\HelpDeskBundle\Entity\TicketState::STATE_REPLIED);
 
             if ($state_replied) {
                 $ticket->setState($state_replied);
@@ -54,7 +54,7 @@ class CommentAdminController extends Controller
 
         }
 
-        return $this->render('LiuggioHelpDeskTicketSystemBundle:CommentAdmin:new.html.twig', array(
+        return $this->render('LiuggioHelpDeskBundle:CommentAdmin:new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView()
         ));

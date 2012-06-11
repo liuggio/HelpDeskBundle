@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\DependencyInjection;
+namespace Liuggio\HelpDeskBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('liuggio_help_desk_ticket_system');
+        $rootNode = $treeBuilder->root('liuggio_help_desk');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

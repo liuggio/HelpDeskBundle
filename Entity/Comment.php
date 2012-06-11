@@ -1,12 +1,12 @@
 <?php
 
-namespace Liuggio\HelpDeskTicketSystemBundle\Entity;
+namespace Liuggio\HelpDeskBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Liuggio\HelpDeskTicketSystemBundle\Model\Comment as BaseComment;
+use Liuggio\HelpDeskBundle\Model\Comment as BaseComment;
 
 /**
- * Liuggio\HelpDeskTicketSystemBundle\Entity\Comment
+ * Liuggio\HelpDeskBundle\Entity\Comment
  */
 class Comment extends BaseComment
 {
@@ -36,7 +36,7 @@ class Comment extends BaseComment
     private $modifiedAt;
 
     /**
-     * @var Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket $ticket
+     * @var Liuggio\HelpDeskBundle\Entity\Ticket $ticket
      */
     private $ticket;
 
@@ -120,7 +120,7 @@ class Comment extends BaseComment
     }
 
     /**
-     * @param \Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket $ticket
+     * @param \Liuggio\HelpDeskBundle\Entity\Ticket $ticket
      */
     public function setTicket($ticket)
     {
@@ -128,7 +128,7 @@ class Comment extends BaseComment
     }
 
     /**
-     * @return \Liuggio\HelpDeskTicketSystemBundle\Entity\Ticket
+     * @return \Liuggio\HelpDeskBundle\Entity\Ticket
      */
     public function getTicket()
     {

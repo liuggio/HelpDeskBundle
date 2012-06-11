@@ -1,36 +1,36 @@
 ticket:
     pattern:  /{state}
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:index", state: open }
+    defaults: { _controller: "LiuggioHelpDeskBundle:Ticket:index", state: open }
     requirements:
       state: open|closed|all
       _method: get
 
 ticket_search:
     pattern:  /{state}/search/
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:index", state: open}
+    defaults: { _controller: "LiuggioHelpDeskBundle:Ticket:index", state: open}
     requirements:
       state: open|closed|all
       _method: get
 
 ticket_show:
     pattern:  /{id}/show
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:show" }
+    defaults: { _controller: "LiuggioHelpDeskBundle:Ticket:show" }
 
 ticket_new:
     pattern:  /new
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:new" }
+    defaults: { _controller: "LiuggioHelpDeskBundle:Ticket:new" }
 
 ticket_create:
     pattern:  /create
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:create" }
+    defaults: { _controller: "LiuggioHelpDeskBundle:Ticket:create" }
     requirements: { _method: post }
 
 ticket_close:
     pattern:  /{id}/close
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:close" }
+    defaults: { _controller: "LiuggioHelpDeskBundle:Ticket:close" }
     requirements: { _method: post }
     
 ticket_rate:
     pattern:  /rate
-    defaults: { _controller: "LiuggioHelpDeskTicketSystemBundle:Ticket:rate" }
+    defaults: { _controller: "LiuggioHelpDeskBundle:Ticket:rate" }
     requirements: { _method: post }
