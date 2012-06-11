@@ -58,7 +58,7 @@ class TicketNotifier
             ->setTo($to)
             ->setBody($this->getTemplating()->render($bodyTemplate, $bodyTemplateArgs));
         $this->getMailer()->send($message);
-        $this->getLogger()->debug('HelpDeskTicketSystem: Email sent to' . $to);
+        $this->getLogger()->debug('HelpDesk: Email sent to' . $to);
     }
 
     /**
