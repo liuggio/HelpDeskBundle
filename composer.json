@@ -1,12 +1,12 @@
 {
-    "name": "Liuggio/help-desk-ticket-system-bundle",
-    "description": "This bundle provides an help desk and ticketing system for support your customer.",
-    "keywords": ["menu"],
+    "name": "Liuggio/help-desk-bundle",
+    "description": "Provides help desk and ticketing system for support your customer, this is a #Symfony2 Bundles",
+    "keywords": ["menu", "customer care", "support", "help desk", "customer"],
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
         {
-            "name": "Giulio De Donato",
+            "name": "liuggio",
             "homepage": "http://www.welcometothebundle.com",
             "email": "liuggio@gmail.com"
         },
@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": ">=2.0,<2.2-dev"
+        "symfony/symfony": ">=2.0,<2.2-dev"
     },
     "autoload": {
         "psr-0": { "Liuggio\\HelpDeskBundle": "" }
