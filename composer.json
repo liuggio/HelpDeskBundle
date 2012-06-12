@@ -1,5 +1,5 @@
 {
-    "name": "Liuggio/help-desk-bundle",
+    "name": "liuggio/help-desk-bundle",
     "description": "Provides help desk and ticketing system for support your customer, this is a #Symfony2 Bundles",
     "keywords": ["menu", "customer care", "support", "help desk", "customer"],
     "type": "symfony-bundle",
