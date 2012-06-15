@@ -3,6 +3,10 @@ HelpDeskBundle
 
 Develpment status. Release will be on july.
 
+
+** This bundle is not working yet!!! **
+
+
 The objective of this bundle is support the Help desk.
 
 Open source support ticket system. (Symfony2 bundle)
