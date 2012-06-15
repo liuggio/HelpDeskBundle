@@ -51,12 +51,15 @@ class TicketNotifier
      */
     public function sendEmailToUser($bodyTemplate, $bodyTemplateArgs, $from, $to, $subject = '', $subjectPrefix = '')
     {
+
+        $templateBody = $this->getTemplating()->render($bodyTemplate, $bodyTemplateArgs);
+
         $subject = sprintf('%s %s', $subjectPrefix, $subject);
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
             ->setFrom($from)
             ->setTo($to)
-            ->setBody($this->getTemplating()->render($bodyTemplate, $bodyTemplateArgs));
+            ->setBody($templateBody);
         $this->getMailer()->send($message);
         $this->getLogger()->debug('HelpDesk: Email sent to' . $to);
     }

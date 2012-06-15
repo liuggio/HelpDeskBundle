@@ -145,6 +145,6 @@ class LoadTicketAndUser extends AbstractFixture implements OrderedFixtureInterfa
 
     public function getOrder()
     {
-        return 90; // the order in which fixtures will be loaded
+        return 41; // the order in which fixtures will be loaded
     }
 }

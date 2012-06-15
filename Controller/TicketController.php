@@ -139,8 +139,8 @@ class TicketController extends Controller
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $locale = $this->getRequest()->getSession()->getLocale();
+            $em = $this->getDoctrine()->getManager();
+            $locale = $this->getRequest()->getLocale();
             if (isset($locale)) {
                 $entity->setLanguage($locale);
             }
