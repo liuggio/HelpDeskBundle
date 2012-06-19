@@ -27,7 +27,7 @@ Install this bundle as always :)
 
 ``` json
 
-  'liuggio/help-desk-bundle':"dev-master"
+  'liuggio/help-desk-bundle': "dev-master"
 
 ```
 
@@ -88,6 +88,6 @@ liuggio_help_desk:
     access_control:
         //...
         # HelpDesk Ticket system
-        - { path: ^/customer-care/operator, role: [ROLE_CUSTOMERCARE, ROLE_SONATA_ADMIN, ROLE_ADMIN,] }
-        - { path: ^/customer-care/, role: [IS_AUTHENTICATED_FULLY]}DMIN,] }
+        - { path: ^/help-desk/operator, role: [ROLE_HELP_DESK_OPERATOR, ROLE_ADMIN] }
+        - { path: ^/help-desk/, role: [IS_AUTHENTICATED_FULLY]}
 
