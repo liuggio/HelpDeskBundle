@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskBundle\Entity;
+namespace Liuggio\HelpDeskBundle\Document;
 
 use Liuggio\HelpDeskBundle\Model\Category as BaseCategory;
 
@@ -9,5 +9,4 @@ use Liuggio\HelpDeskBundle\Model\Category as BaseCategory;
  */
 class Category extends BaseCategory
 {
-
 }

@@ -1,71 +1,40 @@
 <?php
 
-namespace Liuggio\HelpDeskBundle\Model;
+namespace Liuggio\HelpDeskBundle\Document;
 
+use Doctrine\ORM\Mapping as ORM;
 use Liuggio\HelpDeskBundle\Exception;
+use Liuggio\HelpDeskBundle\Model\Ticket as BaseTicket;
 
-abstract class Ticket implements TicketInterface
+/**
+ * Liuggio\HelpDeskBundle\Entity\Ticket
+ */
+class Ticket extends BaseTicket
 {
-    CONST RATE_STAR_ONE = 1;
-    CONST RATE_STAR_TWO = 2;
-    CONST RATE_STAR_THREE = 3;
-    CONST RATE_STAR_FOUR = 4;
-    CONST RATE_STAR_FIVE = 5;
-
-    CONST STATE_OPEN = 'open'; //means pending, new, replied, pending
-    CONST STATE_CLOSE = 'closed'; //means closed
-    CONST STATE_ALL = 'all';
-    CONST STATE_OPERATOR_OPEN = 'operator_open'; //means pending, new
-    CONST STATE_OPERATOR_CLOSE = 'operator_closed'; //means replied, close
-    CONST STATE_OPERATOR_ALL = 'operator_all';
-
-    static $STATE = array(
-        self::STATE_OPEN => array(TicketState::STATE_NEW, TicketState::STATE_PENDING, TicketState::STATE_REPLIED),
-        self::STATE_CLOSE => array(TicketState::STATE_CLOSED),
-        self::STATE_ALL => array(TicketState::STATE_NEW, TicketState::STATE_PENDING, TicketState::STATE_REPLIED, TicketState::STATE_CLOSED),
-        self::STATE_OPERATOR_OPEN => array(TicketState::STATE_NEW, TicketState::STATE_PENDING),
-        self::STATE_OPERATOR_CLOSE => array(TicketState::STATE_CLOSED, TicketState::STATE_REPLIED),
-        self::STATE_OPERATOR_ALL => array(TicketState::STATE_NEW, TicketState::STATE_PENDING, TicketState::STATE_REPLIED, TicketState::STATE_CLOSED),
-    );
     /**
      * @var integer $id
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string $subject
      */
-    protected $subject;
+    private $subject;
 
     /**
      * @var text $body
      */
-    protected $body;
+    private $body;
 
     /**
      * @var string $language
      */
-    protected $language;
+    private $language;
 
     /**
      * @var datetime $createdAt
      */
-    protected $createdAt;
-
-    /**
-     * @var Liuggio\HelpDeskBundle\Model\TicketState $state
-     */
-    private $state;
-
-    /**
-     * @var \Liuggio\HelpDeskBundle\Model\Category $category
-     */
-    private $category;
-
-    /**
-     * @var Liuggio\HelpDeskBundle\Model\Comment
-     */
-    private $comments;
+    private $createdAt;
 
     /**
      * @var Application\Sonata\UserBundle\Entity\User
@@ -75,13 +44,33 @@ abstract class Ticket implements TicketInterface
     /**
      * @var datetime $updatedAt
      */
-    protected $updatedAt;
+    private $updatedAt;
 
+    /**
+     * @var TicketState $state
+     */
+    private $state;
+
+    /**
+     * @var \Liuggio\HelpDeskBundle\Entity\Category $category
+     */
+    private $category;
+
+    /**
+     * @var Liuggio\HelpDeskBundle\Entity\Comment
+     */
+    private $comments;
 
     /**
      * @var int or null if the ticket is not rated
      */
-    protected $rate;
+    private $rate;
+
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * @return string
      */
@@ -199,35 +188,12 @@ abstract class Ticket implements TicketInterface
     {
         return $this->updatedAt;
     }
-    /**
-     * Get createdBy
-     *
-     * @return Application\Sonata\UserBundle\Entity\User
-     */
-    public function getRate()
-    {
-        return $this->rate;
-    }
 
-
-
-    public function prePersist()
-    {
-        $now = new \DateTime('NOW');
-        $this->setUpdatedAt($now);
-        $this->setCreatedAt($now);
-    }
-
-    public function preUpdate()
-    {
-        $now = new \DateTime('NOW');
-        $this->setUpdatedAt($now);
-    }
 
     /**
      * @param \Liuggio\HelpDeskBundle\Entity\Category $category
      */
-    public function setCategory(\Liuggio\HelpDeskBundle\Model\Category $category)
+    public function setCategory(\Liuggio\HelpDeskBundle\Entity\Category $category)
     {
         $this->category = $category;
     }
@@ -245,7 +211,7 @@ abstract class Ticket implements TicketInterface
      *
      * @param Liuggio\HelpDeskBundle\Entity\Comment $comments
      */
-    public function addComment(\Liuggio\HelpDeskBundle\Model\Comment $comments)
+    public function addComment(\Liuggio\HelpDeskBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
     }
@@ -277,7 +243,7 @@ abstract class Ticket implements TicketInterface
      *
      * @param Liuggio\HelpDeskBundle\Entity\TicketState $state
      */
-    public function setState(\Liuggio\HelpDeskBundle\Model\TicketState $state)
+    public function setState(\Liuggio\HelpDeskBundle\Entity\TicketState $state)
     {
         $this->state = $state;
     }
@@ -290,6 +256,20 @@ abstract class Ticket implements TicketInterface
     public function getState()
     {
         return $this->state;
+    }
+
+
+    public function prePersist()
+    {
+        $now = new \DateTime('NOW');
+        $this->setUpdatedAt($now);
+        $this->setCreatedAt($now);
+    }
+
+    public function preUpdate()
+    {
+        $now = new \DateTime('NOW');
+        $this->setUpdatedAt($now);
     }
 
     /**
@@ -311,6 +291,7 @@ abstract class Ticket implements TicketInterface
     {
         return $this->createdBy;
     }
+
     /**
      * Set createdBy
      *
@@ -331,6 +312,16 @@ abstract class Ticket implements TicketInterface
                 throw new Exception('Invalid rating value.');
 
         }
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return Application\Sonata\UserBundle\Entity\User
+     */
+    public function getRate()
+    {
+        return $this->rate;
     }
 
 }

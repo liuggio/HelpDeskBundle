@@ -15,14 +15,6 @@ interface TicketManagerInterface
 
     public function getObjectManager();
 
-    public function setSecurityContext($securityContext);
-
-    public function getSecurityContext();
-
-    public function setCommentRepository($repository);
-
-    public function getCommentRepository();
-
     public function setTicketRepository($repository);
 
     public function getTicketRepository();

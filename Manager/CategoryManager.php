@@ -1,5 +1,5 @@
 <?php
-namespace Liuggio\HelpDeskBundle\Entity;
+namespace Liuggio\HelpDeskBundle\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
 

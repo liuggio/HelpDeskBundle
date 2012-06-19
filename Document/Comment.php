@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskBundle\Entity;
+namespace Liuggio\HelpDeskBundle\Document;
 
 
 use Liuggio\HelpDeskBundle\Model\BaseComment;
@@ -10,5 +10,5 @@ use Liuggio\HelpDeskBundle\Model\BaseComment;
  */
 class Comment extends BaseComment
 {
-
+    
 }

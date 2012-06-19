@@ -1,6 +1,6 @@
 <?php
 
-namespace Liuggio\HelpDeskBundle\Entity;
+namespace Liuggio\HelpDeskBundle\Document;
 
 use Liuggio\HelpDeskBundle\Exception;
 use Liuggio\HelpDeskBundle\Model\Ticket as BaseTicket;
@@ -10,7 +10,6 @@ use Liuggio\HelpDeskBundle\Model\Ticket as BaseTicket;
  */
 class Ticket extends BaseTicket
 {
-
 
     public function __construct()
     {
@@ -24,7 +23,5 @@ class Ticket extends BaseTicket
     {
         return $this->getSubject();
     }
-
-
 
 }

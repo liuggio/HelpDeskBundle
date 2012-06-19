@@ -1,0 +1,40 @@
+Liuggio\HelpDeskBundle\Document\Ticket:
+  type: document
+#  db: my_db
+  collection: users
+  repositoryClass: Liuggio\HelpDeskBundle\Entity\TicketRepository
+  manyToOne:
+    state:
+      targetEntity: TicketState
+#    createdBy:
+#      targetEntity: Tvision\Bundle\UserBundle\Entity\User
+#    category:
+#      targetEntity: Category
+#  oneToMany:
+#    comments:
+#      targetEntity: Comment
+#      mappedBy: ticket
+#      cascade: ["persist", "remove"]
+  fields:
+    id:
+      id: true
+      generator:
+        strategy: AUTO
+    subject:
+      type: string
+      length: 255
+    body:
+      type: string
+    language:
+      type: string
+      length: '2'
+    createdAt:
+      type: date
+    updatedAt:
+      type: date
+    rate:
+      type: int
+      nullable: true
+  lifecycleCallbacks:
+    prePersist: [prePersist]
+    preUpdate: [preUpdate]
