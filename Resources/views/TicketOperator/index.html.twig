@@ -24,6 +24,14 @@
 {% endif %}
 <br />
 
+
+    <ul>your categories
+        {% for category in categories %}
+        <li><a href="?s[request_pattern]={{ category.name }}">{{ category.name|trans }}</a></li>
+        {% endfor %}
+    </ul>
+
+
 {% if entities|length %}
 <table class="records_list">
     <thead>

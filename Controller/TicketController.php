@@ -86,7 +86,6 @@ class TicketController extends Controller
         $comment = $this->get('liuggio_help_desk.ticket.manager')
             ->createComment();
 
-        $comment->setCreatedBy($user);
         $ticket_form = $this->createForm(new CloseTicketType($entity->getId()));
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
@@ -178,7 +177,7 @@ class TicketController extends Controller
      */
     public function closeAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $entity = $this->get('liuggio_help_desk.ticket.manager')
             ->getTicketRepository()
             ->find($id);
@@ -230,7 +229,7 @@ class TicketController extends Controller
             $ticket_id = $formData['ticket_id'];
             $rate_val = $formData['rate'];
 
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
 
             $entity = $this->get('liuggio_help_desk.ticket.manager')
                 ->getTicketRepository()

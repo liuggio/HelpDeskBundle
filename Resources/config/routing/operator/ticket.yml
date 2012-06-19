@@ -1,17 +1,17 @@
 ticket_admin:
     pattern:  /{state}
-    defaults: { _controller: "LiuggioHelpDeskBundle:TicketAdmin:index", state: open }
+    defaults: { _controller: "LiuggioHelpDeskBundle:TicketOperator:index", state: open }
     requirements:
       state: open|closed
       _method: get
 
 ticket_search_admin:
     pattern:  /{state}/search/
-    defaults: { _controller: "LiuggioHelpDeskBundle:TicketAdmin:index", state: open}
+    defaults: { _controller: "LiuggioHelpDeskBundle:TicketOperator:index", state: open}
     requirements:
       state: open|closed|all
       _method: get
 
 ticket_show_admin:
     pattern:  /{id}/show
-    defaults: { _controller: "LiuggioHelpDeskBundle:TicketAdmin:show" }
+    defaults: { _controller: "LiuggioHelpDeskBundle:TicketOperator:show" }

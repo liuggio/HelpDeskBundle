@@ -2,6 +2,7 @@
 namespace Liuggio\HelpDeskBundle\Controller\Admin;
 
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class TicketAdminController extends Controller
 {

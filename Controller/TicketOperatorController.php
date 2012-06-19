@@ -18,7 +18,7 @@ use Liuggio\HelpDeskBundle\Entity\Comment;
 use Liuggio\HelpDeskBundle\Exception;
 
 
-class TicketAdminController extends Controller
+class TicketOperatorController extends Controller
 {
     /**
      * Lists all Ticket entities.
@@ -52,14 +52,18 @@ class TicketAdminController extends Controller
         $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')
             ->getTicketRepository();
 
-        $tickets = $ticketRepository->findTicketsByStatesAndOperator($user, $states, $request_pattern);
 
+        $tickets = $ticketRepository->findTicketsByStatesAndOperator($user, $states, $request_pattern);
+        $categoryRepo = $this->get('liuggio_help_desk_category.manager')->getEntityRepository();
+
+        $categories = $categoryRepo->findByOperator($user);
 
         // @TODO Pagination
-        return $this->render('LiuggioHelpDeskBundle:TicketAdmin:index.html.twig', array(
+        return $this->render('LiuggioHelpDeskBundle:TicketOperator:index.html.twig', array(
             'entities' => $tickets,
             'form' => $form->createView(),
-            'state' => $state
+            'state' => $state,
+            'categories' => $categories
         ));
 
     }
@@ -72,7 +76,7 @@ class TicketAdminController extends Controller
     public function showAction($id)
     {
         $operator = $this->get('security.context')->getToken()->getUser();
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $entity = $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')
             ->getTicketRepository()
             ->find($id);
@@ -93,11 +97,11 @@ class TicketAdminController extends Controller
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
         //Closed is logic maybe into Manager
         if ($entity->getState()->getCode() == TicketState::STATE_CLOSED) {
-            return $this->render('LiuggioHelpDeskBundle:TicketAdmin:show_closed.html.twig', array(
+            return $this->render('LiuggioHelpDeskBundle:TicketOperator:show_closed.html.twig', array(
                 'entity' => $entity,
             ));
         } else {
-            return $this->render('LiuggioHelpDeskBundle:TicketAdmin:show_open.html.twig', array(
+            return $this->render('LiuggioHelpDeskBundle:TicketOperator:show_open.html.twig', array(
                 'entity' => $entity,
                 'comment_create_admin' => $comment_form->createView()
             ));

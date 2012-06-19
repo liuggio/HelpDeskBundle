@@ -51,7 +51,6 @@ class TicketNotifier
      */
     public function sendEmailToUser($bodyTemplate, $bodyTemplateArgs, $from, $to, $subject = '', $subjectPrefix = '')
     {
-
         $templateBody = $this->getTemplating()->render($bodyTemplate, $bodyTemplateArgs);
 
         $subject = sprintf('%s %s', $subjectPrefix, $subject);
@@ -72,14 +71,13 @@ class TicketNotifier
      */
     public function postPersistUpdate(LifecycleEventArgs $args, $isUpdate = self::EVENT_IS_UPDATE)
     {
-
         $this->setLogger($this->container->get('logger'));
         $this->ticketManager = $this->container->get('liuggio_help_desk.ticket.manager_no_doctrine');
         $this->setTemplating($this->container->get('templating'));
         $this->setMailer($this->container->get('mailer'));
 
         $this->setEmailSender($this->container->getParameter('liuggio_help_desk.email.sender'));
-        $this->setEmailSubjectPrefix($this->container->getParameter('liuggio_help_desk.email.subject.prefix'));
+        $this->setEmailSubjectPrefix($this->container->getParameter('liuggio_help_desk.email.subject_prefix'));
 
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();

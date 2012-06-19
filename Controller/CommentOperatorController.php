@@ -11,7 +11,7 @@ use Liuggio\HelpDeskBundle\Form\CommentType;
  * Comment controller.
  *
  */
-class CommentAdminController extends Controller
+class CommentOperatorController extends Controller
 {
     /**
      * Creates a new Comment entity.
@@ -28,7 +28,7 @@ class CommentAdminController extends Controller
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $comment = $form->getData();
             $form = $this->getRequest()->get('liuggio_HelpDeskBundle_commenttype');
             $ticket_id = $form['ticket'];

@@ -1,0 +1,7 @@
+LiuggioHelpDeskBundle_customer_care_operator_ticket:
+    resource: "@LiuggioHelpDeskBundle/Resources/config/routing/operator/ticket.yml"
+    prefix:   /ticket
+
+LiuggioHelpDeskBundle_customer_care_operator_coment:
+    resource: "@LiuggioHelpDeskBundle/Resources/config/routing/operator/comment.yml"
+    prefix:   /comment

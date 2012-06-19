@@ -23,10 +23,10 @@ class SearchType extends AbstractType
                 
     }
 
-
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'csrf_protection' => false,
             'empty_data' => function (Options $options, $value) {
                 return $options['csrf_protection'] ? array() : $value;
             }

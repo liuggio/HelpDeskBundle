@@ -21,19 +21,17 @@ https://github.com/liuggio/HelpDeskBundle/wiki/Concept-key-RFC
 Install this bundle as always :)
 
 
-## INSTALLATION
+## Composer: add to your composer
 
 1 Add the following entry to ``deps`` the run ``php bin/vendors install``.
 
-``` yaml
- [HelpDeskBundle.git]
-     git=https://github.com/liuggio/HelpDeskBundle.git
-     target=/bundles/Liuggio/HelpDeskBundle
+``` json
+
+  'liuggio/help-desk-bundle':"dev-master"
+
 ```
 
-2 run bin/vendors install
-
-3 Register the bundle in ``app/AppKernel.php``
+2 Register the bundle in ``app/AppKernel.php``
 
 ``` php
     $bundles = array(
@@ -42,28 +40,50 @@ Install this bundle as always :)
     );
 ```
 
-4  Register namespace in ``app/autoload.php``
 
-``` php
-    $loader->registerNamespaces(array(
-         // ...
-         'Liuggio'           =>  __DIR__.'/../vendor/bundles',
-     ));
-```
-
-
-5  Add to app/config/routing.yml
+3  Add to app/config/routing.yml
 
  ``` yaml
 
  LiuggioHelpDeskBundle_customer_care_ticket:
      resource: "@LiuggioHelpDeskBundle/Resources/config/routing.yml"
-     prefix:   /
+     prefix:   /help-desk
 
  ```
 
+or
 
-6 Add the following entries to security.yml
+ ``` yaml
+
+myLiuggioHelpDeskBundle_customer_care_ticket:
+    resource: "@LiuggioHelpDeskBundle/Resources/config/routing/user.yml"
+    prefix:   /help-desk/my
+
+myLiuggioHelpDeskBundle_customer_care_operator_ticket:
+    resource: "@LiuggioHelpDeskBundle/Resources/config/routing/operator.yml"
+    prefix:   /help-desk/operator
+
+
+```
+
+
+4 Add the following entries to config.yml
+``` yaml
+
+liuggio_help_desk:
+    class:
+        ticket: Liuggio\HelpDeskBundle\Entity\Ticket      #optional
+        comment: Liuggio\HelpDeskBundle\Entity\Comment    #optional
+        category: Liuggio\HelpDeskBundle\Entity\Category  #optional
+        user:     YOUR/NAMESPACE/ENTITY/CLASS
+    email:
+        sender: terravision-developers@googlegroups.com
+        subject_prefix: '[help Desk]'                     #optional
+
+```
+
+
+5 Add the following entries to security.yml
 
     access_control:
         //...

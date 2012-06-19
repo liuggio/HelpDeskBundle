@@ -9,8 +9,6 @@ use Liuggio\HelpDeskBundle\Model\TicketManager as BaseTicketManager;
 class TicketManager extends BaseTicketManager
 {
 
-
-
     /**
      * @param $ticket
      * @param $user

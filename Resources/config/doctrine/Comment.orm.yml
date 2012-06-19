@@ -1,11 +1,11 @@
 Liuggio\HelpDeskBundle\Entity\Comment:
   type: entity
   table: ticket__comment
-  manyToOne:
-    createdBy:
-      targetEntity: Tvision\Bundle\UserBundle\Entity\User
-    ticket:
-      targetEntity: Ticket
+#  manyToOne:
+#    createdBy:
+#      targetEntity: Tvision\Bundle\UserBundle\Entity\User
+#    ticket:
+#      targetEntity: Ticket
   fields:
     id:
       type: integer

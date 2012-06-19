@@ -1,17 +1,18 @@
 Liuggio\HelpDeskBundle\Entity\Category:
   type: entity
   table: ticket__category
-  manyToMany:
-    operators:
-      targetEntity: Tvision\Bundle\UserBundle\Entity\User
-      joinTable:
-        name: ticket_category_user
-        joinColumns:
-          Category_id:
-            referencedColumnName: id
-        inverseJoinColumns:
-          User_id:
-            referencedColumnName: id
+  repositoryClass: Liuggio\HelpDeskBundle\Entity\CategoryRepository
+#  manyToMany:
+#    operators:
+#      targetEntity: Tvision\Bundle\UserBundle\Entity\User
+#      joinTable:
+#        name: ticket_category_user
+#        joinColumns:
+#          Category_id:
+#            referencedColumnName: id
+#        inverseJoinColumns:
+#          User_id:
+#            referencedColumnName: id
   fields:
     id:
       type: integer

@@ -1,11 +1,6 @@
 parameters:
-
-  liuggio_help_desk.email.sender: terravision-developers@googlegroups.com
-  liuggio_help_desk.email.subject.prefix: '[help Desk]'
-
-  liuggio_help_desk.ticket.class: Liuggio\HelpDeskBundle\Entity\Ticket
-  liuggio_help_desk.comment.class: Liuggio\HelpDeskBundle\Entity\Comment
   liuggio_help_desk.ticket.manager.class: Liuggio\HelpDeskBundle\Entity\TicketManager
+  liuggio_help_desk.category.manager.class: Liuggio\HelpDeskBundle\Entity\CategoryManager
   liuggio_help_desk.ticket.listener.class: Liuggio\HelpDeskBundle\Listener\TicketNotifier
 
 services:
@@ -17,6 +12,10 @@ services:
     liuggio_help_desk.ticket.manager:
         class: %liuggio_help_desk.ticket.manager.class%
         arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk.ticket.class%, %liuggio_help_desk.comment.class%, @security.context]
+
+    liuggio_help_desk_category.manager:
+        class: %liuggio_help_desk.category.manager.class%
+        arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk.category.class%]
 
     liuggio_help_desk.ticket.manager_no_doctrine:
         class: %liuggio_help_desk.ticket.manager.class%
@@ -53,7 +52,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: HelpDesk, label: Ticket }
           arguments: [null, Liuggio\HelpDeskBundle\Entity\Ticket, LiuggioHelpDeskBundle:Admin\TicketAdmin]
           calls:
-            - [ setTemplates, [{"list": LiuggioHelpDeskBundle:TicketAdmin:list.html.twig,layout: SonataAdminBundle::standard_layout.html.twig, ajax: SonataAdminBundle::ajax_layout.html.twig, edit: SonataAdminBundle:CRUD:edit.html.twig, show: SonataAdminBundle:CRUD:show.html.twig}] ]
+            - [ setTemplates, [{"list": LiuggioHelpDeskBundle:TicketOperator:list.html.twig,layout: SonataAdminBundle::standard_layout.html.twig, ajax: SonataAdminBundle::ajax_layout.html.twig, edit: SonataAdminBundle:CRUD:edit.html.twig, show: SonataAdminBundle:CRUD:show.html.twig}] ]
 
 
 

@@ -18,12 +18,29 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('liuggio_help_desk');
+        $rootNode = $treeBuilder->root('liuggio_help_desk')->children();
+        $rootNode
+            ->scalarNode('object_manager')->defaultValue('doctrine.orm.default_entity_manager')->end()
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+            ->arrayNode('class')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('user')->isRequired()->end()
+                    ->scalarNode('ticket')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Ticket')->end()
+                    ->scalarNode('comment')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Comment')->end()
+                    ->scalarNode('category')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Category')->end()
+                ->end()
+            ->end()
+
+            ->arrayNode('email')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('sender')->isRequired()->end()
+                    ->scalarNode('subject_prefix')->defaultValue('[help desk]')->end()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }
+
 }

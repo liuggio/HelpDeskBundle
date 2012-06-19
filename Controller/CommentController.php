@@ -28,7 +28,7 @@ class CommentController extends Controller
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $comment = $form->getData();
             $form = $this->getRequest()->get('liuggio_HelpDeskBundle_commenttype');
             $ticket_id = $form['ticket'];
@@ -36,7 +36,6 @@ class CommentController extends Controller
             if (!$ticket) {
                 throw $this->createNotFoundException('Unable to find Ticket entity.');
             }
-
             $state_pending = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
                 ->findOneByCode(\Liuggio\HelpDeskBundle\Entity\TicketState::STATE_PENDING);
 
@@ -45,15 +44,14 @@ class CommentController extends Controller
             }
 
             $ticket->setState($state_pending);
-            //Set the createdBy user
-            $entity->setCreatedBy($user);
             $em->persist($ticket);
+            //Set the createdBy user
+            $comment->setCreatedBy($user);
             $comment->setTicket($ticket);
             $em->persist($comment);
+
             $em->flush();
-
             return $this->redirect($this->generateUrl('ticket_show', array('id' => $ticket_id)));
-
         }
 
         return $this->render('LiuggioHelpDeskBundle:Comment:new.html.twig', array(
