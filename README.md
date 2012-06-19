@@ -71,6 +71,7 @@ myLiuggioHelpDeskBundle_customer_care_operator_ticket:
 ``` yaml
 
 liuggio_help_desk:
+    object_manager: 'doctrine.odm.mongodb.document_manager' #or orm
     class:
         ticket: Liuggio\HelpDeskBundle\Entity\Ticket      #optional
         comment: Liuggio\HelpDeskBundle\Entity\Comment    #optional
