@@ -14,6 +14,7 @@ class CommentType extends AbstractType
     {
         $this->ticket_id = $ticket_id;
     }
+
     /**
      *
      * @param \Symfony\Component\Form\FormBuilder $builder
@@ -22,7 +23,7 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ticket','hidden', array(
+            ->add('ticket', 'hidden', array(
             'data' => $this->ticket_id,
             'mapped' => false
         ))
@@ -31,16 +32,6 @@ class CommentType extends AbstractType
             'label' => 'comment_textarea_label'
         ));
     }
-
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-
-        $resolver->setDefaults(array(
-            'data_class' =>  'Liuggio\HelpDeskBundle\Entity\Comment'
-        ));
-    }
-
 
     public function getName()
     {

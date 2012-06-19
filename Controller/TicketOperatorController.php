@@ -76,7 +76,7 @@ class TicketOperatorController extends Controller
     public function showAction($id)
     {
         $operator = $this->get('security.context')->getToken()->getUser();
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->get('liuggio_help_desk.doctrine.manager');
         $entity = $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')
             ->getTicketRepository()
             ->find($id);
@@ -91,8 +91,8 @@ class TicketOperatorController extends Controller
         if (!$isGranted) {
             throw new AccessDeniedException("Category Permission not granted!");
         }
-        $comment = $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')
-            ->createComment();
+        $comment = $ticketRepository = $this->get('liuggio_help_desk.comment.manager')
+            ->createEntity();
         $comment->setCreatedBy($operator);
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
         //Closed is logic maybe into Manager

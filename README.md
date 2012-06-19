@@ -91,3 +91,6 @@ liuggio_help_desk:
         - { path: ^/help-desk/operator, role: [ROLE_HELP_DESK_OPERATOR, ROLE_ADMIN] }
         - { path: ^/help-desk/, role: [IS_AUTHENTICATED_FULLY]}
 
+
+
+** You have to create your own user entity see sonata user bundle **

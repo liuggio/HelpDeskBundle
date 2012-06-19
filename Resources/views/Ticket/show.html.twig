@@ -12,47 +12,47 @@
         <th>{{ "category"|trans }}</th>
         <td>{{ entity.category|trans }}</td>
     </tr>
-        <tr>
-            <th>{{ "id_property"|trans }}</th>
-            <td>{{ entity.id }}</td>
-        </tr>
-        <tr>
-            <th>{{ "subject_property"|trans }}</th>
-            <td>{{ entity.subject }}</td>
-        </tr>
-        <tr>
-            <th>{{ "state_property"|trans }}</th>
-            <td>{{ entity.getState.getCode }}:{{ entity.getState.getDescription }}</td>
-        </tr>
-        {% if entity.getRate != NULL %}
-         <tr>
-             <th>{{ "rate_property"|trans }}</th>
-            <td>{{ entity.getRate }}</td>
-        </tr>
-        {% endif%}
-        <tr>
-            <th>{{ "category_property"|trans }}</th>
-            <td>{{ entity.getCategory }}:{{ entity.Category.getDescription }}</td>
-        </tr>
-        <tr>
-            <th>{{ "body_property"|trans }}</th>
-            <td>{{ entity.body }}</td>
-        </tr>
-        <tr>
-            <th>{{ "language_property"|trans }}</th>
-            <td>{{ entity.language }}</td>
-        </tr>
-        <tr>
-            <th>{{ "createdAt_property"|trans }}</th>
-            <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <th>{{ "updatedAt_property"|trans }}</th>
-            <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
-        </tr>
+    <tr>
+        <th>{{ "id_property"|trans }}</th>
+        <td>{{ entity.id }}</td>
+    </tr>
+    <tr>
+        <th>{{ "subject_property"|trans }}</th>
+        <td>{{ entity.subject }}</td>
+    </tr>
+    <tr>
+        <th>{{ "state_property"|trans }}</th>
+        <td>{{ entity.getState.getCode }}:{{ entity.getState.getDescription }}</td>
+    </tr>
+    {% if entity.getRate != NULL %}
+    <tr>
+        <th>{{ "rate_property"|trans }}</th>
+        <td>{{ entity.getRate }}</td>
+    </tr>
+    {% endif%}
+    <tr>
+        <th>{{ "category_property"|trans }}</th>
+        <td>{{ entity.getCategory }}:{{ entity.Category.getDescription }}</td>
+    </tr>
+    <tr>
+        <th>{{ "body_property"|trans }}</th>
+        <td>{{ entity.body }}</td>
+    </tr>
+    <tr>
+        <th>{{ "language_property"|trans }}</th>
+        <td>{{ entity.language }}</td>
+    </tr>
+    <tr>
+        <th>{{ "createdAt_property"|trans }}</th>
+        <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    <tr>
+        <th>{{ "updatedAt_property"|trans }}</th>
+        <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
     </tbody>
 </table>
- 
+
 {% if entity.hasComments %}
 <table class="records_list">
     <thead>

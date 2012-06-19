@@ -43,7 +43,7 @@ class LoadTicketState extends AbstractFixture implements OrderedFixtureInterface
 
         $em->flush();
     }
-    
+
     public function getOrder()
     {
         return 20; // the order in which fixtures will be loaded

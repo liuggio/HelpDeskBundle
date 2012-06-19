@@ -10,10 +10,10 @@ class AbstractManager
     protected $entityClass;
     protected $entityRepository;
 
-    function __construct($objectManager, $entityClass)
+    function __construct(ObjectManager $objectManager, $entityClass)
     {
         $this->objectManager = $objectManager;
-        $this->entityClass = $entityClass; 
+        $this->entityClass = $entityClass;
     }
 
     public function setEntityClass($entityClass)

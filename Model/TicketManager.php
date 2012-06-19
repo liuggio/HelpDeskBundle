@@ -9,16 +9,12 @@ abstract class TicketManager implements TicketManagerInterface
 {
     protected $objectManager;
     protected $ticketClass;
-    protected $commentClass;
-    protected $securityContext;
     protected $ticketRepository;
-    protected $commentRepository;
 
-    function __construct($objectManager, $ticketClass, $commentClass)
+    function __construct(ObjectManager $objectManager, $ticketClass)
     {
         $this->objectManager = $objectManager;
         $this->ticketClass = $ticketClass;
-        $this->commentClass = $commentClass;
     }
 
     public function setTicketClass($ticketClass)
@@ -41,15 +37,6 @@ abstract class TicketManager implements TicketManagerInterface
         return $this->objectManager;
     }
 
-    public function setSecurityContext($securityContext)
-    {
-        $this->securityContext = $securityContext;
-    }
-
-    public function getSecurityContext()
-    {
-        return $this->securityContext;
-    }
 
     public function setTicketRepository($ticketRepository)
     {
@@ -64,29 +51,6 @@ abstract class TicketManager implements TicketManagerInterface
         return $this->ticketRepository;
     }
 
-    public function setCommentClass($commentClass)
-    {
-        $this->commentClass = $commentClass;
-    }
-
-    public function getCommentClass()
-    {
-        return $this->commentClass;
-    }
-
-    public function setCommentRepository($commentRepository)
-    {
-        $this->commentRepository = $commentRepository;
-    }
-
-    public function getCommentRepository()
-    {
-        if (null == $this->commentRepository) {
-            $this->setCommentRepository($this->objectManager->getRepository($this->getCommentClass()));
-        }
-        return $this->commentRepository;
-    }
-
     /**
      * Returns an empty ticket instance
      *
@@ -99,17 +63,7 @@ abstract class TicketManager implements TicketManagerInterface
 
         return $ticket;
     }
-    /**
-    * Returns an empty ticket instance
-    *
-    * @return TicketInterface
-    */
-    public function createComment()
-    {
-        $class = $this->getCommentClass();
-        $comment = new $class;
 
-        return $comment;
-    }
+
 
 }

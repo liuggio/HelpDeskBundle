@@ -20,7 +20,7 @@ class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('administrative_category', $category);
 
         $em->flush();
-        
+
         $category = new Category();
         $category->setName('Other');
         $category->setDescription('Other problems');
@@ -30,9 +30,9 @@ class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('other_category', $category);
 
         $em->flush();
-        
+
     }
-    
+
     public function getOrder()
     {
         return 40; // the order in which fixtures will be loaded

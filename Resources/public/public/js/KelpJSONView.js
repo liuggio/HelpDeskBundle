@@ -1,111 +1,112 @@
 $.extend(jQuery,
-{
-    // json ¥i¶Ç¤J json ©Î JavaScript Object
-    // container ¬°¿é¥Xªº®e¾¹¡AjQuery Object
-    JSONView: function (json, container) {
-        var ob;
-        if (typeof json == 'string')
-            ob = JSON.parse(json);
-        else
-            ob = json;
-        var p, l = [], c = container;
-        var repeat = function (s, n) {  //²£¥Í s ¦r¤¸ n ¦¸
-            return new Array(n + 1).join(s);
-        };
-        //²£¥Í JSON µ²ºc¸ê®Æªº»¼°j¨ç¼Æ
-        //o     ¨Ó·½ª«¥ó
-        //isar  ¸ê®Æ¬O true ªº¸Ü¥Nªí³o¤@¦¸»¼°j¬°°}¦C¸ê®Æ
-        //s     »¼°j¶¥¼h¼Æ
-        var r = function (o, isar, s) {
-            for (var n in o) {
-                var p = o[n];
-                switch (typeof p) {
-                    case 'function':
-                        break;
-                    case 'string':
-                        if (isar)
-                            l.push({ Text: '<span class="jsonstring">"' + p + '"</span><span class="jsontag">,</span>', Step: s });
-                        else
-                            l.push({ Text: '<span class="jsonname">"' + n + '"</span><span class="jsontag">: </span><span class="jsonstring">"' + p + '"</span><span class="jsontag">,</span>', Step: s });
-                        break;
-                    case 'boolean':
-                        if (isar)
-                            l.push({ Text: '<span class="jsonboolean">"' + p + '"</span><span class="jsontag">,</span>', Step: s });
-                        else
-                            l.push({ Text: '<span class="jsonname">"' + n + '"</span><span class="jsontag">: </span><span class="jsonboolean">' + p + '</span><span class="jsontag">,</span>', Step: s });
-                        break;
-                    case 'number':
-                        if (isar)
-                            l.push({ Text: '<span class="jsonnumber">' + p + '</span><span class="jsontag">,</span>', Step: s });
-                        else
-                            l.push({ Text: '<span class="jsonname">"' + n + '"</span><span class="jsontag">: </span><span class="jsonnumber">' + p + '</span><span class="jsontag">,</span>', Step: s });
-                        break;
-                    case 'object':
-                        if (p === null) {
-                            if (isar)
-                                l.push({ Text: '<span class="jsonnull">' + p + '</span><span class="jsontag">,</span>', Step: s });
-                            else
-                                l.push({ Text: '<span class="jsonname">"' + n + '"</span><span class="jsontag">: </span><span class="jsonnull">' + p + '</span><span class="jsontag">,</span>', Step: s });
-                        }
-                        else if (p.length == undefined) {
-                            //object
-                            if (!isar) {
-                                l.push({ Text: '<span class="jsonname">"' + n + '"</span><span class="jsontag">:</span>', Step: s });
-                            }
-                            l.push({ Text: '<span class="jsontag">{</span>', Step: s });
-                            r(p, false, s + 1);
-                            l.push({ Text: '<span class="jsontag">},</span>', Step: s });
-                        }
-                        else {
-                            //array
-                            if (!isar) {
-                                l.push({ Text: '<span class="jsonname">"' + n + '"</span><span class="jsontag">:</span>', Step: s });
-                            }
-                            l.push({ Text: '<span class="jsontag">[</span>', Step: s });
-                            r(p, true, s + 1);
-                            l.push({ Text: '<span class="jsontag">],</span>', Step: s });
-                        }
-                        break;
-                    default: break;
-                }
-            }
-            var last = l.pop();
-            var ct = ',</span>';
-            if (last.Text.substr(last.Text.length - ct.length) == ct)
-                l.push({ Text: last.Text.replace(ct, '</span>'), Step: last.Step });
+    {
+        // json ï¿½iï¿½Ç¤J json ï¿½ï¿½ JavaScript Object
+        // container ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½eï¿½ï¿½ï¿½AjQuery Object
+        JSONView:function (json, container) {
+            var ob;
+            if (typeof json == 'string')
+                ob = JSON.parse(json);
             else
-                l.push(last);
-        };
+                ob = json;
+            var p, l = [], c = container;
+            var repeat = function (s, n) {  //ï¿½ï¿½ï¿½ï¿½ s ï¿½rï¿½ï¿½ n ï¿½ï¿½
+                return new Array(n + 1).join(s);
+            };
+            //ï¿½ï¿½ï¿½ï¿½ JSON ï¿½ï¿½ï¿½cï¿½ï¿½Æªï¿½ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½
+            //o     ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½
+            //isar  ï¿½ï¿½Æ¬O true ï¿½ï¿½ï¿½Ü¥Nï¿½ï¿½oï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½}ï¿½Cï¿½ï¿½ï¿½
+            //s     ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½hï¿½ï¿½
+            var r = function (o, isar, s) {
+                for (var n in o) {
+                    var p = o[n];
+                    switch (typeof p) {
+                        case 'function':
+                            break;
+                        case 'string':
+                            if (isar)
+                                l.push({ Text:'<span class="jsonstring">"' + p + '"</span><span class="jsontag">,</span>', Step:s });
+                            else
+                                l.push({ Text:'<span class="jsonname">"' + n + '"</span><span class="jsontag">: </span><span class="jsonstring">"' + p + '"</span><span class="jsontag">,</span>', Step:s });
+                            break;
+                        case 'boolean':
+                            if (isar)
+                                l.push({ Text:'<span class="jsonboolean">"' + p + '"</span><span class="jsontag">,</span>', Step:s });
+                            else
+                                l.push({ Text:'<span class="jsonname">"' + n + '"</span><span class="jsontag">: </span><span class="jsonboolean">' + p + '</span><span class="jsontag">,</span>', Step:s });
+                            break;
+                        case 'number':
+                            if (isar)
+                                l.push({ Text:'<span class="jsonnumber">' + p + '</span><span class="jsontag">,</span>', Step:s });
+                            else
+                                l.push({ Text:'<span class="jsonname">"' + n + '"</span><span class="jsontag">: </span><span class="jsonnumber">' + p + '</span><span class="jsontag">,</span>', Step:s });
+                            break;
+                        case 'object':
+                            if (p === null) {
+                                if (isar)
+                                    l.push({ Text:'<span class="jsonnull">' + p + '</span><span class="jsontag">,</span>', Step:s });
+                                else
+                                    l.push({ Text:'<span class="jsonname">"' + n + '"</span><span class="jsontag">: </span><span class="jsonnull">' + p + '</span><span class="jsontag">,</span>', Step:s });
+                            }
+                            else if (p.length == undefined) {
+                                //object
+                                if (!isar) {
+                                    l.push({ Text:'<span class="jsonname">"' + n + '"</span><span class="jsontag">:</span>', Step:s });
+                                }
+                                l.push({ Text:'<span class="jsontag">{</span>', Step:s });
+                                r(p, false, s + 1);
+                                l.push({ Text:'<span class="jsontag">},</span>', Step:s });
+                            }
+                            else {
+                                //array
+                                if (!isar) {
+                                    l.push({ Text:'<span class="jsonname">"' + n + '"</span><span class="jsontag">:</span>', Step:s });
+                                }
+                                l.push({ Text:'<span class="jsontag">[</span>', Step:s });
+                                r(p, true, s + 1);
+                                l.push({ Text:'<span class="jsontag">],</span>', Step:s });
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                var last = l.pop();
+                var ct = ',</span>';
+                if (last.Text.substr(last.Text.length - ct.length) == ct)
+                    l.push({ Text:last.Text.replace(ct, '</span>'), Step:last.Step });
+                else
+                    l.push(last);
+            };
 
-        //±N JavaScript Object ®æ¦¡¤Æ¶ë¶i array ¤¤
-        if (ob.length == undefined) {
-            //object
-            l.push({ Text: '<span class="jsontag">{</span>', Step: 0 });
-            r(ob, false, 1);
-            l.push({ Text: '<span class="jsontag">}</span>', Step: 0 });
-        }
-        else {
-            //array
-            l.push({ Text: '<span class="jsontag">[</span>', Step: 0 });
-            r(ob, true, 1);
-            l.push({ Text: '<span class="jsontag">]</span>', Step: 0 });
-        }
-
-        //¶}©l¿é¥X
-        var f = true;   //true¬°©_¼Æ¦æ
-        c.addClass('KelpJSONView');
-        c.append('<ol></ol>');
-        c = c.find('ol');
-        for (var index in l) {
-            var jobject = l[index];
-            if (f) {
-                c.append($('<li class="jsonhighlight">' + repeat(' &nbsp; &nbsp;', jobject.Step) + jobject.Text + '</li>'));
-                f = false;
+            //ï¿½N JavaScript Object ï¿½æ¦¡ï¿½Æ¶ï¿½i array ï¿½ï¿½
+            if (ob.length == undefined) {
+                //object
+                l.push({ Text:'<span class="jsontag">{</span>', Step:0 });
+                r(ob, false, 1);
+                l.push({ Text:'<span class="jsontag">}</span>', Step:0 });
             }
             else {
-                c.append($('<li>' + repeat(' &nbsp; &nbsp;', jobject.Step) + jobject.Text + '</li>'));
-                f=true;
+                //array
+                l.push({ Text:'<span class="jsontag">[</span>', Step:0 });
+                r(ob, true, 1);
+                l.push({ Text:'<span class="jsontag">]</span>', Step:0 });
+            }
+
+            //ï¿½}ï¿½lï¿½ï¿½X
+            var f = true;   //trueï¿½ï¿½ï¿½_ï¿½Æ¦ï¿½
+            c.addClass('KelpJSONView');
+            c.append('<ol></ol>');
+            c = c.find('ol');
+            for (var index in l) {
+                var jobject = l[index];
+                if (f) {
+                    c.append($('<li class="jsonhighlight">' + repeat(' &nbsp; &nbsp;', jobject.Step) + jobject.Text + '</li>'));
+                    f = false;
+                }
+                else {
+                    c.append($('<li>' + repeat(' &nbsp; &nbsp;', jobject.Step) + jobject.Text + '</li>'));
+                    f = true;
+                }
             }
         }
-    }
-});
+    });

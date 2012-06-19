@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Liuggio\HelpDeskBundle\Entity\Comment;
 use Liuggio\HelpDeskBundle\Form\CommentType;
 use Liuggio\HelpDeskBundle\Exception;
+
 /**
  * Comment controller.
  *
@@ -17,7 +18,7 @@ class CommentController extends Controller
      * Creates a new Comment entity.
      *
      */
-    public function createAction()
+    public function createAction($redirectTo = 'ticket_show', $ticketState = \Liuggio\HelpDeskBundle\Entity\TicketState::STATE_PENDING)
     {
         //Retrive the User from the Session
         $user = $this->get('security.context')->getToken()->getUser();
@@ -36,14 +37,13 @@ class CommentController extends Controller
             if (!$ticket) {
                 throw $this->createNotFoundException('Unable to find Ticket entity.');
             }
-            $state_pending = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
-                ->findOneByCode(\Liuggio\HelpDeskBundle\Entity\TicketState::STATE_PENDING);
+            $state = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
+                ->findOneByCode($ticketState);
 
-            if (!$state_pending) {
+            if (!$state) {
                 throw new Exception('Ticket State Not Found');
             }
-
-            $ticket->setState($state_pending);
+            $ticket->setState($state);
             $em->persist($ticket);
             //Set the createdBy user
             $comment->setCreatedBy($user);
@@ -51,8 +51,9 @@ class CommentController extends Controller
             $em->persist($comment);
 
             $em->flush();
-            return $this->redirect($this->generateUrl('ticket_show', array('id' => $ticket_id)));
+            return $this->redirect($this->generateUrl($redirectTo, array('id' => $ticket_id)));
         }
+        //@todo implement error
 
         return $this->render('LiuggioHelpDeskBundle:Comment:new.html.twig', array(
             'entity' => $entity,

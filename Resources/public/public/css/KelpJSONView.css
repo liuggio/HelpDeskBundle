@@ -1,46 +1,45 @@
-.KelpJSONView
-{
-  width:100%;
-  overflow:auto;
-  font-family:inherit;
-  font-weight:normal;
-  font-style:normal;
-  font-size:16px;
-  background-color:#f5f5f5;
+.KelpJSONView {
+    width: 100%;
+    overflow: auto;
+    font-family: inherit;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px;
+    background-color: #f5f5f5;
 }
-.KelpJSONView ol
-{
-  margin-left: 60px;
+
+.KelpJSONView ol {
+    margin-left: 60px;
 }
-.KelpJSONView ol li
-{
-    white-space:nowrap;
+
+.KelpJSONView ol li {
+    white-space: nowrap;
 }
-.jsonhighlight
-{
-    background-color:#eee;
+
+.jsonhighlight {
+    background-color: #eee;
 }
-.jsonname
-{
-    color:#555;
+
+.jsonname {
+    color: #555;
 }
-.jsonstring
-{
-    color:#268BD2;
+
+.jsonstring {
+    color: #268BD2;
 }
-.jsonnull
-{
-    color:#d63Bd2;
+
+.jsonnull {
+    color: #d63Bd2;
 }
-.jsonnumber
-{
-    color:#964B32;
+
+.jsonnumber {
+    color: #964B32;
 }
-.jsonboolean
-{
-    color:#b64B72;
+
+.jsonboolean {
+    color: #b64B72;
 }
-.jsontag
-{
-    color:#999;
+
+.jsontag {
+    color: #999;
 }

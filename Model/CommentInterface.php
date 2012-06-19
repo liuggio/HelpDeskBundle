@@ -3,7 +3,6 @@
 namespace Liuggio\HelpDeskBundle\Model;
 
 
-
 interface CommentInterface
 {
 

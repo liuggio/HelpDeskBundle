@@ -12,6 +12,7 @@ class CloseTicketType extends AbstractType
     {
         $this->ticket_id = $ticket_id;
     }
+
     /**
      *
      * @param \Symfony\Component\Form\FormBuilder $builder

@@ -25,344 +25,401 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ***** END LICENSE BLOCK ***** */
- 
+
 body {
-  padding-top: 60px;
-  position: relative;
-  background-position: 0 40px;
-  font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-top: 60px;
+    position: relative;
+    background-position: 0 40px;
+    font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 a, a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 .navbar-fixed-top .brand {
-  padding-right: 0;
-  padding-left: 0;
-  margin-left: 20px;
-  float: right;
-  font-weight: bold;
-  color: #000;
-  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
-     -moz-transition: all .2s linear;
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 20px;
+    float: right;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+    -moz-transition: all .2s linear;
 }
+
 .navbar-fixed-top .brand:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 .well {
-  background-color: #FAFAFA;
-  border: medium none;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    background-color: #FAFAFA;
+    border: medium none;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
+
 #request-headers .label {
-  padding: 8px 12px;
-  margin-right: 10px;
-  font-weight: normal;
-  line-height: 34px;
-  background-color: #ddd;
-  color: #333;
-  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.25);
-  cursor: pointer;
+    padding: 8px 12px;
+    margin-right: 10px;
+    font-weight: normal;
+    line-height: 34px;
+    background-color: #ddd;
+    color: #333;
+    text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.25);
+    cursor: pointer;
 }
-#request-headers .label:hover{
-  color: #000;
+
+#request-headers .label:hover {
+    color: #000;
 }
+
 #request-headers .close {
-  color: #000000;
-  float: none;
-  font-size: 16px;
-  font-weight: normal;
-  margin-left: 10px;
-  opacity: 0.4;
-  text-decoration: none;
+    color: #000000;
+    float: none;
+    font-size: 16px;
+    font-weight: normal;
+    margin-left: 10px;
+    opacity: 0.4;
+    text-decoration: none;
 }
+
 #response {
-  margin-top: 18px;
+    margin-top: 18px;
 }
+
 #request form {
-  margin-bottom: 18px;
+    margin-bottom: 18px;
 }
+
 #request h3 {
-  margin-top: -5px;
-  margin-bottom: 18px;
+    margin-top: -5px;
+    margin-bottom: 18px;
 }
-#request h2{
-  margin-bottom: 18px;
+
+#request h2 {
+    margin-bottom: 18px;
 }
-#request h4{
-  margin-bottom: 8px;
+
+#request h4 {
+    margin-bottom: 8px;
 }
+
 #request label {
-  margin-right: 4px;
+    margin-right: 4px;
 }
+
 #request button {
-  margin-left: 2px;
+    margin-left: 2px;
 }
+
 #request .well {
-  border-radius: 4px;
-  padding: 8px;
-  margin-bottom: 18px;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 18px;
 }
+
 #response h2 {
-  margin-bottom: 18px;
+    margin-bottom: 18px;
 }
+
 #response h3 {
-  margin-bottom: 10px;
-  margin-top: 18px;
+    margin-bottom: 10px;
+    margin-top: 18px;
 }
-#response pre{
-  min-height: 150px;
+
+#response pre {
+    min-height: 150px;
 }
+
 .pre {
-  background-color: #EEE;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px 4px 4px 4px;
-  display: block;
-  font-size: 12.95px;
-  line-height: 18px;
-  margin: 0 0 9px;
-  padding: 8.5px;
-  height: 600px;
-  resize: both;
-  overflow: hidden;
+    background-color: #EEE;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px 4px 4px 4px;
+    display: block;
+    font-size: 12.95px;
+    line-height: 18px;
+    margin: 0 0 9px;
+    padding: 8.5px;
+    height: 600px;
+    resize: both;
+    overflow: hidden;
 }
+
 #response-body-preview iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
+
 #response-body-preview textarea {
-  width: 100%;
-  height: 100%;
-  border: none;
-  overflow: auto;
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow: auto;
 }
+
 #modal-oauth legend {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-size: 14px;
-  font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: bold;
 }
+
 #modal-oauth .control-group {
     margin-bottom: 9px;
 }
+
 .mainOverlay {
-  background: -webkit-gradient(linear,left bottom,left top,color-stop(0%,#d9e7f9),color-stop(100%,#ffffff));
-  background: -webkit-linear-gradient(bottom,#d9e7f9 0,#ffffff 100%);
-  background: -moz-linear-gradient(bottom,#d9e7f9 0,#ffffff 100%);
-  background: -ms-linear-gradient(bottom,#d9e7f9 0,#ffffff 100%);
-  background: -o-linear-gradient(bottom,#d9e7f9 0,#ffffff 100%);
-  background: linear-gradient(bottom,#d9e7f9 0,#ffffff 100%);
-  z-index: 100000;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 0.9;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #d9e7f9), color-stop(100%, #ffffff));
+    background: -webkit-linear-gradient(bottom, #d9e7f9 0, #ffffff 100%);
+    background: -moz-linear-gradient(bottom, #d9e7f9 0, #ffffff 100%);
+    background: -ms-linear-gradient(bottom, #d9e7f9 0, #ffffff 100%);
+    background: -o-linear-gradient(bottom, #d9e7f9 0, #ffffff 100%);
+    background: linear-gradient(bottom, #d9e7f9 0, #ffffff 100%);
+    z-index: 100000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.9;
 }
-.mainOverlay h3{
-  margin-bottom: 18px;
+
+.mainOverlay h3 {
+    margin-bottom: 18px;
 }
+
 .mainOverlay .progressBar {
-  top: 50%;
-  left: 50%;
-  width: 500px;
-  margin-left: -250px;
-  margin-top: -75px;
-  position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    margin-left: -250px;
+    margin-top: -75px;
+    position: absolute;
 }
 
 #request form {
-  margin-bottom: 8px;
-}
-.overrideMimeType {
-  font-weight: normal !important;
-  margin-top: 8px;
+    margin-bottom: 8px;
 }
 
-.window-overlay{
-  background-color:rgba(0, 0, 0, 0.6);
-  display: block;
-  z-index:10160;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 1;
-  overflow-y: scroll;
+.overrideMimeType {
+    font-weight: normal !important;
+    margin-top: 8px;
 }
-.window-wrapper{
-  background:#fafafa;
-  opacity: 1;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
-  overflow:hidden;
-  width:100%;
-  border-radius:3px;
-  padding: 0;
+
+.window-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: block;
+    z-index: 10160;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    overflow-y: scroll;
 }
-.window{
-  padding-top: 60px;
-  padding-bottom:80px;
-  position:absolute;
-  width:720px;
-  left: 50%;
-  margin-left: -360px;
-  z-index:10200;
+
+.window-wrapper {
+    background: #fafafa;
+    opacity: 1;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 3px;
+    padding: 0;
 }
+
+.window {
+    padding-top: 60px;
+    padding-bottom: 80px;
+    position: absolute;
+    width: 720px;
+    left: 50%;
+    margin-left: -360px;
+    z-index: 10200;
+}
+
 .window-header {
-  padding: 9px 15px;
+    padding: 9px 15px;
 }
-.window-content{
-  padding: 0;
+
+.window-content {
+    padding: 0;
 }
+
 .window-content ul.nav-tabs li:first-child {
-  margin-left: 15px;
+    margin-left: 15px;
 }
+
 .window-overlay a {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 #window-manage-request h4 {
-  margin-top: 10px;
-  margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
+
 #window-manage-request .buttons {
-  text-align: right;
+    text-align: right;
 }
+
 #window-manage-request button {
-  margin-left: 5px;
+    margin-left: 5px;
 }
+
 span.line {
-  display: inline-block;
-  width: 100;
+    display: inline-block;
+    width: 100;
 }
+
 span.header-name {
-  color: teal;
-  float: left;
+    color: teal;
+    float: left;
 }
-span.header-split{
-  color: #93a1a1;
-  float: left;
+
+span.header-split {
+    color: #93a1a1;
+    float: left;
 }
+
 span.header-value {
-  color: #D14;
-  float: left;
+    color: #D14;
+    float: left;
 }
-.messages-overlay{
-  background-color:rgba(0, 0, 0, 0.6);
-  z-index: 999999;
-  display: block;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 1;
-  overflow-y: scroll;
-  padding-top: 60px;
+
+.messages-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999999;
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    overflow-y: scroll;
+    padding-top: 60px;
 }
 
 .request-method-dropdown, .request-url-icons {
-  border-radius: 0 3px 3px 0;
-  margin-left: -1px;
-  background-color: #EEEEEE;
-  border: 1px solid #CCCCCC;
-  display: inline-block;
-  font-weight: normal;
-  height: 18px;
-  line-height: 18px;
-  min-width: 16px;
-  padding: 4px 5px;
-  text-align: center;
-  text-shadow: 0 1px 0 #FFFFFF;
-  vertical-align: middle;
-  width: auto;
-  cursor: pointer;
+    border-radius: 0 3px 3px 0;
+    margin-left: -1px;
+    background-color: #EEEEEE;
+    border: 1px solid #CCCCCC;
+    display: inline-block;
+    font-weight: normal;
+    height: 18px;
+    line-height: 18px;
+    min-width: 16px;
+    padding: 4px 5px;
+    text-align: center;
+    text-shadow: 0 1px 0 #FFFFFF;
+    vertical-align: middle;
+    width: auto;
+    cursor: pointer;
 }
+
 .favorite-list-icon, .favorite-icon, .request-method-icon {
-  margin: 0 1px 0 4px;
+    margin: 0 1px 0 4px;
 }
-.request-method-dropdown .caret{
-  margin-top: 7px;
+
+.request-method-dropdown .caret {
+    margin-top: 7px;
 }
+
 #request-method {
-  border-radius: 3px 0 3px 0;
-  border-right: none;
-  width: 94px;
-  margin: 0 auto; 
+    border-radius: 3px 0 3px 0;
+    border-right: none;
+    width: 94px;
+    margin: 0 auto;
 }
+
 #request-url {
-  border-radius: 3px 0 3px 0;
-  border-right: none;
-  margin: 0 auto; 
+    border-radius: 3px 0 3px 0;
+    border-right: none;
+    margin: 0 auto;
 }
+
 #request-method-list {
-  left: auto;
-  min-width: 100px;
-  right: 0;
-  text-align: left;
-  width: 130px !important;
+    left: auto;
+    min-width: 100px;
+    right: 0;
+    text-align: left;
+    width: 130px !important;
 }
+
 #request-url-list {
-  left: auto;
-  min-width: 100px;
-  right: 0;
-  text-align: left;
-  margin-top: 6px;
-  overflow-x: hidden;
+    left: auto;
+    min-width: 100px;
+    right: 0;
+    text-align: left;
+    margin-top: 6px;
+    overflow-x: hidden;
 }
+
 .multivalues {
-  list-style: none;
-  margin-left: 0px;
+    list-style: none;
+    margin-left: 0px;
 }
-.multivalues li{
-  padding-left: 0px !important;
-  color: #DD1144 !important;
+
+.multivalues li {
+    padding-left: 0px !important;
+    color: #DD1144 !important;
 }
 
 .popover-inner {
-  width: 480px !important;
+    width: 480px !important;
 }
 
 #response .overflow {
-  overflow: auto;
+    overflow: auto;
 }
 
 .request-header-reset {
-  float:right; 
-  font-size: 11px; 
-  color: #333;
-  font-weight: normal;
+    float: right;
+    font-size: 11px;
+    color: #333;
+    font-weight: normal;
 }
-.request-header-reset a{
-  color: #999;
-  cursor:pointer;
-  padding: 4px 8px; 
+
+.request-header-reset a {
+    color: #999;
+    cursor: pointer;
+    padding: 4px 8px;
 }
-.request-header-reset a:hover{
-  color: #333;
-  cursor:pointer;
-  border-bottom:1px solid #666;
-  border-radius: 4px;
-  background-color:#EEE;
+
+.request-header-reset a:hover {
+    color: #333;
+    cursor: pointer;
+    border-bottom: 1px solid #666;
+    border-radius: 4px;
+    background-color: #EEE;
 }
 
 th.center, td.center {
-  text-align: center;
+    text-align: center;
 }
-tr.headers > td:first-child{
-  width: 140px;
-  text-align: center;
-  vertical-align:middle;
+
+tr.headers > td:first-child {
+    width: 140px;
+    text-align: center;
+    vertical-align: middle;
 }
+
 tr.headers td {
-  cursor: pointer;
-  height: 29px;
+    cursor: pointer;
+    height: 29px;
 }
+
 @media (min-width: 980px) {
-  body{
-    padding-top: 60px;
-  }
+    body {
+        padding-top: 60px;
+    }
 }
-a { cursor: pointer; }
+
+a {
+    cursor: pointer;
+}

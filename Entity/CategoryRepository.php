@@ -26,7 +26,6 @@ class CategoryRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
-    
 
 
 }

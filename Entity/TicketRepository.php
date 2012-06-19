@@ -34,8 +34,8 @@ class TicketRepository extends EntityRepository
         if (!empty($filter)) {
             $qb->andWhere(
                 $qb->expr()->orx($qb->expr()->like('t.subject', ':pattern'),
-                $qb->expr()->like('t.body', ':pattern'),
-                $qb->expr()->like('c.name', ':pattern'))
+                    $qb->expr()->like('t.body', ':pattern'),
+                    $qb->expr()->like('c.name', ':pattern'))
             )
                 ->setParameter('pattern', "%" . $filter . "%");
         }
@@ -72,7 +72,6 @@ class TicketRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
-
 
 
 }

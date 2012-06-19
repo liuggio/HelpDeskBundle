@@ -18,16 +18,17 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('request_pattern', 'search', array(
-                      'label' => 'search_ticket_label'
+            'label' => 'search_ticket_label'
         ));
-                
+
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
-            'empty_data' => function (Options $options, $value) {
+            'empty_data' => function (Options $options, $value)
+            {
                 return $options['csrf_protection'] ? array() : $value;
             }
         ));
@@ -40,5 +41,6 @@ class SearchType extends AbstractType
 
 
 }
+
 ?>
 

@@ -37,9 +37,9 @@ class AclManager implements ContainerAwareInterface
     {
         $objectIdentity = ObjectIdentity::fromDomainObject($object);
 
-        try{
+        try {
             $acl = $this->aclProvider->findAcl($objectIdentity);
-        } catch (\Symfony\Component\Security\Acl\Exception\AclNotFoundException $e){
+        } catch (\Symfony\Component\Security\Acl\Exception\AclNotFoundException $e) {
             $acl = $this->aclProvider->createAcl($objectIdentity);
         }
         return $acl;
@@ -51,20 +51,20 @@ class AclManager implements ContainerAwareInterface
      * @param $user
      * @param int $permissions
      */
-    public function insertAce($ticket, $user, $permissions = MaskBuilder::MASK_OWNER )
+    public function insertAce($ticket, $user, $permissions = MaskBuilder::MASK_OWNER)
     {
         $acl = $this->getOrCreateAcl($ticket);
         $securityIdentity = UserSecurityIdentity::fromAccount($user);
 
         // setting Owner
-        $acl->insertObjectAce($securityIdentity,$permissions);
+        $acl->insertObjectAce($securityIdentity, $permissions);
         $this->aclProvider->updateAcl($acl);
 
     }
 
     public function checkPermissions($ticket, $permissions = 'OWNER')
     {
-        if(false === $this->securityContext->isGranted($permissions, $ticket)) {
+        if (false === $this->securityContext->isGranted($permissions, $ticket)) {
             throw new AccessDeniedException();
         }
 

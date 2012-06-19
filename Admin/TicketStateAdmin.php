@@ -16,8 +16,7 @@ class TicketStateAdmin extends Admin
             ->add('id')
             ->add('code')
             ->add('description')
-            ->add('weight')
-        ;
+            ->add('weight');
     }
 
     public function configureFormFields(FormMapper $formMapper)
@@ -27,8 +26,7 @@ class TicketStateAdmin extends Admin
             ->add('code')
             ->add('description')
             ->add('weight')
-            ->end()
-        ;
+            ->end();
     }
 
     public function configureListFields(ListMapper $listMapper)
@@ -37,8 +35,7 @@ class TicketStateAdmin extends Admin
             ->addIdentifier('id')
             ->add('code')
             ->add('description')
-            ->add('weight')
-        ;
+            ->add('weight');
     }
 
     public function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -47,8 +44,7 @@ class TicketStateAdmin extends Admin
             ->add('id')
             ->add('code')
             ->add('description')
-            ->add('weight')
-        ;
+            ->add('weight');
     }
 
 }

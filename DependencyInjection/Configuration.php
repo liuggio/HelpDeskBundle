@@ -23,21 +23,21 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('object_manager')->defaultValue('doctrine.orm.default_entity_manager')->end()
 
             ->arrayNode('class')
-                ->addDefaultsIfNotSet()
-                ->children()
-                    ->scalarNode('user')->isRequired()->end()
-                    ->scalarNode('ticket')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Ticket')->end()
-                    ->scalarNode('comment')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Comment')->end()
-                    ->scalarNode('category')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Category')->end()
-                ->end()
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('user')->isRequired()->end()
+            ->scalarNode('ticket')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Ticket')->end()
+            ->scalarNode('comment')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Comment')->end()
+            ->scalarNode('category')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Category')->end()
+            ->end()
             ->end()
 
             ->arrayNode('email')
-                ->addDefaultsIfNotSet()
-                ->children()
-                    ->scalarNode('sender')->isRequired()->end()
-                    ->scalarNode('subject_prefix')->defaultValue('[help desk]')->end()
-                ->end()
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('sender')->isRequired()->end()
+            ->scalarNode('subject_prefix')->defaultValue('[help desk]')->end()
+            ->end()
             ->end();
 
         return $treeBuilder;

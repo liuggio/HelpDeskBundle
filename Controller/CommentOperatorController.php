@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Liuggio\HelpDeskBundle\Entity\Comment;
 use Liuggio\HelpDeskBundle\Form\CommentType;
+use Liuggio\HelpDeskBundle\Exception;
 
 /**
  * Comment controller.
@@ -17,37 +18,41 @@ class CommentOperatorController extends Controller
      * Creates a new Comment entity.
      *
      */
-    public function createAction()
+    public function createAction($state)
     {
         //Retrive the User from the Session
         $user = $this->get('security.context')->getToken()->getUser();
 
         $entity = new Comment();
         $request = $this->getRequest();
+
+
         $form = $this->createForm(new CommentType(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $comment = $form->getData();
             $form = $this->getRequest()->get('liuggio_HelpDeskBundle_commenttype');
             $ticket_id = $form['ticket'];
-            $ticket = $em->getRepository('LiuggioHelpDeskBundle:Ticket')->find($ticket_id);
+            $ticket = $this->getObjectManager()->getRepository('LiuggioHelpDeskBundle:Ticket')->find($ticket_id);
             if (!$ticket) {
                 throw $this->createNotFoundException('Unable to find Ticket entity.');
             }
+            $ticketState = $this->getObjectManager()->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
+                ->findOneByCode($state);
 
-            $state_replied = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
-                ->findOneByCode(\Liuggio\HelpDeskBundle\Entity\TicketState::STATE_REPLIED);
-
-            if ($state_replied) {
-                $ticket->setState($state_replied);
+            if (!$ticketState) {
+                throw new Exception(sprintf('Ticket State Not Found looking for "%s"', $ticketState));
             }
             //Set the createdBy user
-            $entity->setCreatedBy($user);
-            $em->persist($ticket);
+            $ticket->setState($ticketState);
+            $this->getObjectManager()->persist($ticket);
+
             $comment->setTicket($ticket);
-            $em->persist($comment);
+            $comment->setCreatedBy($user);
+            $this->getObjectManager()->persist($comment);
+
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('ticket_show_admin', array('id' => $ticket_id)));

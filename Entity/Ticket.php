@@ -234,7 +234,7 @@ class Ticket extends BaseTicket
      */
     public function hasComments()
     {
-        if (null != $this->getComments() && count($this->getComments())>0) {
+        if (null != $this->getComments() && count($this->getComments()) > 0) {
             return true;
         }
     }

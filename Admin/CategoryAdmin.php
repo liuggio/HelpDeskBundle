@@ -18,21 +18,19 @@ class CategoryAdmin extends Admin
             ->add('description')
             ->add('isEnable')
             ->add('weight')
-            ->add('operators')
-        ;
+            ->add('operators');
     }
 
     public function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->with('General')
-                ->add('name')
-                ->add('description')
-                ->add('isEnable')
-                ->add('weight')
-                ->add('operators', 'sonata_type_model', array('required'=>false))
-            ->end()
-        ;
+            ->add('name')
+            ->add('description')
+            ->add('isEnable')
+            ->add('weight')
+            ->add('operators', 'sonata_type_model', array('required' => false))
+            ->end();
     }
 
     public function configureListFields(ListMapper $listMapper)
@@ -43,8 +41,7 @@ class CategoryAdmin extends Admin
             ->add('description')
             ->add('isEnable')
             ->add('weight')
-            ->add('operators')
-        ;
+            ->add('operators');
     }
 
     public function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -55,8 +52,7 @@ class CategoryAdmin extends Admin
             ->add('description')
             ->add('isEnable')
             ->add('weight')
-            ->add('operators')
-        ;
+            ->add('operators');
     }
 
 }

@@ -12,24 +12,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 .animated {
-	-webkit-animation-duration: 1s;
-	   -moz-animation-duration: 1s;
-	    -ms-animation-duration: 1s;
-	     -o-animation-duration: 1s;
-	        animation-duration: 1s;
-	-webkit-animation-fill-mode: both;
-	   -moz-animation-fill-mode: both;
-	    -ms-animation-fill-mode: both;
-	     -o-animation-fill-mode: both;
-	        animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -ms-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 
 .animated.hinge {
-	-webkit-animation-duration: 2s;
-	   -moz-animation-duration: 2s;
-	    -ms-animation-duration: 2s;
-	     -o-animation-duration: 2s;
-	        animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    -ms-animation-duration: 2s;
+    -o-animation-duration: 2s;
+    animation-duration: 2s;
 }
 
 @-webkit-keyframes flash {
@@ -58,12 +58,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .flash {
-	-webkit-animation-name: flash;
-	-moz-animation-name: flash;
-	-ms-animation-name: flash;
-	-o-animation-name: flash;
-	animation-name: flash;
+    -webkit-animation-name: flash;
+    -moz-animation-name: flash;
+    -ms-animation-name: flash;
+    -o-animation-name: flash;
+    animation-name: flash;
 }
+
 @-webkit-keyframes shake {
 	0%, 100% {-webkit-transform: translateX(0);}
 	10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-10px);}
@@ -95,12 +96,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .shake {
-	-webkit-animation-name: shake;
-	-moz-animation-name: shake;
-	-ms-animation-name: shake;
-	-o-animation-name: shake;
-	animation-name: shake;
+    -webkit-animation-name: shake;
+    -moz-animation-name: shake;
+    -ms-animation-name: shake;
+    -o-animation-name: shake;
+    animation-name: shake;
 }
+
 @-webkit-keyframes bounce {
 	0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
 	40% {-webkit-transform: translateY(-30px);}
@@ -131,12 +133,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounce {
-	-webkit-animation-name: bounce;
-	-moz-animation-name: bounce;
-	-ms-animation-name: bounce;
-	-o-animation-name: bounce;
-	animation-name: bounce;
+    -webkit-animation-name: bounce;
+    -moz-animation-name: bounce;
+    -ms-animation-name: bounce;
+    -o-animation-name: bounce;
+    animation-name: bounce;
 }
+
 @-webkit-keyframes tada {
 	0% {-webkit-transform: scale(1);}	
 	10%, 20% {-webkit-transform: scale(0.9) rotate(-3deg);}
@@ -178,12 +181,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .tada {
-	-webkit-animation-name: tada;
-	-moz-animation-name: tada;
-	-ms-animation-name: tada;
-	-o-animation-name: tada;
-	animation-name: tada;
+    -webkit-animation-name: tada;
+    -moz-animation-name: tada;
+    -ms-animation-name: tada;
+    -o-animation-name: tada;
+    animation-name: tada;
 }
+
 @-webkit-keyframes swing {
 	20%, 40%, 60%, 80%, 100% { -webkit-transform-origin: top center; }
 	20% { -webkit-transform: rotate(15deg); }	
@@ -226,17 +230,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .swing {
-	-webkit-transform-origin: top center;
-	-moz-transform-origin: top center;
-	-ms-transform-origin: top center;
-	-o-transform-origin: top center;
-	transform-origin: top center;
-	-webkit-animation-name: swing;
-	-moz-animation-name: swing;
-	-ms-animation-name: swing;
-	-o-animation-name: swing;
-	animation-name: swing;
+    -webkit-transform-origin: top center;
+    -moz-transform-origin: top center;
+    -ms-transform-origin: top center;
+    -o-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-animation-name: swing;
+    -moz-animation-name: swing;
+    -ms-animation-name: swing;
+    -o-animation-name: swing;
+    animation-name: swing;
 }
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @-webkit-keyframes wobble {
@@ -290,12 +295,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .wobble {
-	-webkit-animation-name: wobble;
-	-moz-animation-name: wobble;
-	-ms-animation-name: wobble;
-	-o-animation-name: wobble;
-	animation-name: wobble;
+    -webkit-animation-name: wobble;
+    -moz-animation-name: wobble;
+    -ms-animation-name: wobble;
+    -o-animation-name: wobble;
+    animation-name: wobble;
 }
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @-webkit-keyframes pulse {
@@ -325,12 +331,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .pulse {
-	-webkit-animation-name: pulse;
-	-moz-animation-name: pulse;
-	-ms-animation-name: pulse;
-	-o-animation-name: pulse;
-	animation-name: pulse;
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -ms-animation-name: pulse;
+    -o-animation-name: pulse;
+    animation-name: pulse;
 }
+
 @-webkit-keyframes flip {
 	0% {
 		-webkit-transform: perspective(400px) rotateY(0);
@@ -443,17 +450,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .flip {
-	-webkit-backface-visibility: visible !important;
-	-webkit-animation-name: flip;
-	-moz-backface-visibility: visible !important;
-	-moz-animation-name: flip;
-	-ms-backface-visibility: visible !important;
-	-ms-animation-name: flip;
-	-o-backface-visibility: visible !important;
-	-o-animation-name: flip;
-	backface-visibility: visible !important;
-	animation-name: flip;
+    -webkit-backface-visibility: visible !important;
+    -webkit-animation-name: flip;
+    -moz-backface-visibility: visible !important;
+    -moz-animation-name: flip;
+    -ms-backface-visibility: visible !important;
+    -ms-animation-name: flip;
+    -o-backface-visibility: visible !important;
+    -o-animation-name: flip;
+    backface-visibility: visible !important;
+    animation-name: flip;
 }
+
 @-webkit-keyframes flipInX {
     0% {
         -webkit-transform: perspective(400px) rotateX(90deg);
@@ -551,17 +559,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .flipInX {
-	-webkit-backface-visibility: visible !important;
-	-webkit-animation-name: flipInX;
-	-moz-backface-visibility: visible !important;
-	-moz-animation-name: flipInX;
-	-ms-backface-visibility: visible !important;
-	-ms-animation-name: flipInX;
-	-o-backface-visibility: visible !important;
-	-o-animation-name: flipInX;
-	backface-visibility: visible !important;
-	animation-name: flipInX;
+    -webkit-backface-visibility: visible !important;
+    -webkit-animation-name: flipInX;
+    -moz-backface-visibility: visible !important;
+    -moz-animation-name: flipInX;
+    -ms-backface-visibility: visible !important;
+    -ms-animation-name: flipInX;
+    -o-backface-visibility: visible !important;
+    -o-animation-name: flipInX;
+    backface-visibility: visible !important;
+    animation-name: flipInX;
 }
+
 @-webkit-keyframes flipOutX {
     0% {
         -webkit-transform: perspective(400px) rotateX(0deg);
@@ -618,17 +627,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .flipOutX {
-	-webkit-animation-name: flipOutX;
-	-webkit-backface-visibility: visible !important;
-	-moz-animation-name: flipOutX;
-	-moz-backface-visibility: visible !important;
-	-ms-animation-name: flipOutX;
-	-ms-backface-visibility: visible !important;
-	-o-animation-name: flipOutX;
-	-o-backface-visibility: visible !important;
-	animation-name: flipOutX;
-	backface-visibility: visible !important;
+    -webkit-animation-name: flipOutX;
+    -webkit-backface-visibility: visible !important;
+    -moz-animation-name: flipOutX;
+    -moz-backface-visibility: visible !important;
+    -ms-animation-name: flipOutX;
+    -ms-backface-visibility: visible !important;
+    -o-animation-name: flipOutX;
+    -o-backface-visibility: visible !important;
+    animation-name: flipOutX;
+    backface-visibility: visible !important;
 }
+
 @-webkit-keyframes flipInY {
     0% {
         -webkit-transform: perspective(400px) rotateY(90deg);
@@ -726,17 +736,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .flipInY {
-	-webkit-backface-visibility: visible !important;
-	-webkit-animation-name: flipInY;
-	-moz-backface-visibility: visible !important;
-	-moz-animation-name: flipInY;
-	-ms-backface-visibility: visible !important;
-	-ms-animation-name: flipInY;
-	-o-backface-visibility: visible !important;
-	-o-animation-name: flipInY;
-	backface-visibility: visible !important;
-	animation-name: flipInY;
+    -webkit-backface-visibility: visible !important;
+    -webkit-animation-name: flipInY;
+    -moz-backface-visibility: visible !important;
+    -moz-animation-name: flipInY;
+    -ms-backface-visibility: visible !important;
+    -ms-animation-name: flipInY;
+    -o-backface-visibility: visible !important;
+    -o-animation-name: flipInY;
+    backface-visibility: visible !important;
+    animation-name: flipInY;
 }
+
 @-webkit-keyframes flipOutY {
     0% {
         -webkit-transform: perspective(400px) rotateY(0deg);
@@ -789,17 +800,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .flipOutY {
-	-webkit-backface-visibility: visible !important;
-	-webkit-animation-name: flipOutY;
-	-moz-backface-visibility: visible !important;
-	-moz-animation-name: flipOutY;
-	-ms-backface-visibility: visible !important;
-	-ms-animation-name: flipOutY;
-	-o-backface-visibility: visible !important;
-	-o-animation-name: flipOutY;
-	backface-visibility: visible !important;
-	animation-name: flipOutY;
+    -webkit-backface-visibility: visible !important;
+    -webkit-animation-name: flipOutY;
+    -moz-backface-visibility: visible !important;
+    -moz-animation-name: flipOutY;
+    -ms-backface-visibility: visible !important;
+    -ms-animation-name: flipOutY;
+    -o-backface-visibility: visible !important;
+    -o-animation-name: flipOutY;
+    backface-visibility: visible !important;
+    animation-name: flipOutY;
 }
+
 @-webkit-keyframes fadeIn {
 	0% {opacity: 0;}	
 	100% {opacity: 1;}
@@ -826,12 +838,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeIn {
-	-webkit-animation-name: fadeIn;
-	-moz-animation-name: fadeIn;
-	-ms-animation-name: fadeIn;
-	-o-animation-name: fadeIn;
-	animation-name: fadeIn;
+    -webkit-animation-name: fadeIn;
+    -moz-animation-name: fadeIn;
+    -ms-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: fadeIn;
 }
+
 @-webkit-keyframes fadeInUp {
 	0% {
 		opacity: 0;
@@ -893,12 +906,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeInUp {
-	-webkit-animation-name: fadeInUp;
-	-moz-animation-name: fadeInUp;
-	-ms-animation-name: fadeInUp;
-	-o-animation-name: fadeInUp;
-	animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+    -moz-animation-name: fadeInUp;
+    -ms-animation-name: fadeInUp;
+    -o-animation-name: fadeInUp;
+    animation-name: fadeInUp;
 }
+
 @-webkit-keyframes fadeInDown {
 	0% {
 		opacity: 0;
@@ -960,12 +974,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeInDown {
-	-webkit-animation-name: fadeInDown;
-	-moz-animation-name: fadeInDown;
-	-ms-animation-name: fadeInDown;
-	-o-animation-name: fadeInDown;
-	animation-name: fadeInDown;
+    -webkit-animation-name: fadeInDown;
+    -moz-animation-name: fadeInDown;
+    -ms-animation-name: fadeInDown;
+    -o-animation-name: fadeInDown;
+    animation-name: fadeInDown;
 }
+
 @-webkit-keyframes fadeInLeft {
 	0% {
 		opacity: 0;
@@ -1027,12 +1042,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeInLeft {
-	-webkit-animation-name: fadeInLeft;
-	-moz-animation-name: fadeInLeft;
-	-ms-animation-name: fadeInLeft;
-	-o-animation-name: fadeInLeft;
-	animation-name: fadeInLeft;
+    -webkit-animation-name: fadeInLeft;
+    -moz-animation-name: fadeInLeft;
+    -ms-animation-name: fadeInLeft;
+    -o-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
 }
+
 @-webkit-keyframes fadeInRight {
 	0% {
 		opacity: 0;
@@ -1094,12 +1110,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeInRight {
-	-webkit-animation-name: fadeInRight;
-	-moz-animation-name: fadeInRight;
-	-ms-animation-name: fadeInRight;
-	-o-animation-name: fadeInRight;
-	animation-name: fadeInRight;
+    -webkit-animation-name: fadeInRight;
+    -moz-animation-name: fadeInRight;
+    -ms-animation-name: fadeInRight;
+    -o-animation-name: fadeInRight;
+    animation-name: fadeInRight;
 }
+
 @-webkit-keyframes fadeInUpBig {
 	0% {
 		opacity: 0;
@@ -1161,12 +1178,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeInUpBig {
-	-webkit-animation-name: fadeInUpBig;
-	-moz-animation-name: fadeInUpBig;
-	-ms-animation-name: fadeInUpBig;
-	-o-animation-name: fadeInUpBig;
-	animation-name: fadeInUpBig;
+    -webkit-animation-name: fadeInUpBig;
+    -moz-animation-name: fadeInUpBig;
+    -ms-animation-name: fadeInUpBig;
+    -o-animation-name: fadeInUpBig;
+    animation-name: fadeInUpBig;
 }
+
 @-webkit-keyframes fadeInDownBig {
 	0% {
 		opacity: 0;
@@ -1228,12 +1246,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeInDownBig {
-	-webkit-animation-name: fadeInDownBig;
-	-moz-animation-name: fadeInDownBig;
-	-ms-animation-name: fadeInDownBig;
-	-o-animation-name: fadeInDownBig;
-	animation-name: fadeInDownBig;
+    -webkit-animation-name: fadeInDownBig;
+    -moz-animation-name: fadeInDownBig;
+    -ms-animation-name: fadeInDownBig;
+    -o-animation-name: fadeInDownBig;
+    animation-name: fadeInDownBig;
 }
+
 @-webkit-keyframes fadeInLeftBig {
 	0% {
 		opacity: 0;
@@ -1291,12 +1310,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeInLeftBig {
-	-webkit-animation-name: fadeInLeftBig;
-	-moz-animation-name: fadeInLeftBig;
-	-ms-animation-name: fadeInLeftBig;
-	-o-animation-name: fadeInLeftBig;
-	animation-name: fadeInLeftBig;
+    -webkit-animation-name: fadeInLeftBig;
+    -moz-animation-name: fadeInLeftBig;
+    -ms-animation-name: fadeInLeftBig;
+    -o-animation-name: fadeInLeftBig;
+    animation-name: fadeInLeftBig;
 }
+
 @-webkit-keyframes fadeInRightBig {
 	0% {
 		opacity: 0;
@@ -1358,12 +1378,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeInRightBig {
-	-webkit-animation-name: fadeInRightBig;
-	-moz-animation-name: fadeInRightBig;
-	-ms-animation-name: fadeInRightBig;
-	-o-animation-name: fadeInRightBig;
-	animation-name: fadeInRightBig;
+    -webkit-animation-name: fadeInRightBig;
+    -moz-animation-name: fadeInRightBig;
+    -ms-animation-name: fadeInRightBig;
+    -o-animation-name: fadeInRightBig;
+    animation-name: fadeInRightBig;
 }
+
 @-webkit-keyframes fadeOut {
 	0% {opacity: 1;}
 	100% {opacity: 0;}
@@ -1390,12 +1411,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeOut {
-	-webkit-animation-name: fadeOut;
-	-moz-animation-name: fadeOut;
-	-ms-animation-name: fadeOut;
-	-o-animation-name: fadeOut;
-	animation-name: fadeOut;
+    -webkit-animation-name: fadeOut;
+    -moz-animation-name: fadeOut;
+    -ms-animation-name: fadeOut;
+    -o-animation-name: fadeOut;
+    animation-name: fadeOut;
 }
+
 @-webkit-keyframes fadeOutUp {
 	0% {
 		opacity: 1;
@@ -1453,12 +1475,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeOutUp {
-	-webkit-animation-name: fadeOutUp;
-	-moz-animation-name: fadeOutUp;
-	-ms-animation-name: fadeOutUp;
-	-o-animation-name: fadeOutUp;
-	animation-name: fadeOutUp;
+    -webkit-animation-name: fadeOutUp;
+    -moz-animation-name: fadeOutUp;
+    -ms-animation-name: fadeOutUp;
+    -o-animation-name: fadeOutUp;
+    animation-name: fadeOutUp;
 }
+
 @-webkit-keyframes fadeOutDown {
 	0% {
 		opacity: 1;
@@ -1520,12 +1543,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeOutDown {
-	-webkit-animation-name: fadeOutDown;
-	-moz-animation-name: fadeOutDown;
-	-ms-animation-name: fadeOutDown;
-	-o-animation-name: fadeOutDown;
-	animation-name: fadeOutDown;
+    -webkit-animation-name: fadeOutDown;
+    -moz-animation-name: fadeOutDown;
+    -ms-animation-name: fadeOutDown;
+    -o-animation-name: fadeOutDown;
+    animation-name: fadeOutDown;
 }
+
 @-webkit-keyframes fadeOutLeft {
 	0% {
 		opacity: 1;
@@ -1587,12 +1611,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeOutLeft {
-	-webkit-animation-name: fadeOutLeft;
-	-moz-animation-name: fadeOutLeft;
-	-ms-animation-name: fadeOutLeft;
-	-o-animation-name: fadeOutLeft;
-	animation-name: fadeOutLeft;
+    -webkit-animation-name: fadeOutLeft;
+    -moz-animation-name: fadeOutLeft;
+    -ms-animation-name: fadeOutLeft;
+    -o-animation-name: fadeOutLeft;
+    animation-name: fadeOutLeft;
 }
+
 @-webkit-keyframes fadeOutRight {
 	0% {
 		opacity: 1;
@@ -1654,12 +1679,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeOutRight {
-	-webkit-animation-name: fadeOutRight;
-	-moz-animation-name: fadeOutRight;
-	-ms-animation-name: fadeOutRight;
-	-o-animation-name: fadeOutRight;
-	animation-name: fadeOutRight;
+    -webkit-animation-name: fadeOutRight;
+    -moz-animation-name: fadeOutRight;
+    -ms-animation-name: fadeOutRight;
+    -o-animation-name: fadeOutRight;
+    animation-name: fadeOutRight;
 }
+
 @-webkit-keyframes fadeOutUpBig {
 	0% {
 		opacity: 1;
@@ -1721,12 +1747,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeOutUpBig {
-	-webkit-animation-name: fadeOutUpBig;
-	-moz-animation-name: fadeOutUpBig;
-	-ms-animation-name: fadeOutUpBig;
-	-o-animation-name: fadeOutUpBig;
-	animation-name: fadeOutUpBig;
+    -webkit-animation-name: fadeOutUpBig;
+    -moz-animation-name: fadeOutUpBig;
+    -ms-animation-name: fadeOutUpBig;
+    -o-animation-name: fadeOutUpBig;
+    animation-name: fadeOutUpBig;
 }
+
 @-webkit-keyframes fadeOutDownBig {
 	0% {
 		opacity: 1;
@@ -1788,12 +1815,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeOutDownBig {
-	-webkit-animation-name: fadeOutDownBig;
-	-moz-animation-name: fadeOutDownBig;
-	-ms-animation-name: fadeOutDownBig;
-	-o-animation-name: fadeOutDownBig;
-	animation-name: fadeOutDownBig;
+    -webkit-animation-name: fadeOutDownBig;
+    -moz-animation-name: fadeOutDownBig;
+    -ms-animation-name: fadeOutDownBig;
+    -o-animation-name: fadeOutDownBig;
+    animation-name: fadeOutDownBig;
 }
+
 @-webkit-keyframes fadeOutLeftBig {
 	0% {
 		opacity: 1;
@@ -1855,12 +1883,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeOutLeftBig {
-	-webkit-animation-name: fadeOutLeftBig;
-	-moz-animation-name: fadeOutLeftBig;
-	-ms-animation-name: fadeOutLeftBig;
-	-o-animation-name: fadeOutLeftBig;
-	animation-name: fadeOutLeftBig;
+    -webkit-animation-name: fadeOutLeftBig;
+    -moz-animation-name: fadeOutLeftBig;
+    -ms-animation-name: fadeOutLeftBig;
+    -o-animation-name: fadeOutLeftBig;
+    animation-name: fadeOutLeftBig;
 }
+
 @-webkit-keyframes fadeOutRightBig {
 	0% {
 		opacity: 1;
@@ -1918,12 +1947,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .fadeOutRightBig {
-	-webkit-animation-name: fadeOutRightBig;
-	-moz-animation-name: fadeOutRightBig;
-	-ms-animation-name: fadeOutRightBig;
-	-o-animation-name: fadeOutRightBig;
-	animation-name: fadeOutRightBig;
+    -webkit-animation-name: fadeOutRightBig;
+    -moz-animation-name: fadeOutRightBig;
+    -ms-animation-name: fadeOutRightBig;
+    -o-animation-name: fadeOutRightBig;
+    animation-name: fadeOutRightBig;
 }
+
 @-webkit-keyframes bounceIn {
 	0% {
 		opacity: 0;
@@ -2025,12 +2055,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceIn {
-	-webkit-animation-name: bounceIn;
-	-moz-animation-name: bounceIn;
-	-ms-animation-name: bounceIn;
-	-o-animation-name: bounceIn;
-	animation-name: bounceIn;
+    -webkit-animation-name: bounceIn;
+    -moz-animation-name: bounceIn;
+    -ms-animation-name: bounceIn;
+    -o-animation-name: bounceIn;
+    animation-name: bounceIn;
 }
+
 @-webkit-keyframes bounceInUp {
 	0% {
 		opacity: 0;
@@ -2130,12 +2161,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceInUp {
-	-webkit-animation-name: bounceInUp;
-	-moz-animation-name: bounceInUp;
-	-ms-animation-name: bounceInUp;
-	-o-animation-name: bounceInUp;
-	animation-name: bounceInUp;
+    -webkit-animation-name: bounceInUp;
+    -moz-animation-name: bounceInUp;
+    -ms-animation-name: bounceInUp;
+    -o-animation-name: bounceInUp;
+    animation-name: bounceInUp;
 }
+
 @-webkit-keyframes bounceInDown {
 	0% {
 		opacity: 0;
@@ -2237,12 +2269,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceInDown {
-	-webkit-animation-name: bounceInDown;
-	-moz-animation-name: bounceInDown;
-	-ms-animation-name: bounceInDown;
-	-o-animation-name: bounceInDown;
-	animation-name: bounceInDown;
+    -webkit-animation-name: bounceInDown;
+    -moz-animation-name: bounceInDown;
+    -ms-animation-name: bounceInDown;
+    -o-animation-name: bounceInDown;
+    animation-name: bounceInDown;
 }
+
 @-webkit-keyframes bounceInLeft {
 	0% {
 		opacity: 0;
@@ -2344,12 +2377,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceInLeft {
-	-webkit-animation-name: bounceInLeft;
-	-moz-animation-name: bounceInLeft;
-	-ms-animation-name: bounceInLeft;
-	-o-animation-name: bounceInLeft;
-	animation-name: bounceInLeft;
+    -webkit-animation-name: bounceInLeft;
+    -moz-animation-name: bounceInLeft;
+    -ms-animation-name: bounceInLeft;
+    -o-animation-name: bounceInLeft;
+    animation-name: bounceInLeft;
 }
+
 @-webkit-keyframes bounceInRight {
 	0% {
 		opacity: 0;
@@ -2451,12 +2485,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceInRight {
-	-webkit-animation-name: bounceInRight;
-	-moz-animation-name: bounceInRight;
-	-ms-animation-name: bounceInRight;
-	-o-animation-name: bounceInRight;
-	animation-name: bounceInRight;
+    -webkit-animation-name: bounceInRight;
+    -moz-animation-name: bounceInRight;
+    -ms-animation-name: bounceInRight;
+    -o-animation-name: bounceInRight;
+    animation-name: bounceInRight;
 }
+
 @-webkit-keyframes bounceOut {
 	0% {
 		-webkit-transform: scale(1);
@@ -2558,12 +2593,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceOut {
-	-webkit-animation-name: bounceOut;
-	-moz-animation-name: bounceOut;
-	-ms-animation-name: bounceOut;
-	-o-animation-name: bounceOut;
-	animation-name: bounceOut;
+    -webkit-animation-name: bounceOut;
+    -moz-animation-name: bounceOut;
+    -ms-animation-name: bounceOut;
+    -o-animation-name: bounceOut;
+    animation-name: bounceOut;
 }
+
 @-webkit-keyframes bounceOutUp {
 	0% {
 		-webkit-transform: translateY(0);
@@ -2645,12 +2681,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceOutUp {
-	-webkit-animation-name: bounceOutUp;
-	-moz-animation-name: bounceOutUp;
-	-ms-animation-name: bounceOutUp;
-	-o-animation-name: bounceOutUp;
-	animation-name: bounceOutUp;
+    -webkit-animation-name: bounceOutUp;
+    -moz-animation-name: bounceOutUp;
+    -ms-animation-name: bounceOutUp;
+    -o-animation-name: bounceOutUp;
+    animation-name: bounceOutUp;
 }
+
 @-webkit-keyframes bounceOutDown {
 	0% {
 		-webkit-transform: translateY(0);
@@ -2716,11 +2753,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceOutDown {
-	-webkit-animation-name: bounceOutDown;
-	-moz-animation-name: bounceOutDown;
-	-ms-animation-name: bounceOutDown;
-	animation-name: bounceOutDown;
+    -webkit-animation-name: bounceOutDown;
+    -moz-animation-name: bounceOutDown;
+    -ms-animation-name: bounceOutDown;
+    animation-name: bounceOutDown;
 }
+
 @-webkit-keyframes bounceOutLeft {
 	0% {
 		-webkit-transform: translateX(0);
@@ -2802,12 +2840,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceOutLeft {
-	-webkit-animation-name: bounceOutLeft;
-	-moz-animation-name: bounceOutLeft;
-	-ms-animation-name: bounceOutLeft;
-	-o-animation-name: bounceOutLeft;
-	animation-name: bounceOutLeft;
+    -webkit-animation-name: bounceOutLeft;
+    -moz-animation-name: bounceOutLeft;
+    -ms-animation-name: bounceOutLeft;
+    -o-animation-name: bounceOutLeft;
+    animation-name: bounceOutLeft;
 }
+
 @-webkit-keyframes bounceOutRight {
 	0% {
 		-webkit-transform: translateX(0);
@@ -2889,12 +2928,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .bounceOutRight {
-	-webkit-animation-name: bounceOutRight;
-	-moz-animation-name: bounceOutRight;
-	-ms-animation-name: bounceOutRight;
-	-o-animation-name: bounceOutRight;
-	animation-name: bounceOutRight;
+    -webkit-animation-name: bounceOutRight;
+    -moz-animation-name: bounceOutRight;
+    -ms-animation-name: bounceOutRight;
+    -o-animation-name: bounceOutRight;
+    animation-name: bounceOutRight;
 }
+
 @-webkit-keyframes rotateIn {
 	0% {
 		-webkit-transform-origin: center center;
@@ -2962,12 +3002,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateIn {
-	-webkit-animation-name: rotateIn;
-	-moz-animation-name: rotateIn;
-	-ms-animation-name: rotateIn;
-	-o-animation-name: rotateIn;
-	animation-name: rotateIn;
+    -webkit-animation-name: rotateIn;
+    -moz-animation-name: rotateIn;
+    -ms-animation-name: rotateIn;
+    -o-animation-name: rotateIn;
+    animation-name: rotateIn;
 }
+
 @-webkit-keyframes rotateInUpLeft {
 	0% {
 		-webkit-transform-origin: left bottom;
@@ -3039,12 +3080,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateInUpLeft {
-	-webkit-animation-name: rotateInUpLeft;
-	-moz-animation-name: rotateInUpLeft;
-	-ms-animation-name: rotateInUpLeft;
-	-o-animation-name: rotateInUpLeft;
-	animation-name: rotateInUpLeft;
+    -webkit-animation-name: rotateInUpLeft;
+    -moz-animation-name: rotateInUpLeft;
+    -ms-animation-name: rotateInUpLeft;
+    -o-animation-name: rotateInUpLeft;
+    animation-name: rotateInUpLeft;
 }
+
 @-webkit-keyframes rotateInDownLeft {
 	0% {
 		-webkit-transform-origin: left bottom;
@@ -3116,12 +3158,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateInDownLeft {
-	-webkit-animation-name: rotateInDownLeft;
-	-moz-animation-name: rotateInDownLeft;
-	-ms-animation-name: rotateInDownLeft;
-	-o-animation-name: rotateInDownLeft;
-	animation-name: rotateInDownLeft;
+    -webkit-animation-name: rotateInDownLeft;
+    -moz-animation-name: rotateInDownLeft;
+    -ms-animation-name: rotateInDownLeft;
+    -o-animation-name: rotateInDownLeft;
+    animation-name: rotateInDownLeft;
 }
+
 @-webkit-keyframes rotateInUpRight {
 	0% {
 		-webkit-transform-origin: right bottom;
@@ -3193,12 +3236,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateInUpRight {
-	-webkit-animation-name: rotateInUpRight;
-	-moz-animation-name: rotateInUpRight;
-	-ms-animation-name: rotateInUpRight;
-	-o-animation-name: rotateInUpRight;
-	animation-name: rotateInUpRight;
+    -webkit-animation-name: rotateInUpRight;
+    -moz-animation-name: rotateInUpRight;
+    -ms-animation-name: rotateInUpRight;
+    -o-animation-name: rotateInUpRight;
+    animation-name: rotateInUpRight;
 }
+
 @-webkit-keyframes rotateInDownRight {
 	0% {
 		-webkit-transform-origin: right bottom;
@@ -3270,12 +3314,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateInDownRight {
-	-webkit-animation-name: rotateInDownRight;
-	-moz-animation-name: rotateInDownRight;
-	-ms-animation-name: rotateInDownRight;
-	-o-animation-name: rotateInDownRight;
-	animation-name: rotateInDownRight;
+    -webkit-animation-name: rotateInDownRight;
+    -moz-animation-name: rotateInDownRight;
+    -ms-animation-name: rotateInDownRight;
+    -o-animation-name: rotateInDownRight;
+    animation-name: rotateInDownRight;
 }
+
 @-webkit-keyframes rotateOut {
 	0% {
 		-webkit-transform-origin: center center;
@@ -3347,12 +3392,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateOut {
-	-webkit-animation-name: rotateOut;
-	-moz-animation-name: rotateOut;
-	-ms-animation-name: rotateOut;
-	-o-animation-name: rotateOut;
-	animation-name: rotateOut;
+    -webkit-animation-name: rotateOut;
+    -moz-animation-name: rotateOut;
+    -ms-animation-name: rotateOut;
+    -o-animation-name: rotateOut;
+    animation-name: rotateOut;
 }
+
 @-webkit-keyframes rotateOutUpLeft {
 	0% {
 		-webkit-transform-origin: left bottom;
@@ -3424,12 +3470,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateOutUpLeft {
-	-webkit-animation-name: rotateOutUpLeft;
-	-moz-animation-name: rotateOutUpLeft;
-	-ms-animation-name: rotateOutUpLeft;
-	-o-animation-name: rotateOutUpLeft;
-	animation-name: rotateOutUpLeft;
+    -webkit-animation-name: rotateOutUpLeft;
+    -moz-animation-name: rotateOutUpLeft;
+    -ms-animation-name: rotateOutUpLeft;
+    -o-animation-name: rotateOutUpLeft;
+    animation-name: rotateOutUpLeft;
 }
+
 @-webkit-keyframes rotateOutDownLeft {
 	0% {
 		-webkit-transform-origin: left bottom;
@@ -3501,12 +3548,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateOutDownLeft {
-	-webkit-animation-name: rotateOutDownLeft;
-	-moz-animation-name: rotateOutDownLeft;
-	-ms-animation-name: rotateOutDownLeft;
-	-o-animation-name: rotateOutDownLeft;
-	animation-name: rotateOutDownLeft;
+    -webkit-animation-name: rotateOutDownLeft;
+    -moz-animation-name: rotateOutDownLeft;
+    -ms-animation-name: rotateOutDownLeft;
+    -o-animation-name: rotateOutDownLeft;
+    animation-name: rotateOutDownLeft;
 }
+
 @-webkit-keyframes rotateOutUpRight {
 	0% {
 		-webkit-transform-origin: right bottom;
@@ -3578,12 +3626,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateOutUpRight {
-	-webkit-animation-name: rotateOutUpRight;
-	-moz-animation-name: rotateOutUpRight;
-	-ms-animation-name: rotateOutUpRight;
-	-o-animation-name: rotateOutUpRight;
-	animation-name: rotateOutUpRight;
+    -webkit-animation-name: rotateOutUpRight;
+    -moz-animation-name: rotateOutUpRight;
+    -ms-animation-name: rotateOutUpRight;
+    -o-animation-name: rotateOutUpRight;
+    animation-name: rotateOutUpRight;
 }
+
 @-webkit-keyframes rotateOutDownRight {
 	0% {
 		-webkit-transform-origin: right bottom;
@@ -3655,12 +3704,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rotateOutDownRight {
-	-webkit-animation-name: rotateOutDownRight;
-	-moz-animation-name: rotateOutDownRight;
-	-ms-animation-name: rotateOutDownRight;
-	-o-animation-name: rotateOutDownRight;
-	animation-name: rotateOutDownRight;
+    -webkit-animation-name: rotateOutDownRight;
+    -moz-animation-name: rotateOutDownRight;
+    -ms-animation-name: rotateOutDownRight;
+    -o-animation-name: rotateOutDownRight;
+    animation-name: rotateOutDownRight;
 }
+
 @-webkit-keyframes hinge {
 	0% { -webkit-transform: rotate(0); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }	
 	20%, 60% { -webkit-transform: rotate(80deg); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }	
@@ -3702,12 +3752,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .hinge {
-	-webkit-animation-name: hinge;
-	-moz-animation-name: hinge;
-	-ms-animation-name: hinge;
-	-o-animation-name: hinge;
-	animation-name: hinge;
+    -webkit-animation-name: hinge;
+    -moz-animation-name: hinge;
+    -ms-animation-name: hinge;
+    -o-animation-name: hinge;
+    animation-name: hinge;
 }
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @-webkit-keyframes rollIn {
@@ -3736,12 +3787,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rollIn {
-	-webkit-animation-name: rollIn;
-	-moz-animation-name: rollIn;
-	-ms-animation-name: rollIn;
-	-o-animation-name: rollIn;
-	animation-name: rollIn;
+    -webkit-animation-name: rollIn;
+    -moz-animation-name: rollIn;
+    -ms-animation-name: rollIn;
+    -o-animation-name: rollIn;
+    animation-name: rollIn;
 }
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @-webkit-keyframes rollOut {
@@ -3805,9 +3857,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .rollOut {
-	-webkit-animation-name: rollOut;
-	-moz-animation-name: rollOut;
-	-ms-animation-name: rollOut;
-	-o-animation-name: rollOut;
-	animation-name: rollOut;
+    -webkit-animation-name: rollOut;
+    -moz-animation-name: rollOut;
+    -ms-animation-name: rollOut;
+    -o-animation-name: rollOut;
+    animation-name: rollOut;
 }

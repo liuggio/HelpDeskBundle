@@ -36,122 +36,141 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-@namespace url(http://www.w3.org/1999/xhtml); /* set default namespace to HTML */
-
+@namespace
+url
+(
+http://www.w3.org/1999/xhtml
+)
+;
+/* set default namespace to HTML */
 
 #viewsource {
-  font-family: -moz-fixed;
-  font-weight: normal;
-  color: black;
-  white-space: pre;
+    font-family: -moz-fixed;
+    font-weight: normal;
+    color: black;
+    white-space: pre;
 }
+
 #viewsource.wrap {
-  white-space: -moz-pre-wrap;
+    white-space: -moz-pre-wrap;
 }
+
 .start-tag {
- color: purple;
- font-weight: bold;
+    color: purple;
+    font-weight: bold;
 }
+
 .end-tag {
- color: purple;
- font-weight: bold; 
+    color: purple;
+    font-weight: bold;
 }
+
 .comment {
- color: green;
- font-style: italic;
+    color: green;
+    font-style: italic;
 }
+
 .cdata {
- color: #CC0066;
+    color: #CC0066;
 }
+
 .doctype {
- color: steelblue;
- font-style: italic;
+    color: steelblue;
+    font-style: italic;
 }
+
 .pi {
- color: orchid;
- font-style: italic;
+    color: orchid;
+    font-style: italic;
 }
+
 .entity {
- color:#FF4500;
- font-weight: normal;
+    color: #FF4500;
+    font-weight: normal;
 }
+
 .text {
-  -moz-user-select: text;
-  font-weight: normal;
+    -moz-user-select: text;
+    font-weight: normal;
 }
+
 .attribute-name {
- color: black;
- font-weight: bold;
+    color: black;
+    font-weight: bold;
 }
+
 .attribute-value {
- color: blue;
- font-weight: normal;
+    color: blue;
+    font-weight: normal;
 }
+
 .summary {
- display: block;
- background-color: #FFFFCC;
- width: 90%;
- border: solid;
- border-width: 1pt;
- font-family: sans-serif;
+    display: block;
+    background-color: #FFFFCC;
+    width: 90%;
+    border: solid;
+    border-width: 1pt;
+    font-family: sans-serif;
 }
+
 .popup {
-  font-weight: normal;
+    font-weight: normal;
 }
+
 .markupdeclaration {
- color: steelblue;
- font-style: italic;
+    color: steelblue;
+    font-style: italic;
 }
+
 .error, .error > .start-tag, .error > .end-tag,
 .error > .comment, .error > .cdata, .error > .doctype,
 .error > .pi, .error > .entity, .error > .attribute-name,
 .error > .attribute-value {
-  color: red;
-  font-weight: bold;
+    color: red;
+    font-weight: bold;
 }
 
-
 #header {
-  background-color: #ccc;
-  border-bottom: 3px solid black;
-  padding: 0.5em;
-  margin-bottom: 1em;
+    background-color: #ccc;
+    border-bottom: 3px solid black;
+    padding: 0.5em;
+    margin-bottom: 1em;
 }
 
 table {
-  border-spacing: 0;
-  margin: 0;
+    border-spacing: 0;
+    margin: 0;
 }
 
 td {
-  padding: 0;
+    padding: 0;
 }
 
 .indent {
-  margin-left: 1em;
+    margin-left: 1em;
 }
 
 .spacer {
-  width: 1em;
+    width: 1em;
 }
 
 .expander {
-  cursor: pointer;
-  -moz-user-select: none;
-  vertical-align: top;
-  text-align: center;
+    cursor: pointer;
+    -moz-user-select: none;
+    vertical-align: top;
+    text-align: center;
 }
 
 .expander-closed > * > .expander-content {
-  display: none;
+    display: none;
 }
 
 .comment {
-  font-family: monospace;
-  white-space: pre;
+    font-family: monospace;
+    white-space: pre;
 }
 
 .attribute-href {
- color: blue;
- font-weight: normal;
+    color: blue;
+    font-weight: normal;
 }

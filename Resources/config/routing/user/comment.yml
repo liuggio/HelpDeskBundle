@@ -1,4 +1,4 @@
 comment_create:
     pattern:  /create
-    defaults: { _controller: "LiuggioHelpDeskBundle:Comment:create" }
+    defaults: { _controller: "LiuggioHelpDeskBundle:Comment:create",redirectTo: 'ticket_show', state: 'pending' }
     requirements: { _method: post }

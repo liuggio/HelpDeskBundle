@@ -20,23 +20,21 @@ class TicketAdmin extends Admin
             ->add('body')
             ->add('language')
             ->add('state')
-            ->add('comments')
-        ;
+            ->add('comments');
     }
 
     public function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->with('General')
-                ->add('category', 'sonata_type_model', array('required'=>true))
-                ->add('subject')
-                ->add('body')
-                ->add('language')
-                ->add('state', 'sonata_type_model', array('required'=>true))
-                ->add('comments', 'sonata_type_model', array('required'=>false))
-                ->add('createdBy', 'sonata_type_model', array('required'=>true))
-            ->end()
-        ;
+            ->add('category', 'sonata_type_model', array('required' => true))
+            ->add('subject')
+            ->add('body')
+            ->add('language')
+            ->add('state', 'sonata_type_model', array('required' => true))
+            ->add('comments', 'sonata_type_model', array('required' => false))
+            ->add('createdBy', 'sonata_type_model', array('required' => true))
+            ->end();
     }
 
     public function configureListFields(ListMapper $listMapper)
@@ -49,8 +47,7 @@ class TicketAdmin extends Admin
             ->add('language')
             ->add('state')
             ->add('comments')
-            ->add('createdBy')
-        ;
+            ->add('createdBy');
     }
 
     public function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -63,8 +60,7 @@ class TicketAdmin extends Admin
             ->add('language')
             ->add('state')
             ->add('createdBy')
-            ->add('comments')
-        ;
+            ->add('comments');
     }
 
     public function getPersistentParameters()
@@ -72,7 +68,7 @@ class TicketAdmin extends Admin
         if (!$this->hasRequest()) {
             return array();
         }
-        $state =  $this->getRequest()->get('state');
+        $state = $this->getRequest()->get('state');
 
         return array(
             'state' => $state,

@@ -11,8 +11,8 @@
         <form action="{{ path('ticket_rate') }}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
             <p>
-                <button type="submit" name="rate" value="rate" >{{ "rate_action"|trans }}</button>
-                <a href = "{{ path('ticket') }}" >{{ "skip_action"|trans }}</a>
+                <button type="submit" name="rate" value="rate">{{ "rate_action"|trans }}</button>
+                <a href="{{ path('ticket') }}">{{ "skip_action"|trans }}</a>
             </p>
         </form>
     </li>

@@ -2,34 +2,35 @@
 {% block content %}
 
 <h1>Ticket list</h1>
-<br />
-<hr />
-<br />
+<br/>
+<hr/>
+<br/>
 <a href="{{ path('ticket_admin', { 'state': 'open' }) }}">{{ "open_state"|trans }}</a>
 <a href="{{ path('ticket_admin', { 'state': 'closed' }) }}">{{ "closed_state"|trans }}</a>
 
-<br />
-<form action="{{ path('ticket_search_admin', { 'state': state }) }}" method="get" {{ form_enctype(form) }}>{{ form_widget(form) }}
+<br/>
+<form action="{{ path('ticket_search_admin', { 'state': state }) }}"
+      method="get" {{ form_enctype(form) }}>{{ form_widget(form) }}
     <p>
         <button type="submit">{{ "search_action"|trans }}</button>
     </p>
 </form>
-<hr />
+<hr/>
 
-<br />
+<br/>
 {% if app.session.hasFlash('invalid_search_form_notice') %}
 <div class="flash-notice">
     {{ app.session.flash('invalid_search_form_notice')|trans }}
 </div>
 {% endif %}
-<br />
+<br/>
 
 
-    <ul>your categories
-        {% for category in categories %}
-        <li><a href="?s[request_pattern]={{ category.name }}">{{ category.name|trans }}</a></li>
-        {% endfor %}
-    </ul>
+<ul>your categories
+    {% for category in categories %}
+    <li><a href="?s[request_pattern]={{ category.name }}">{{ category.name|trans }}</a></li>
+    {% endfor %}
+</ul>
 
 
 {% if entities|length %}
@@ -66,11 +67,11 @@
     </tbody>
 </table>
 {% else %}
-<br />
+<br/>
 <p>
 <h3>{{ "no_ticket_found_message"|trans }}</h3>
 </p>
-<br />
+<br/>
 {% endif %}
 
 {% endblock %}

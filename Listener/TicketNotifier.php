@@ -103,7 +103,7 @@ class TicketNotifier
 
             $bodyTemplateArgs = array('ticket' => $entity, 'user' => $entity->getCreatedBy(), 'action' => $isUpdate);
             $from = $this->getEmailSender();
-            $to =  $entity->getCreatedBy()->getEmail();
+            $to = $entity->getCreatedBy()->getEmail();
             $subject = sprintf('Ticket Event on #%d %s', $entity->getId(), $entity->getState());
             $subjectPrefix = $this->getEmailSubjectPrefix();
             $this->sendEmailToUser($mailTemplateOperator, $bodyTemplateArgs, $from, $to, $subject, $subjectPrefix);

@@ -3,7 +3,6 @@
 namespace Liuggio\HelpDeskBundle\Model;
 
 
-
 abstract class Comment implements CommentInterface
 {
     /**

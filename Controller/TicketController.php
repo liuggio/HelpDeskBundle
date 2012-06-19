@@ -83,8 +83,8 @@ class TicketController extends Controller
         $aclManager = $this->get('liuggio_help_desk.acl.manager');
         $aclManager->checkPermissions($entity);
 
-        $comment = $this->get('liuggio_help_desk.ticket.manager')
-            ->createComment();
+        $comment = $this->get('liuggio_help_desk.comment.manager')
+            ->createEntity();
 
         $ticket_form = $this->createForm(new CloseTicketType($entity->getId()));
         $comment_form = $this->createForm(new CommentType($entity->getId()), $comment);
@@ -138,7 +138,7 @@ class TicketController extends Controller
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->get('liuggio_help_desk.doctrine.manager');
             $locale = $this->getRequest()->getLocale();
             if (isset($locale)) {
                 $entity->setLanguage($locale);
@@ -160,7 +160,6 @@ class TicketController extends Controller
             $aclManager->insertAce($entity, $user);
 
 
-
             return $this->redirect($this->generateUrl('ticket_show', array('id' => $entity->getId())));
 
         }
@@ -177,7 +176,7 @@ class TicketController extends Controller
      */
     public function closeAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->get('liuggio_help_desk.doctrine.manager');
         $entity = $this->get('liuggio_help_desk.ticket.manager')
             ->getTicketRepository()
             ->find($id);
@@ -229,7 +228,7 @@ class TicketController extends Controller
             $ticket_id = $formData['ticket_id'];
             $rate_val = $formData['rate'];
 
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->get('liuggio_help_desk.doctrine.manager');
 
             $entity = $this->get('liuggio_help_desk.ticket.manager')
                 ->getTicketRepository()

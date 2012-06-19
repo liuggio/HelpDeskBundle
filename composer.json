@@ -1,34 +1,36 @@
 {
-    "name": "liuggio/help-desk-bundle",
-    "description": "Provides help desk and ticketing system for support your customer, this is a #Symfony2 Bundles",
-    "keywords": ["menu", "customer care", "support", "help desk", "customer"],
-    "type": "symfony-bundle",
-    "license": "MIT",
-    "authors": [
+    "name":"liuggio/help-desk-bundle",
+    "description":"Provides help desk and ticketing system for support your customer, this is a #Symfony2 Bundles",
+    "keywords":["menu", "customer care", "support", "help desk", "customer"],
+    "type":"symfony-bundle",
+    "license":"MIT",
+    "authors":[
         {
-            "name": "liuggio",
-            "homepage": "http://www.welcometothebundle.com",
-            "email": "liuggio@gmail.com"
+            "name":"liuggio",
+            "homepage":"http://www.welcometothebundle.com",
+            "email":"liuggio@gmail.com"
         },
         {
-            "name": "Erin Hima",
-            "email": "erinhima@gmail.com"
+            "name":"Erin Hima",
+            "email":"erinhima@gmail.com"
         },
         {
-            "name": "Tvision developers",
-            "homepage": "https://github.com/tvision"
+            "name":"Tvision developers",
+            "homepage":"https://github.com/tvision"
         }
     ],
-    "require": {
-        "symfony/symfony": ">=2.0,<2.2-dev",
-        "sonata-project/easy-extends-bundle": "dev-master",
-        "friendsofsymfony/user-bundle": "1.2.*"
+    "require":{
+        "symfony/symfony":">=2.0,<2.2-dev",
+        "sonata-project/easy-extends-bundle":"dev-master",
+        "friendsofsymfony/user-bundle":"1.2.*"
     },
-    "suggest": {
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master"
+    "suggest":{
+        "sonata-project/doctrine-orm-admin-bundle":"dev-master"
     },
-    "autoload": {
-        "psr-0": { "Liuggio\\HelpDeskBundle": "" }
+    "autoload":{
+        "psr-0":{
+            "Liuggio\\HelpDeskBundle":""
+        }
     },
-    "target-dir": "Liuggio/HelpDeskBundle"
+    "target-dir":"Liuggio/HelpDeskBundle"
 }

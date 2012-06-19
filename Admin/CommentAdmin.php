@@ -17,20 +17,18 @@ class CommentAdmin extends Admin
             ->add('ticket')
             ->add('createdBy')
             ->add('body')
-            ->add('createdAt')
-        ;
+            ->add('createdAt');
     }
 
     public function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->with('General')
-                ->add('createdBy', 'sonata_type_model', array('required'=>true))
-                ->add('ticket', 'sonata_type_model', array('required'=>true))
-                ->add('body')
-                ->add('createdAt')
-            ->end()
-        ;
+            ->add('createdBy', 'sonata_type_model', array('required' => true))
+            ->add('ticket', 'sonata_type_model', array('required' => true))
+            ->add('body')
+            ->add('createdAt')
+            ->end();
     }
 
     public function configureListFields(ListMapper $listMapper)
@@ -40,8 +38,7 @@ class CommentAdmin extends Admin
             ->add('ticket')
             ->add('createdBy')
             ->add('body')
-            ->add('createdAt')
-        ;
+            ->add('createdAt');
     }
 
     public function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -51,8 +48,7 @@ class CommentAdmin extends Admin
             ->add('ticket')
             ->add('createdBy')
             ->add('body')
-            ->add('createdAt')
-        ;
+            ->add('createdAt');
     }
 
 }

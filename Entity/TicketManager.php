@@ -16,13 +16,12 @@ class TicketManager extends BaseTicketManager
      */
     public function isOperatorGrantedForThisTicket($ticket, $operator)
     {
-
         $qb = $this->getObjectManager()->createQueryBuilder();
 
         $qb->select('t')
             ->from('LiuggioHelpDeskBundle:Ticket', 't')
             ->leftjoin('t.category', 'ct')
-            ->leftjoin('ct.operators','opr')
+            ->leftjoin('ct.operators', 'opr')
             ->where('t = :ticket')
             ->andWhere('opr = :user')
             ->setParameter('ticket', $ticket)
@@ -30,12 +29,11 @@ class TicketManager extends BaseTicketManager
 
         $result = $qb->getQuery()->getResult();
 
-        if(empty($result)) {
+        if (empty($result)) {
             return false;
         }
         return true;
     }
-
 
 
 }

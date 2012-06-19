@@ -1,4 +1,4 @@
 comment_create_admin:
     pattern:  /create
-    defaults: { _controller: "LiuggioHelpDeskBundle:CommentOperator:create" }
+    defaults: { _controller: "LiuggioHelpDeskBundle:Comment:create", state: 'replied', redirectTo: 'ticket_show_admin' }
     requirements: { _method: post }
