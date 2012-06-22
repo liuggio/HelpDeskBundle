@@ -23,7 +23,7 @@ Install this bundle as always :)
 
 ## Composer: add to your composer
 
-1 Add the following entry to ``composer.json`` the run ``php bin/vendors install``.
+1 Add the following entry to ``composer.json`` the run ``composer.phar install``.
 
 ``` json
 
