@@ -19,8 +19,6 @@ class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
         $em->persist($category);
         $this->addReference('administrative_category', $category);
 
-        $em->flush();
-
         $category = new Category();
         $category->setName('Other');
         $category->setDescription('Other problems');
@@ -28,6 +26,14 @@ class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
         $category->setIsEnable(true);
         $em->persist($category);
         $this->addReference('other_category', $category);
+
+        $category = new Category();
+        $category->setName('Member Card');
+        $category->setDescription('Member Card');
+        $category->setWeight(3);
+        $category->setIsEnable(true);
+        $em->persist($category);
+        $this->addReference('member_card', $category);
 
         $em->flush();
 

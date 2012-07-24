@@ -1,7 +1,7 @@
 parameters:
-  liuggio_help_desk.ticket.manager.class: Liuggio\HelpDeskBundle\Entity\TicketManager
-  liuggio_help_desk.comment.manager.class: Liuggio\HelpDeskBundle\Entity\CommentManager
-  liuggio_help_desk.category.manager.class: Liuggio\HelpDeskBundle\Entity\CategoryManager
+  liuggio_help_desk.ticket.manager.class: Liuggio\HelpDeskBundle\Manager\TicketManager
+  liuggio_help_desk.comment.manager.class: Liuggio\HelpDeskBundle\Manager\CommentManager
+  liuggio_help_desk.category.manager.class: Liuggio\HelpDeskBundle\Manager\CategoryManager
   liuggio_help_desk.ticket.listener.class: Liuggio\HelpDeskBundle\Listener\TicketNotifier
 
 services:

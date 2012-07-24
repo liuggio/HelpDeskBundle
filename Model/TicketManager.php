@@ -11,7 +11,7 @@ abstract class TicketManager implements TicketManagerInterface
     protected $ticketClass;
     protected $ticketRepository;
 
-    function __construct(ObjectManager $objectManager, $ticketClass)
+    function __construct($objectManager, $ticketClass)
     {
         $this->objectManager = $objectManager;
         $this->ticketClass = $ticketClass;

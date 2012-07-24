@@ -5,6 +5,8 @@ namespace Liuggio\HelpDeskBundle\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Liuggio\HelpDeskBundle\Model\TicketManager as BaseTicketManager;
+use Liuggio\HelpDeskBundle\Model\Category;
+use Liuggio\HelpDeskBundle\Entity\TicketState;
 
 class TicketManager extends BaseTicketManager
 {
@@ -34,6 +36,25 @@ class TicketManager extends BaseTicketManager
         }
         return true;
     }
+
+
+    public function createTicketWithUserAndCategory(Category $category, $user, $subject, $body)
+    {
+        $state = $this->objectManager->getRepository('LiuggioHelpDeskBundle:TicketState')->findOneByCode(TicketState::STATE_NEW);
+        $ticket = $this->createTicket();
+        $ticket->setBody($body);
+        $ticket->setSubject($subject);
+        $ticket->setCreatedBy($user);
+        $ticket->setState($state);
+        $ticket->setCategory($category);
+
+        $this->objectManager->persist($ticket);
+        $this->objectManager->flush();
+
+        return $ticket;
+    }
+
+
 
 
 }
