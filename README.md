@@ -27,7 +27,7 @@ Install this bundle as always :)
 
 ``` json
 
-  'liuggio/help-desk-bundle': "dev-master"
+  "liuggio/help-desk-bundle": "dev-master"
 
 ```
 

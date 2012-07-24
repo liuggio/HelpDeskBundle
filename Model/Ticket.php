@@ -55,22 +55,22 @@ abstract class Ticket implements TicketInterface
     /**
      * @var Liuggio\HelpDeskBundle\Model\TicketState $state
      */
-    private $state;
+    protected $state;
 
     /**
      * @var \Liuggio\HelpDeskBundle\Model\Category $category
      */
-    private $category;
+    protected $category;
 
     /**
      * @var Liuggio\HelpDeskBundle\Model\Comment
      */
-    private $comments;
+    protected $comments;
 
     /**
      * @var Application\Sonata\UserBundle\Entity\User
      */
-    private $createdBy;
+    protected $createdBy;
 
     /**
      * @var datetime $updatedAt
