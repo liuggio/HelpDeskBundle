@@ -22,7 +22,7 @@
     "require":{
         "symfony/symfony":">=2.0,<2.2-dev",
         "sonata-project/easy-extends-bundle":"dev-master",
-        "friendsofsymfony/user-bundle":"1.2.*"
+        "friendsofsymfony/user-bundle":">1.2.*"
     },
     "suggest":{
         "sonata-project/doctrine-orm-admin-bundle":"dev-master"
