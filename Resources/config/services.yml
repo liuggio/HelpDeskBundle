@@ -1,8 +1,9 @@
 parameters:
-  liuggio_help_desk.ticket.manager.class: Liuggio\HelpDeskBundle\Entity\TicketManager
-  liuggio_help_desk.comment.manager.class: Liuggio\HelpDeskBundle\Entity\CommentManager
-  liuggio_help_desk.category.manager.class: Liuggio\HelpDeskBundle\Entity\CategoryManager
+  liuggio_help_desk.ticket.manager.class: Liuggio\HelpDeskBundle\Manager\TicketManager
+  liuggio_help_desk.comment.manager.class: Liuggio\HelpDeskBundle\Manager\CommentManager
+  liuggio_help_desk.category.manager.class: Liuggio\HelpDeskBundle\Manager\CategoryManager
   liuggio_help_desk.ticket.listener.class: Liuggio\HelpDeskBundle\Listener\TicketNotifier
+  liuggio_help_desk.comment.class: Liuggio\HelpDeskBundle\Entity\Comment
 
 services:
 #acl manager
@@ -12,7 +13,7 @@ services:
 #manager
     liuggio_help_desk.ticket.manager:
         class: %liuggio_help_desk.ticket.manager.class%
-        arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk.ticket.class%, %liuggio_help_desk.comment.class%, @security.context]
+        arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk.ticket.class%, @liuggio_help_desk.acl.manager, %liuggio_help_desk.comment.class%, %liuggio_help_desk.category.class%]
 
     liuggio_help_desk_category.manager:
         class: %liuggio_help_desk.category.manager.class%
@@ -24,7 +25,7 @@ services:
 
     liuggio_help_desk.ticket.manager_no_doctrine:
         class: %liuggio_help_desk.ticket.manager.class%
-        arguments: [null, %liuggio_help_desk.ticket.class%, %liuggio_help_desk.comment.class%, null]
+        arguments: [null, %liuggio_help_desk.ticket.class%, @liuggio_help_desk.acl.manager, %liuggio_help_desk.comment.class%, %liuggio_help_desk.category.class%]
 
     liuggio_help_desk.ticket.listener:
         class: %liuggio_help_desk.ticket.listener.class%

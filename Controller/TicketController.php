@@ -83,7 +83,7 @@ class TicketController extends Controller
         $aclManager = $this->get('liuggio_help_desk.acl.manager');
         $aclManager->checkPermissions($entity);
 
-        $comment = $this->get('liuggio_help_desk.comment.manager')
+        $comment = $this->get('liuggio_help_desk_comment.manager')
             ->createEntity();
 
         $ticket_form = $this->createForm(new CloseTicketType($entity->getId()));

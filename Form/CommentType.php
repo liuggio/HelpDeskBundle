@@ -24,12 +24,12 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('ticket', 'hidden', array(
-            'data' => $this->ticket_id,
-            'mapped' => false
+                'data' => $this->ticket_id,
+                'mapped' => false
         ))
             ->add('createdBy', 'hidden')
             ->add('body', 'textarea', array(
-            'label' => 'comment_textarea_label'
+                'label' => 'comment_textarea_label'
         ));
     }
 
