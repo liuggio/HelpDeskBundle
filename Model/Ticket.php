@@ -277,7 +277,7 @@ abstract class Ticket implements TicketInterface
      *
      * @param Liuggio\HelpDeskBundle\Entity\TicketState $state
      */
-    public function setState(\Liuggio\HelpDeskBundle\Model\TicketState $state)
+    public function setState($state)
     {
         $this->state = $state;
     }

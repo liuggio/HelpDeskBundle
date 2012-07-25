@@ -10,11 +10,17 @@ abstract class TicketManager implements TicketManagerInterface
     protected $objectManager;
     protected $ticketClass;
     protected $ticketRepository;
+    protected $aclManager;
+    protected $ticketCommentClass;
+    protected $categoryClass;
 
-    function __construct(ObjectManager $objectManager, $ticketClass)
+    function __construct($objectManager, $ticketClass, $aclManager, $ticketCommentClass, $categoryClass)
     {
         $this->objectManager = $objectManager;
         $this->ticketClass = $ticketClass;
+        $this->aclManager = $aclManager;
+        $this->ticketCommentClass = $ticketCommentClass;
+        $this->categoryClass = $categoryClass;
     }
 
     public function setTicketClass($ticketClass)
@@ -51,6 +57,11 @@ abstract class TicketManager implements TicketManagerInterface
         return $this->ticketRepository;
     }
 
+    public function getCategoryRepository()
+    {
+        return $this->objectManager->getRepository($this->getCategoryClass());
+    }
+
     /**
      * Returns an empty ticket instance
      *
@@ -64,6 +75,35 @@ abstract class TicketManager implements TicketManagerInterface
         return $ticket;
     }
 
+    public function setAclManager($aclManager)
+    {
+        $this->aclManager = $aclManager;
+    }
+
+    public function getAclManager()
+    {
+        return $this->aclManager;
+    }
+
+    public function setCategoryClass($categoryClass)
+    {
+        $this->categoryClass = $categoryClass;
+    }
+
+    public function getCategoryClass()
+    {
+        return $this->categoryClass;
+    }
+
+    public function setTicketCommentClass($ticketCommentClass)
+    {
+        $this->ticketCommentClass = $ticketCommentClass;
+    }
+
+    public function getTicketCommentClass()
+    {
+        return $this->ticketCommentClass;
+    }
 
 
 }
