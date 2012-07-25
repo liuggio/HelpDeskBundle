@@ -12,7 +12,7 @@ services:
 #manager
     liuggio_help_desk.ticket.manager:
         class: %liuggio_help_desk.ticket.manager.class%
-        arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk.ticket.class%, %liuggio_help_desk.comment.class%, @security.context]
+        arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk.ticket.class%, @liuggio_help_desk.acl.manager]
 
     liuggio_help_desk_category.manager:
         class: %liuggio_help_desk.category.manager.class%

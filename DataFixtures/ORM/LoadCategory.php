@@ -28,7 +28,7 @@ class LoadCategory extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('other_category', $category);
 
         $category = new Category();
-        $category->setName('Member Card');
+        $category->setName('Member-Card');
         $category->setDescription('Member Card');
         $category->setWeight(3);
         $category->setIsEnable(true);

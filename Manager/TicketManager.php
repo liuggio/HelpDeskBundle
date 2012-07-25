@@ -38,18 +38,25 @@ class TicketManager extends BaseTicketManager
     }
 
 
-    public function createTicketWithUserAndCategory(Category $category, $user, $subject, $body)
+    public function createTicketWithUserAndCategory(Category $category, $language, $user, $subject, $body)
     {
         $state = $this->objectManager->getRepository('LiuggioHelpDeskBundle:TicketState')->findOneByCode(TicketState::STATE_NEW);
+
         $ticket = $this->createTicket();
         $ticket->setBody($body);
         $ticket->setSubject($subject);
         $ticket->setCreatedBy($user);
         $ticket->setState($state);
         $ticket->setCategory($category);
+        $ticket->setLanguage($language);
 
-        $this->objectManager->persist($ticket);
-        $this->objectManager->flush();
+        $this->getObjectManager()->persist($ticket);
+        $this->getObjectManager()->flush();
+
+        $aclManager = $this->getAclManager();
+        $aclManager->insertAce($ticket, $user);
+
+
 
         return $ticket;
     }

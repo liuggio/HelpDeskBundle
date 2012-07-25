@@ -10,11 +10,13 @@ abstract class TicketManager implements TicketManagerInterface
     protected $objectManager;
     protected $ticketClass;
     protected $ticketRepository;
+    protected $aclManager;
 
-    function __construct($objectManager, $ticketClass)
+    function __construct($objectManager, $ticketClass, $aclManager)
     {
         $this->objectManager = $objectManager;
         $this->ticketClass = $ticketClass;
+        $this->aclManager = $aclManager;
     }
 
     public function setTicketClass($ticketClass)
@@ -64,6 +66,15 @@ abstract class TicketManager implements TicketManagerInterface
         return $ticket;
     }
 
+    public function setAclManager($aclManager)
+    {
+        $this->aclManager = $aclManager;
+    }
+
+    public function getAclManager()
+    {
+        return $this->aclManager;
+    }
 
 
 }
