@@ -27,6 +27,35 @@ abstract class Ticket implements TicketInterface
         self::STATE_OPERATOR_CLOSE => array(TicketState::STATE_CLOSED, TicketState::STATE_REPLIED),
         self::STATE_OPERATOR_ALL => array(TicketState::STATE_NEW, TicketState::STATE_PENDING, TicketState::STATE_REPLIED, TicketState::STATE_CLOSED),
     );
+
+    static $OPERATOR_STATE = array(
+        self::STATE_OPERATOR_OPEN => array(TicketState::STATE_NEW, TicketState::STATE_PENDING),
+        self::STATE_OPERATOR_CLOSE => array(TicketState::STATE_CLOSED, TicketState::STATE_REPLIED),
+        self::STATE_OPERATOR_ALL => array(TicketState::STATE_NEW, TicketState::STATE_PENDING, TicketState::STATE_REPLIED, TicketState::STATE_CLOSED),
+    );
+
+    public static function getOperatorStates()
+    {
+        return array(
+            self::STATE_OPERATOR_OPEN ,
+            self::STATE_OPERATOR_CLOSE,
+            self::STATE_OPERATOR_ALL,
+        );
+    }
+
+    public function getOperatorState()
+    {
+        if($this->getState()){
+            $stateCode = $this->getState();
+            foreach(self::$OPERATOR_STATE as $key => $states){
+                if(in_array($stateCode, $states)){
+                    return $key;
+                }
+            }
+        }
+        return null;
+    }
+
     /**
      * @var integer $id
      */
@@ -82,6 +111,8 @@ abstract class Ticket implements TicketInterface
      * @var int or null if the ticket is not rated
      */
     protected $rate;
+
+    protected $operatorState;
     /**
      * @return string
      */

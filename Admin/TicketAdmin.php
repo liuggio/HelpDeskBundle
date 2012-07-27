@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Liuggio\HelpDeskBundle\Model\Ticket;
 
 class TicketAdmin extends Admin
 {
@@ -45,7 +46,7 @@ class TicketAdmin extends Admin
             ->add('category')
             ->add('subject')
             ->add('language')
-            ->add('state')
+            ->add('state.code')
             ->add('comments')
             ->add('createdBy');
     }
@@ -75,5 +76,28 @@ class TicketAdmin extends Admin
         );
     }
 
+    /**
+     * Callback function for date filtering
+     *
+     * @param type $queryBuilder
+     * @param type $alias
+     * @param type $field
+     * @param type $value
+     * @return type
+     */
+//    public function getFilteredTickets($queryBuilder, $alias, $field, $value)
+//    {
+//        var_dump($value,$alias, $field);
+//        if (!$value || $value['value'] == '') {
+//            return;
+//        }
+//
+//        var_dump(\Liuggio\HelpDeskBundle\Entity\Ticket::$OPERATOR_STATE);die;
+//        $codes = \Liuggio\HelpDeskBundle\Entity\Ticket::$OPERATOR_STATE[$value];
+//        var_dump($codes);
+//        $queryBuilder->Join(sprintf('%s.state', $alias), 's');
+//        $queryBuilder->andWhere('s.code IN :codes');
+//        $queryBuilder->setParameter('codes', $codes);
+//    }
 }
 
