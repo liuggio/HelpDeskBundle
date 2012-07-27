@@ -29,7 +29,7 @@ class CategoryAdmin extends Admin
             ->add('description')
             ->add('isEnable')
             ->add('weight')
-            ->add('operators', 'sonata_type_model', array('required' => false))
+            ->add('operators', 'sonata_type_model', array('by_reference' => false, 'required' => false))
             ->end();
     }
 

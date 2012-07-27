@@ -1,10 +1,9 @@
 {% extends 'SonataAdminBundle:CRUD:base_list.html.twig' %}
 
 {% block preview %}
-<ul class="pills">
-    <li><a><strong>{{ "label.state"|trans }}</strong></a></li>
+<strong>{{ "label.state"|trans }}</strong>
 
-    <li><a href="{{ admin.generateUrl('list', {'state' : '1' }) }}">{{ "pending"|trans }}</a></li>
-    <li><a href="{{ admin.generateUrl('list', {'state' : '2' }) }}">{{ "closed"|trans }}</a></li>
-</ul>
+<a class="btn" href="{{ admin.generateUrl('list', {'state' : '1' }) }}">{{ "pending"|trans }}</a>
+<a class="btn" href="{{ admin.generateUrl('list', {'state' : constant('Liuggio\\HelpDeskBundle\\Entity\\TicketState::STATE_CLOSED') }) }}">{{ "closed"|trans }}</a>
+
 {% endblock %}
