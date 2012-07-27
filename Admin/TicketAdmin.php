@@ -75,29 +75,5 @@ class TicketAdmin extends Admin
             'state' => $state,
         );
     }
-
-    /**
-     * Callback function for date filtering
-     *
-     * @param type $queryBuilder
-     * @param type $alias
-     * @param type $field
-     * @param type $value
-     * @return type
-     */
-//    public function getFilteredTickets($queryBuilder, $alias, $field, $value)
-//    {
-//        var_dump($value,$alias, $field);
-//        if (!$value || $value['value'] == '') {
-//            return;
-//        }
-//
-//        var_dump(\Liuggio\HelpDeskBundle\Entity\Ticket::$OPERATOR_STATE);die;
-//        $codes = \Liuggio\HelpDeskBundle\Entity\Ticket::$OPERATOR_STATE[$value];
-//        var_dump($codes);
-//        $queryBuilder->Join(sprintf('%s.state', $alias), 's');
-//        $queryBuilder->andWhere('s.code IN :codes');
-//        $queryBuilder->setParameter('codes', $codes);
-//    }
 }
 
