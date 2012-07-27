@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Liuggio\HelpDeskBundle\Model\Ticket;
 
 class TicketAdmin extends Admin
 {
@@ -45,7 +46,7 @@ class TicketAdmin extends Admin
             ->add('category')
             ->add('subject')
             ->add('language')
-            ->add('state')
+            ->add('state.code')
             ->add('comments')
             ->add('createdBy');
     }
@@ -74,6 +75,5 @@ class TicketAdmin extends Admin
             'state' => $state,
         );
     }
-
 }
 

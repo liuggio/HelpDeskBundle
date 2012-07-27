@@ -58,7 +58,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: HelpDesk, label: Ticket }
           arguments: [null, Liuggio\HelpDeskBundle\Entity\Ticket, LiuggioHelpDeskBundle:Admin\TicketAdmin]
           calls:
-            - [ setTemplates, [{"list": LiuggioHelpDeskBundle:TicketOperator:list.html.twig,layout: SonataAdminBundle::standard_layout.html.twig, ajax: SonataAdminBundle::ajax_layout.html.twig, edit: SonataAdminBundle:CRUD:edit.html.twig, show: SonataAdminBundle:CRUD:show.html.twig}] ]
+            - [ setTemplates, [{"list": LiuggioHelpDeskBundle:TicketOperator:list.html.twig}] ]
 
 
 

@@ -227,6 +227,15 @@ class Category
     }
 
     /**
+     * Remove an operator
+     * @param Tvision\Bundle\UserBundle\Entity\User
+     */
+    public function removeOperator($operator)
+    {
+        $this->operators->removeElement($operator);
+    }
+
+    /**
      * Add operators
      *
      * @param Tvision\Bundle\UserBundle\Entity\User $operators
