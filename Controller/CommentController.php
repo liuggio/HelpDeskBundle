@@ -37,7 +37,7 @@ class CommentController extends Controller
             if (!$ticket) {
                 throw $this->createNotFoundException('Unable to find Ticket entity.');
             }
-            $state = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
+            $state = $em->getRepository('Liuggio\HelpDeskBundle\Entity\TicketState')
                 ->findOneByCode($ticketState);
 
             if (!$state) {
