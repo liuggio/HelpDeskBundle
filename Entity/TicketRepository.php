@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class TicketRepository extends EntityRepository
 {
 
-    public function findTicketsByStatesAndCustomer($user, $states, $filter = '')
+    public function findTicketsByStatesAndCustomer($user, $states, $filter = '', $onlyQuery = false)
     {
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
@@ -23,7 +23,9 @@ class TicketRepository extends EntityRepository
             ->leftjoin('t.state', 'st')
             ->leftJoin('t.category', 'c')
             ->where('t.createdBy = :user')
-            ->setParameter('user', $user);
+            ->setParameter('user', $user)
+            ->orderBy('t.updatedAt','DESC')
+        ;
 
         if (!is_array($states) || count($states) <= 0) {
             throw new \Liuggio\HelpDeskBundle\Exception('Impossible to read state');
@@ -39,12 +41,14 @@ class TicketRepository extends EntityRepository
             )
                 ->setParameter('pattern', "%" . $filter . "%");
         }
-
+        if($onlyQuery){
+            return $qb->getQuery();
+        }
         return $qb->getQuery()->getResult();
     }
 
 
-    public function findTicketsByStatesAndOperator($operator, $states, $filter = '')
+    public function findTicketsByStatesAndOperator($operator, $states, $filter = '', $onlyQuery = false)
     {
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
@@ -55,6 +59,7 @@ class TicketRepository extends EntityRepository
             ->leftjoin('t.category', 'ct')
             ->leftjoin('ct.operators', 'opr')
             ->where('opr = :user')
+            ->orderBy('t.updatedAt','DESC')
             ->setParameter('user', $operator);
 
         if (!is_array($states) || count($states) <= 0) {
@@ -68,6 +73,9 @@ class TicketRepository extends EntityRepository
                 $qb->expr()->orx($qb->expr()->like('t.subject', ':pattern'), $qb->expr()->like('t.body', ':pattern'))
             )
                 ->setParameter('pattern', "%" . $filter . "%");
+        }
+        if($onlyQuery){
+            return $qb->getQuery();
         }
 
         return $qb->getQuery()->getResult();

@@ -13,6 +13,7 @@ use Liuggio\HelpDeskBundle\Form\RateType;
 use Liuggio\HelpDeskBundle\Form\SearchType;
 use Liuggio\HelpDeskBundle\Entity\TicketState;
 use Liuggio\HelpDeskBundle\Form\CommentType;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 use Liuggio\HelpDeskBundle\Exception;
 
@@ -22,7 +23,7 @@ use Liuggio\HelpDeskBundle\Exception;
  */
 class TicketController extends Controller
 {
-
+    const ELEMENTS_PER_PAGE = 20;
     /**
      * Lists all Ticket entities.
      *
@@ -36,6 +37,8 @@ class TicketController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
 
         $states = Ticket::$STATE[$state];
+
+
 
         //Create the Search Form
         $form = $this->createForm(new SearchType());
@@ -51,12 +54,31 @@ class TicketController extends Controller
             $this->get('session')->setFlash('invalid_search_form_notice', 'invalid_search_form_notice');
         }
         $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')->getTicketRepository();
-        $tickets = $ticketRepository->findTicketsByStatesAndCustomer($user, $states, $request_pattern);
+        $tickets = $ticketRepository->findTicketsByStatesAndCustomer($user, $states, $request_pattern, true);
+
+        $paginator = new Paginator($tickets, $fetchJoinCollection = true);
+
+        $page = $this->getRequest()->get('page');
+        $ticketCounter = count($paginator);
+        $pages = intval($ticketCounter/self::ELEMENTS_PER_PAGE);
+        if($pages < 0){
+            $pages = 0;
+        }
+
+        if(is_null($page)){
+            $firstResult = $pages;
+
+        }else{
+            $firstResult = intval(self::ELEMENTS_PER_PAGE * $page);
+        }
+
+        $paginator = $paginator->getQuery()->setFirstResult($firstResult)->setMaxResults(self::ELEMENTS_PER_PAGE);
 
         return $this->render('LiuggioHelpDeskBundle:Ticket:index.html.twig', array(
-            'entities' => $tickets,
+            'entities' => $paginator->getResult(),
             'form' => $form->createView(),
-            'state' => $state
+            'state' => $state,
+            'pages' => range(0, $pages),
         ));
     }
 

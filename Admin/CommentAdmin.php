@@ -46,7 +46,7 @@ class CommentAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('ticket')
-            ->add('createdBy')
+//            ->add('createdBy')
             ->add('body')
             ->add('createdAt');
     }
