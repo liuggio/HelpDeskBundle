@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Doctrine\ORM\EntityRepository;
 
 class CategoryAdmin extends Admin
 {
@@ -29,7 +30,17 @@ class CategoryAdmin extends Admin
             ->add('description')
             ->add('isEnable')
             ->add('weight')
-            ->add('operators', 'sonata_type_model', array('by_reference' => false, 'required' => false))
+            ->add('operators',null, array(
+                'by_reference'  => false,
+                'query_builder'  => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->join('u.groups','g')
+                        ->where('g.name IN (:groupsName)')
+                        ->orderBy('u.username', 'ASC')
+                        ->setParameter('groupsName', array('admin_group','help_desk_group'))
+                        ;
+                }
+            ))
             ->end();
     }
 
@@ -41,7 +52,8 @@ class CategoryAdmin extends Admin
             ->add('description')
             ->add('isEnable')
             ->add('weight')
-            ->add('operators');
+//            ->add('operators')
+        ;
     }
 
     public function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -52,8 +64,10 @@ class CategoryAdmin extends Admin
             ->add('description')
             ->add('isEnable')
             ->add('weight')
-            ->add('operators');
+//            ->add('operators')
+        ;
     }
+
 
 }
 

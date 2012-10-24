@@ -60,7 +60,6 @@ class TicketAdmin extends Admin
             ->add('body')
             ->add('language')
             ->add('state')
-            ->add('createdBy')
             ->add('comments');
     }
 

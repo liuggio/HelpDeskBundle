@@ -27,10 +27,23 @@ class CommentType extends AbstractType
                 'data' => $this->ticket_id,
                 'mapped' => false
         ))
-            ->add('createdBy', 'hidden')
+            ->add('createdBy','hidden', array(
+            'mapped'    => false,
+        ))
             ->add('body', 'textarea', array(
-                'label' => 'comment_textarea_label'
+                'label' => 'comment_textarea_label',
+                'attr'  => array('class' => 'text-area-full input-themed')
         ));
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)    {
+
+        $classOptions = array(
+            'data_class' =>  '\Liuggio\HelpDeskBundle\Entity\Comment' ,
+            'csrf_protection' => false
+        );
+
+        $resolver->setDefaults($classOptions);
     }
 
     public function getName()
