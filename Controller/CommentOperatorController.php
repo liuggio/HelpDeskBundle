@@ -34,11 +34,11 @@ class CommentOperatorController extends Controller
             $comment = $form->getData();
             $form = $this->getRequest()->get('liuggio_HelpDeskBundle_commenttype');
             $ticket_id = $form['ticket'];
-            $ticket = $this->getObjectManager()->getRepository('LiuggioHelpDeskBundle:Ticket')->find($ticket_id);
+            $ticket = $this->getDoctrine()->getManager()->getRepository('LiuggioHelpDeskBundle:Ticket')->find($ticket_id);
             if (!$ticket) {
                 throw $this->createNotFoundException('Unable to find Ticket entity.');
             }
-            $ticketState = $this->getObjectManager()->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
+            $ticketState = $this->getDoctrine()->getManager()->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
                 ->findOneByCode($state);
 
             if (!$ticketState) {
@@ -46,14 +46,13 @@ class CommentOperatorController extends Controller
             }
             //Set the createdBy user
             $ticket->setState($ticketState);
-            $this->getObjectManager()->persist($ticket);
+            $this->getDoctrine()->getManager()->persist($ticket);
 
             $comment->setTicket($ticket);
             $comment->setCreatedBy($user);
-            $this->getObjectManager()->persist($comment);
+            $this->getDoctrine()->getManager()->persist($comment);
 
-
-            $em->flush();
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($this->generateUrl('ticket_show_admin', array('id' => $ticket_id)));
 
