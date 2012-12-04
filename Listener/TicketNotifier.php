@@ -58,7 +58,7 @@ class TicketNotifier
             ->setSubject($subject)
             ->setFrom($from)
             ->setTo($to)
-            ->setBody($templateBody);
+            ->setBody($templateBody, 'text/html');
         $this->getMailer()->send($message);
         $this->getLogger()->debug('HelpDesk: Email sent to' . $to);
     }
