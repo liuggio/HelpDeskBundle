@@ -18,7 +18,7 @@ class CommentOperatorController extends Controller
      * Creates a new Comment entity.
      *
      */
-    public function createAction($state)
+    public function createAction($state = \Liuggio\HelpDeskBundle\Model\TicketState::STATE_REPLIED)
     {
         //Retrive the User from the Session
         $user = $this->get('security.context')->getToken()->getUser();
