@@ -83,7 +83,7 @@ class TicketNotifier
         $entityManager = $args->getEntityManager();
 
         $mailTemplateOperator = 'LiuggioHelpDeskBundle:Email:email_operator.html.twig';
-        $mailTemplateCreator = 'LiuggioHelpDeskBundle:Email:email_customer.html.twig';
+        $mailTemplateUser = 'LiuggioHelpDeskBundle:Email:email_user.html.twig';
 
         //always notify the owner
         if ($entity instanceof TicketInterface) {
@@ -106,7 +106,7 @@ class TicketNotifier
             $to = $entity->getCreatedBy()->getEmail();
             $subject = sprintf('Ticket Event on #%d %s', $entity->getId(), $entity->getState());
             $subjectPrefix = $this->getEmailSubjectPrefix();
-            $this->sendEmailToUser($mailTemplateOperator, $bodyTemplateArgs, $from, $to, $subject, $subjectPrefix);
+            $this->sendEmailToUser($mailTemplateUser, $bodyTemplateArgs, $from, $to, $subject, $subjectPrefix);
 
         }
     }
