@@ -11,6 +11,10 @@ class TicketNotifier
     private $container;
     private $emailSender;
     private $emailSubjectPrefix;
+    private $templating;
+    private $mailer;
+    private $mailTemplateOperator;
+    private $mailTemplateUser;
 
 
     CONST EVENT_IS_UPDATE = 0;
@@ -71,24 +75,41 @@ class TicketNotifier
      */
     public function postPersistUpdate(LifecycleEventArgs $args, $isUpdate = self::EVENT_IS_UPDATE)
     {
-        $this->setLogger($this->container->get('logger'));
-        $this->ticketManager = $this->container->get('liuggio_help_desk.ticket.manager_no_doctrine');
-        $this->setTemplating($this->container->get('templating'));
-        $this->setMailer($this->container->get('mailer'));
-
-        $this->setEmailSender($this->container->getParameter('liuggio_help_desk.email.sender'));
-        $this->setEmailSubjectPrefix($this->container->getParameter('liuggio_help_desk.email.subject_prefix'));
 
         $entity = $args->getEntity();
-        $entityManager = $args->getEntityManager();
-
-        $mailTemplateOperator = 'LiuggioHelpDeskBundle:Email:email_operator.html.twig';
-        $mailTemplateUser = 'LiuggioHelpDeskBundle:Email:email_user.html.twig';
 
         //always notify the owner
         if ($entity instanceof TicketInterface) {
-            $this->getLogger()->info('HelpDeskTicketSystem: persist update' . $isUpdate);
 
+            if(!$this->logger){
+                $this->setLogger($this->container->get('logger'));
+            }
+            if(!$this->ticketManager){
+                $this->ticketManager = $this->container->get('liuggio_help_desk.ticket.manager_no_doctrine');
+            }
+            if(!$this->templating){
+                $this->setTemplating($this->container->get('templating'));
+            }
+            if(!$this->mailer){
+                $this->setMailer($this->container->get('mailer'));
+            }
+            if(!$this->emailSender){
+                $this->setEmailSender($this->container->getParameter('liuggio_help_desk.email.sender'));
+            }
+            if(!$this->emailSubjectPrefix){
+                $this->setEmailSubjectPrefix($this->container->getParameter('liuggio_help_desk.email.subject_prefix'));
+            }
+
+            $entityManager = $args->getEntityManager();
+
+            if(!$this->mailTemplateUser){
+                $mailTemplateUser = 'LiuggioHelpDeskBundle:Email:email_user.html.twig';
+            }
+            if(!$this->mailTemplateOperator){
+                $mailTemplateOperator = 'LiuggioHelpDeskBundle:Email:email_operator.html.twig';
+            }
+
+            $this->getLogger()->info('HelpDeskTicketSystem: persist update' . $isUpdate);
             $this->getTicketManager()->setObjectManager($entityManager);
 
             $operators = $entity->getCategory()->getOperators();
