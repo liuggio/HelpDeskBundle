@@ -20,7 +20,7 @@
         }
     ],
     "require":{
-        "symfony/symfony":">=2.0,<2.2-dev",
+        "symfony/symfony":">=2.0",
         "sonata-project/easy-extends-bundle":"*",
         "friendsofsymfony/user-bundle":"*"
     },
