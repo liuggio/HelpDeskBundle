@@ -1,5 +1,5 @@
 {% extends 'LiuggioHelpDeskBundle:Default:index.html.twig' %}
-{% block central %}
+{% block content %}
 
 
 <h1>{{ "tickets_entity"|trans }}</h1>
@@ -19,14 +19,14 @@
 <hr/>
 <hr/>
 
-<br/>
 {% if app.session.hasFlash('notice') %}
+<br/>
 <div class="flash-notice">
     {{ app.session.flash('notice') }}
 </div>
 {% endif %}
-<br/>
 {% if entities|length %}
+<br/>
 <table class="records_list">
     <thead>
     <tr>
