@@ -1,6 +1,7 @@
 <?php
 namespace Liuggio\HelpDeskBundle\Model;
 
+
 abstract class AbstractInfoExtractor implements InfoExtractorInterface
 {
 

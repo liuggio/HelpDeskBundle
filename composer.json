@@ -20,12 +20,13 @@
         }
     ],
     "require":{
-        "symfony/symfony":">=2.0,<2.2-dev",
-        "sonata-project/easy-extends-bundle":"dev-master",
+        "symfony/symfony":">=2.0",
+        "sonata-project/easy-extends-bundle":"*",
+        "sonata-project/admin-bundle":"*",
         "friendsofsymfony/user-bundle":"*"
     },
     "suggest":{
-        "sonata-project/doctrine-orm-admin-bundle":"dev-master"
+        "sonata-project/doctrine-orm-admin-bundle":"*"
     },
     "autoload":{
         "psr-0":{

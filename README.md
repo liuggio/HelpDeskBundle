@@ -86,6 +86,11 @@ liuggio_help_desk:
 
 5 Add the following entries to security.yml
 
+    security:
+        //...
+        acl:
+            connection: default
+
     access_control:
         //...
         # HelpDesk Ticket system
