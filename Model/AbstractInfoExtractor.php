@@ -1,13 +1,6 @@
 <?php
 namespace Liuggio\HelpDeskBundle\Model;
 
-/**
- * Created by JetBrains PhpStorm.
- * User: toretto460
- * Date: 12/4/12
- * Time: 10:58 AM
- * To change this template use File | Settings | File Templates.
- */
 abstract class AbstractInfoExtractor implements InfoExtractorInterface
 {
 
