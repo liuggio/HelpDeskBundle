@@ -55,7 +55,6 @@
         <th>{{ "id_property"|trans }}</th>
         <th>{{ "body_property"|trans }}</th>
         <th>{{ "createdAt_property"|trans }}</th>
-        <th>{{ "createdBy_property"|trans }}</th>
         <th>{{ "updatedAt_property"|trans }}</th>
         <th>{{ "actions_action"|trans }}</th>
     </tr>
@@ -66,7 +65,6 @@
         <td><strong>{{ comment.id }}</strong></td>
         <td>{{ comment.body }}</td>
         <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif%}</td>
-        <td>{% if comment.createdBy %}{{ comment.createdBy }}{% endif%}</td>
         <td>{% if comment.updatedAt %}{{ comment.updatedAt|date('Y-m-d H:i:s') }}{% endif%}</td>
     </tr>
     {% endfor %}
@@ -80,7 +78,7 @@
 {% endblock comment %}
 {% block close_form %}
 {% endblock close_form %}
-<a href="{{ path('ticket') }}">
+<a href="{{ url('ticket') }}">
     {{ "back_to_list_action"|trans }}
 </a>
 
