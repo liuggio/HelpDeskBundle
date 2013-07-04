@@ -19,14 +19,16 @@
 <hr/>
 <hr/>
 
-{% if app.session.hasFlash('notice') %}
-<br/>
-<div class="flash-notice">
-    {{ app.session.flash('notice') }}
-</div>
-{% endif %}
+
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <br/>
+    <div class="flash-notice">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
 {% if entities|length %}
 <br/>
+
 <table class="records_list">
     <thead>
     <tr>
@@ -70,24 +72,29 @@
 <br/>
 {% endif %}
 
-{% if app.session.hasFlash('reRate_error_msg') %}
+{% for flashMessage in app.session.flashbag.get('reRate_error_msg') %}
+    <div class="flash-notice">
+        {{ flashMessage | trans }}
+    </div>
+{% endfor %}
+    <br/>
+{% for flashMessage in app.session.flashbag.get('ratedTickedId') %}
+    <div class="flash-notice">
+        {{ "ticket_id"|trans }}: {{ flashMessage }}
+    </div>
+{% endfor %}
+    <br/>
+{% for flashMessage in app.session.flashbag.get('rating') %}
+    <div class="flash-notice">
+        {{ "rating_assigned"|trans }}: {{ flashMessage }}
+    </div>
+{% endfor %}
+
+{% for flashMessage in app.session.flashbag.get('thank_rate_msg') %}
 <div class="flash-notice">
-    {{ app.session.flash('reRate_error_msg'|trans) }}
-    <br/>
-    {{ "ticket_id"|trans }}:{{ app.session.flash('ratedTickedId') }}
-    <br/>
-    {{ "rating_assigned"|trans }}:{{ app.session.flash('rating') }}
+    {{ flashMessage }}
 </div>
-{% endif %}
-{% if app.session.hasFlash('thank_rate_msg') %}
-<div class="flash-notice">
-    {{ app.session.flash('thank_rate_msg')|trans }}
-    <br/>
-    {{ "ticket_id"|trans }}:{{ app.session.flash('ratedTickedId') }}
-    <br/>
-    {{ "rating_assigned"|trans }}:{{ app.session.flash('rating') }}
-</div>
-{% endif %}
+{% endfor %}
 
 <ul>
     <li>

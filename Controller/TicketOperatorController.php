@@ -39,7 +39,7 @@ class TicketOperatorController extends Controller
         //Create the Search Form
         $form = $this->createForm(new SearchType());
         $request = $this->getRequest();
-        $form->bindRequest($request);
+        $form->handleRequest($request);
 
         $request_pattern = null;
 
@@ -47,7 +47,7 @@ class TicketOperatorController extends Controller
             $formData = $form->getData();
             $request_pattern = $formData['request_pattern'];
         } else {
-            $this->get('session')->setFlash('invalid_search_form_notice', 'invalid_search_form_notice');
+            $this->get('session')->getFlashBag()->add('invalid_search_form_notice', 'invalid_search_form_notice');
         }
 
         $user = $this->get('security.context')->getToken()->getUser();
