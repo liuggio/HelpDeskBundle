@@ -18,13 +18,12 @@
 <hr/>
 
 <br/>
-{% if app.session.hasFlash('invalid_search_form_notice') %}
+{% for flashMessage in app.session.flashbag.get('invalid_search_form_notice') %}
 <div class="flash-notice">
-    {{ app.session.flash('invalid_search_form_notice')|trans }}
+    {{ flashMessage | trans }}
 </div>
-{% endif %}
+{% endfor %}
 <br/>
-
 
 <ul>your categories
     {% for category in categories %}

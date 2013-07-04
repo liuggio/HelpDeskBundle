@@ -28,7 +28,7 @@ class CommentOperatorController extends Controller
 
 
         $form = $this->createForm(new CommentType(), $entity);
-        $form->bindRequest($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $comment = $form->getData();

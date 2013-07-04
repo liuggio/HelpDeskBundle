@@ -43,7 +43,7 @@ class TicketController extends Controller
         //Create the Search Form
         $form = $this->createForm(new SearchType());
         $request = $this->getRequest();
-        $form->bindRequest($request);
+        $form->handleRequest($request);
 
         $request_pattern = null;
 
@@ -51,7 +51,7 @@ class TicketController extends Controller
             $formData = $form->getData();
             $request_pattern = $formData['request_pattern'];
         } else {
-            $this->get('session')->setFlash('invalid_search_form_notice', 'invalid_search_form_notice');
+            $this->get('session')->getFlashBag()->add('invalid_search_form_notice', 'invalid_search_form_notice');
         }
         $ticketRepository = $this->get('liuggio_help_desk.ticket.manager')->getTicketRepository();
         $tickets = $ticketRepository->findTicketsByStatesAndCustomer($user, $states, $request_pattern, true);
@@ -157,7 +157,7 @@ class TicketController extends Controller
 
         $request = $this->getRequest();
         $form = $this->createForm(new TicketType(), $entity);
-        $form->bindRequest($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->get('liuggio_help_desk.doctrine.manager');
@@ -242,7 +242,7 @@ class TicketController extends Controller
 
         $request = $this->getRequest();
         $form = $this->createForm(new RateType());
-        $form->bindRequest($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
 
@@ -269,9 +269,9 @@ class TicketController extends Controller
 
                 if ($session) {
 
-                    $session->setFlash('reRate_error_msg', 'You can not re-Rate this Ticket!');
-                    $session->setFlash('ratedTickedId', $ticket_id);
-                    $session->setFlash('rating:', $entity->getRate());
+                    $session->getFlashBag()->add('reRate_error_msg', 'You can not re-Rate this Ticket!');
+                    $session->getFlashBag()->add('ratedTickedId', $ticket_id);
+                    $session->getFlashBag()->add('rating:', $entity->getRate());
                 }
 
                 return $this->redirect($this->generateUrl('ticket'));
@@ -282,9 +282,9 @@ class TicketController extends Controller
             $em->flush();
             if ($session) {
 
-                $session->setFlash('thank_rate_msg', 'Thank you for rating our services!');
-                $session->setFlash('ratedTickedId', $ticket_id);
-                $session->setFlash('rating', $rate_val);
+                $session->getFlashBag()->add('thank_rate_msg', 'Thank you for rating our services!');
+                $session->getFlashBag()->add('ratedTickedId', $ticket_id);
+                $session->getFlashBag()->add('rating', $rate_val);
 
             }
         }
