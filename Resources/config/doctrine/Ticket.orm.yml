@@ -9,11 +9,11 @@ Liuggio\HelpDeskBundle\Entity\Ticket:
 #      targetEntity: Tvision\Bundle\UserBundle\Entity\User
 #    category:
 #      targetEntity: Category
-#  oneToMany:
-#    comments:
-#      targetEntity: Comment
-#      mappedBy: ticket
-#      cascade: ["persist", "remove"]
+  oneToMany:
+    comments:
+      targetEntity: Comment
+      mappedBy: ticket
+      cascade: ["persist", "remove"]
   fields:
     id:
       type: integer
