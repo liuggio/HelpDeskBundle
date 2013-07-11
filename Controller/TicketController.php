@@ -43,7 +43,7 @@ class TicketController extends Controller
         //Create the Search Form
         $form = $this->createForm(new SearchType());
         $request = $this->getRequest();
-        $form->handleRequest($request);
+        $form->submit($request);
 
         $request_pattern = null;
 
