@@ -4,14 +4,16 @@ namespace Liuggio\HelpDeskBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TicketType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('category', null, array(
-            'label' => 'category_property'
+            ->add('category', 'entity', array(
+                'class'    => 'LiuggioHelpDeskBundle:Category',
+                'label' => 'category_property'
         ))
             ->add('subject', 'text', array(
             'label' => 'subject_property'
@@ -19,6 +21,13 @@ class TicketType extends AbstractType
             ->add('body', 'textarea', array(
             'label' => 'body_property'
         ));
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)    {
+        $fixedOptions = array(
+            'data_class' => 'Liuggio\HelpDeskBundle\Entity\Ticket',
+        );
+        $resolver->setDefaults($fixedOptions);
     }
 
     public function getName()
