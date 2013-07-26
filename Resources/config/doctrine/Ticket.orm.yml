@@ -7,8 +7,8 @@ Liuggio\HelpDeskBundle\Entity\Ticket:
       targetEntity: TicketState
 #    createdBy:
 #      targetEntity: Tvision\Bundle\UserBundle\Entity\User
-#    category:
-#      targetEntity: Category
+    category:
+      targetEntity: Category
   oneToMany:
     comments:
       targetEntity: Comment
