@@ -2,7 +2,6 @@
 
 namespace Liuggio\HelpDeskBundle\Controller;
 
-use Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
