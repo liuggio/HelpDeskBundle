@@ -1,0 +1,8 @@
+Liuggio\HelpDeskBundle\Model\Ticket:
+    properties:
+        subject:
+            - NotNull: ~
+        body:
+            - NotNull: ~
+        language:
+            - NotNull: ~
