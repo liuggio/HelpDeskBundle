@@ -154,17 +154,17 @@ class TicketController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
         $entity = $this->get('liuggio_help_desk.ticket.manager')
             ->createTicket();
-
+        $locale = $this->getRequest()->getLocale();
+        if (isset($locale)) {
+            $entity->setLanguage($locale);
+        }
         $request = $this->getRequest();
-        $form = $this->createForm(new TicketType(), $entity);
+        $form = $this->createForm(new TicketType($locale), $entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->get('liuggio_help_desk.doctrine.manager');
-            $locale = $this->getRequest()->getLocale();
-            if (isset($locale)) {
-                $entity->setLanguage($locale);
-            }
+
             $state_new = $em->getRepository('\Liuggio\HelpDeskBundle\Entity\TicketState')
                 ->findOneByCode(\Liuggio\HelpDeskBundle\Entity\TicketState::STATE_NEW);
 
