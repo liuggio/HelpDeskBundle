@@ -8,6 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TicketType extends AbstractType
 {
+    protected $language;
+
+    public function __construct($lang = 'en')
+    {
+        $this->language = $lang;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -20,7 +27,10 @@ class TicketType extends AbstractType
         ))
             ->add('body', 'textarea', array(
             'label' => 'body_property'
-        ));
+        ))
+            ->add('language','hidden', array(
+             'data' => $this->language
+            ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)    {
