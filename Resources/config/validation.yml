@@ -6,3 +6,8 @@ Liuggio\HelpDeskBundle\Model\Ticket:
             - NotNull: ~
         language:
             - NotNull: ~
+
+Liuggio\HelpDeskBundle\Model\BaseComment:
+    properties:
+        body:
+            - NotNull: ~

@@ -8,12 +8,12 @@ abstract class Comment implements CommentInterface
     /**
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @var text $body
      */
-    private $body;
+    protected $body;
 
     /**
      * @return string
