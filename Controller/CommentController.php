@@ -53,12 +53,9 @@ class CommentController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl($redirectTo, array('id' => $ticket_id)));
         }
-        //@todo implement error
 
-        return $this->render('LiuggioHelpDeskBundle:Comment:new.html.twig', array(
-            'entity' => $entity,
-            'form' => $form->createView()
-        ));
+        $this->getRequest()->getSession()->getFlashBag()->add('alert',"Form error, please fill all fields.");
+        return $this->redirect($this->generateUrl('ticket'));
     }
 
 }
