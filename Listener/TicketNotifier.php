@@ -112,14 +112,19 @@ class TicketNotifier
             $this->getLogger()->info('HelpDeskTicketSystem: persist update' . $isUpdate);
             $this->getTicketManager()->setObjectManager($entityManager);
 
-            $operators = $entity->getCategory()->getOperators();
-            foreach ($operators as $operator) {
-                $bodyTemplateArgs = array('ticket' => $entity, 'user' => $operator->getEmail(), 'action' => $isUpdate);
-                $from = $this->getEmailSender();
-                $to = $operator->getEmail();
-                $subject = sprintf('Ticket Event on #%d %s', $entity->getId(), $entity->getState());
-                $subjectPrefix = $this->getEmailSubjectPrefix();
-                $this->sendEmailToUser($mailTemplateOperator, $bodyTemplateArgs, $from, $to, $subject, $subjectPrefix);
+            $categoryOperators = $entity->getCategory()->getOperators();
+
+            foreach ($categoryOperators as $categoryOperator) {
+
+                if($categoryOperator->hasEmailRequested()) {
+                    $operator = $categoryOperator->getOperator();
+                    $bodyTemplateArgs = array('ticket' => $entity, 'user' => $operator->getEmail(), 'action' => $isUpdate);
+                    $from = $this->getEmailSender();
+                    $to = $operator->getEmail();
+                    $subject = sprintf('Ticket Event on #%d %s', $entity->getId(), $entity->getState());
+                    $subjectPrefix = $this->getEmailSubjectPrefix();
+                    $this->sendEmailToUser($mailTemplateOperator, $bodyTemplateArgs, $from, $to, $subject, $subjectPrefix);
+                }
             }
 
             $bodyTemplateArgs = array('ticket' => $entity, 'user' => $entity->getCreatedBy(), 'action' => $isUpdate);
