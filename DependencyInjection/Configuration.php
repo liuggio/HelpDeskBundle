@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('ticket')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Ticket')->end()
             ->scalarNode('comment')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Comment')->end()
             ->scalarNode('category')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\Category')->end()
+            ->scalarNode('categoryOperator')->defaultValue('Application\\Liuggio\\HelpDeskBundle\\Entity\\CategoryOperator')->end()
             ->end()
             ->end()
 

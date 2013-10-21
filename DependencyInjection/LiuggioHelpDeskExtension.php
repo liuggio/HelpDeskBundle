@@ -41,6 +41,7 @@ class LiuggioHelpDeskExtension extends Extension
         $container->setParameter('liuggio_help_desk.ticket.class', $config['class']['ticket']);
         $container->setParameter('liuggio_help_desk.comment.class', $config['class']['comment']);
         $container->setParameter('liuggio_help_desk.category.class', $config['class']['category']);
+        $container->setParameter('liuggio_help_desk.category.operator.class', $config['class']['categoryOperator']);
         $container->setParameter('liuggio_help_desk.email.sender', $config['email']['sender']);
         $container->setParameter('liuggio_help_desk.email.subject_prefix', $config['email']['subject_prefix']);
     }
@@ -97,6 +98,13 @@ class LiuggioHelpDeskExtension extends Extension
             'targetEntity' => $config['class']['user']
         ));
 
+        /**
+         * Category Operator has one User
+         */
+        $collector->addAssociation($config['class']['categoryOperator'], 'mapManyToOne', array(
+                'fieldName' => 'operator',
+                'targetEntity' => $config['class']['user'],
+        ));
 
         /**
          *
@@ -105,7 +113,7 @@ class LiuggioHelpDeskExtension extends Extension
          */
         $collector->addAssociation($config['class']['category'], 'mapManyToMany', array(
             'fieldName' => 'operators',
-            'targetEntity' => $config['class']['user'],
+            'targetEntity' => $config['class']['categoryOperator'],
             'joinTable' => array(
                 'name' => 'ticket__category_user',
                 'joinColumns' => array(

@@ -6,6 +6,8 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
+use Liuggio\HelpDeskBundle\Entity\CategoryOperator;
+use Liuggio\HelpDeskBundle\Model\BaseCategoryOperator;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -29,6 +31,16 @@ class LoadTicketAndUser extends AbstractFixture implements OrderedFixtureInterfa
         $administrative_category = $em->merge($this->getReference('administrative_category'));
         $other_category = $em->merge($this->getReference('other_category'));
 
+        //create category operator
+
+        //create operator Category
+        $categoryOperatorMailRequestedUserOne = new CategoryOperator();
+        $categoryOperatorMailRequestedUserOne->setEmailRequested(BaseCategoryOperator::EMAIL_REQUESTED);
+
+        $categoryOperatorMailRequestedUserTwo = new CategoryOperator();
+        $categoryOperatorMailRequestedUserTwo->setEmailRequested(BaseCategoryOperator::EMAIL_REQUESTED);
+
+
         // Load group
         $group_customercare = new Group("customercare_group", array("ROLE_CUSTOMERCARE"));
         $em->persist($group_customercare);
@@ -46,9 +58,11 @@ class LoadTicketAndUser extends AbstractFixture implements OrderedFixtureInterfa
         $this->addReference('user_operator1', $user1);
 
         $em->flush();
-        //add operator to a category
-        $administrative_category->addUser($user1);
-        $other_category->addUser($user1);
+        //add operator to a category operator
+        $categoryOperatorMailRequestedUserOne->setOperator($user1);
+        //add category operator to category
+        $administrative_category->addOperator($categoryOperatorMailRequestedUserOne);
+        $other_category->addOperator($categoryOperatorMailRequestedUserOne);
 
         $user2 = new User();
         $encoder = $this->container->get('security.encoder_factory')->getEncoder($user2);
@@ -58,10 +72,16 @@ class LoadTicketAndUser extends AbstractFixture implements OrderedFixtureInterfa
         $user2->addGroup($group_customercare);
         $em->persist($user2);
         $this->addReference('user_operator2', $user2);
-
         $em->flush();
-        //add operator to a category
-        $other_category->addUser($user2);
+
+        //add operator to a category operator
+        $categoryOperatorMailRequestedUserTwo->setOperator($user2);
+        //add category operator to category
+        $other_category->addOperator($categoryOperatorMailRequestedUserTwo);
+
+        $em->persist($categoryOperatorMailRequestedUserOne);
+        $em->persist($categoryOperatorMailRequestedUserTwo);
+        $em->flush();
 
         $user3 = new User();
         $encoder = $this->container->get('security.encoder_factory')->getEncoder($user3);

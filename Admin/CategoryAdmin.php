@@ -30,17 +30,8 @@ class CategoryAdmin extends Admin
             ->add('description')
             ->add('isEnable')
             ->add('weight')
-            ->add('operators',null, array(
-                'by_reference'  => false,
-                'query_builder'  => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->join('u.groups','g')
-                        ->where('g.name IN (:groupsName)')
-                        ->orderBy('u.username', 'ASC')
-                        ->setParameter('groupsName', array('admin_group','help_desk_group'))
-                        ;
-                }
-            ))
+            ->add('operators')
+
             ->end();
     }
 

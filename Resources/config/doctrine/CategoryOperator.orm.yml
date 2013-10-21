@@ -1,0 +1,13 @@
+Liuggio\HelpDeskBundle\Entity\CategoryOperator:
+  type: entity
+  table: ticket__category__operator
+  #repositoryClass: Liuggio\HelpDeskBundle\Entity\CategoryAdminRepository
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    emailRequested:
+      type: string
+      length: 5

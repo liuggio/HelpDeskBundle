@@ -4,6 +4,8 @@ parameters:
   liuggio_help_desk.category.manager.class: Liuggio\HelpDeskBundle\Manager\CategoryManager
   liuggio_help_desk.ticket.listener.class: Liuggio\HelpDeskBundle\Listener\TicketNotifier
   liuggio_help_desk.comment.class: Liuggio\HelpDeskBundle\Entity\Comment
+  liuggio_help_desk.category.operator.manager.class: Liuggio\HelpDeskBundle\Manager\CategoryOperatorManager
+  liuggio_help_desk.category_operator.class: Liuggio\HelpDeskBundle\Entity\CategoryOperator
 
 services:
 #acl manager
@@ -23,6 +25,10 @@ services:
         class: %liuggio_help_desk.comment.manager.class%
         arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk.comment.class%]
 
+    liuggio_help_desk_category_operator.manager:
+           class: %liuggio_help_desk.category.operator.manager.class%
+           arguments: [@doctrine.orm.default_entity_manager, %liuggio_help_desk.category_operator.class%]
+
     liuggio_help_desk.ticket.manager_no_doctrine:
         class: %liuggio_help_desk.ticket.manager.class%
         arguments: [null, %liuggio_help_desk.ticket.class%, @liuggio_help_desk.acl.manager, %liuggio_help_desk.comment.class%, %liuggio_help_desk.category.class%]
@@ -33,6 +39,8 @@ services:
         tags:
           - { name: doctrine.event_listener, event:postUpdate}
           - { name: doctrine.event_listener, event:postPersist}
+
+
 #Sonata Admin
     sonata.ticket.ticketstate.admin:
            class: Liuggio\HelpDeskBundle\Admin\TicketStateAdmin
@@ -59,6 +67,12 @@ services:
           arguments: [null, Liuggio\HelpDeskBundle\Entity\Ticket, LiuggioHelpDeskBundle:Admin\TicketAdmin]
           calls:
             - [ setTemplates, [{"list": LiuggioHelpDeskBundle:TicketOperator:list.html.twig}] ]
+
+    sonata.ticket.category.operator.admin:
+          class: Liuggio\HelpDeskBundle\Admin\CategoryOperatorAdmin
+          tags:
+            - { name: sonata.admin, manager_type: orm, group: HelpDesk, label: Admin\Categoryoperator }
+          arguments: [null, Liuggio\HelpDeskBundle\Entity\CategoryOperator, LiuggioHelpDeskBundle:Admin\CategoryOperatorAdmin]
 
 
 
