@@ -23,7 +23,9 @@
         "symfony/symfony":">=2.0",
         "sonata-project/easy-extends-bundle":"*",
         "sonata-project/admin-bundle":"*",
-        "friendsofsymfony/user-bundle":"*"
+        "friendsofsymfony/user-bundle":"*",
+        "doctrine/doctrine-bundle": "1.2.*"
+
     },
     "suggest":{
         "sonata-project/doctrine-orm-admin-bundle":"*"

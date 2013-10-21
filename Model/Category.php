@@ -2,6 +2,8 @@
 
 namespace Liuggio\HelpDeskBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Liuggio\HelpDeskBundle\Entity\Category
  */
@@ -42,14 +44,12 @@ class Category
      */
     protected $weight;
 
-    /**
-     * @var Application\Sonata\UserBundle\Entity\User
-     */
+
     protected $operators;
 
     public function __construct()
     {
-        $this->operators = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->operators = new ArrayCollection();
     }
 
 
@@ -217,7 +217,6 @@ class Category
     /**
      * Add operators
      * @deprecated
-     * @param Tvision\Bundle\UserBundle\Entity\User $operators
      * @return Category
      */
     public function addOperator($operators)
@@ -236,21 +235,7 @@ class Category
     }
 
     /**
-     * Add operators
-     *
-     * @param Tvision\Bundle\UserBundle\Entity\User $operators
-     * @return Category
-     */
-    public function addUser($operators)
-    {
-        $this->operators[] = $operators;
-        return $this;
-    }
-
-    /**
      * Get operators
-     *
-     * @return Doctrine\Common\Collections\Collection
      */
     public function getOperators()
     {
