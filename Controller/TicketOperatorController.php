@@ -36,18 +36,20 @@ class TicketOperatorController extends Controller
             $states = Ticket::$STATE[Ticket::STATE_OPERATOR_ALL];
         }
 
+        $request_pattern = null;
         //Create the Search Form
         $form = $this->createForm(new SearchType());
         $request = $this->getRequest();
-        $form->handleRequest($request);
 
-        $request_pattern = null;
+        if($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $formData = $form->getData();
-            $request_pattern = $formData['request_pattern'];
-        } else {
-            $this->get('session')->getFlashBag()->add('invalid_search_form_notice', 'invalid_search_form_notice');
+            if ($form->isValid()) {
+                $formData = $form->getData();
+                $request_pattern = $formData['request_pattern'];
+            } else {
+                $this->get('session')->getFlashBag()->add('invalid_search_form_notice', 'invalid_search_form_notice');
+            }
         }
 
         $user = $this->get('security.context')->getToken()->getUser();
