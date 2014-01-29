@@ -58,9 +58,11 @@ class TicketRepository extends EntityRepository
             ->leftjoin('t.state', 'st')
             ->leftjoin('t.category', 'ct')
             ->leftjoin('ct.operators', 'opr')
-            ->where('opr = :user')
+            ->leftJoin('opr.operator','user_operator')
+            ->where('user_operator = :user')
             ->orderBy('t.updatedAt','DESC')
-            ->setParameter('user', $operator);
+            ->setParameter('user', $operator)
+        ;
 
         if (!is_array($states) || count($states) <= 0) {
             throw new \Liuggio\HelpDeskBundle\Exception('Impossible to read state');

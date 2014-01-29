@@ -21,7 +21,8 @@ class CategoryRepository extends EntityRepository
         $qb->select('c')
             ->from('LiuggioHelpDeskBundle:Category', 'c')
             ->innerJoin('c.operators', 'opr')
-            ->where('opr = :user')
+            ->leftJoin('opr.operator','user_operator')
+            ->where('user_operator = :user')
             ->setParameter('user', $operator);
 
         return $qb->getQuery()->getResult();

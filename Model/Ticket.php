@@ -106,7 +106,6 @@ abstract class Ticket implements TicketInterface
      */
     protected $updatedAt;
 
-
     /**
      * @var int or null if the ticket is not rated
      */

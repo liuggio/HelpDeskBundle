@@ -24,8 +24,9 @@ class TicketManager extends BaseTicketManager
             ->from('LiuggioHelpDeskBundle:Ticket', 't')
             ->leftjoin('t.category', 'ct')
             ->leftjoin('ct.operators', 'opr')
+            ->leftJoin('opr.operator','user_operator')
             ->where('t = :ticket')
-            ->andWhere('opr = :user')
+            ->andWhere('user_operator = :user')
             ->setParameter('ticket', $ticket)
             ->setParameter('user', $operator);
 
