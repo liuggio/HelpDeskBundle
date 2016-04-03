@@ -1,39 +1,47 @@
 {
-    "name":"liuggio/help-desk-bundle",
-    "description":"Provides help desk and ticketing system for support your customer, this is a #Symfony2 Bundles",
-    "keywords":["menu", "customer care", "support", "help desk", "customer"],
-    "type":"symfony-bundle",
-    "license":"MIT",
-    "authors":[
-        {
-            "name":"liuggio",
-            "homepage":"http://www.welcometothebundle.com",
-            "email":"liuggio@gmail.com"
-        },
-        {
-            "name":"Erin Hima",
-            "email":"erinhima@gmail.com"
-        },
-        {
-            "name":"Tvision developers",
-            "homepage":"https://github.com/tvision"
-        }
-    ],
-    "require":{
-        "symfony/symfony":">=2.0",
-        "sonata-project/easy-extends-bundle":"*",
-        "sonata-project/admin-bundle":"*",
-        "friendsofsymfony/user-bundle":"*",
-        "doctrine/doctrine-bundle": "1.2.*"
-
+  "name": "liuggio/help-desk-bundle",
+  "description": "Provides help desk and ticketing system for support your customer, this is a #Symfony2 Bundles",
+  "keywords": [
+    "menu",
+    "customer care",
+    "support",
+    "help desk",
+    "customer"
+  ],
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "liuggio",
+      "homepage": "http://www.welcometothebundle.com",
+      "email": "liuggio@gmail.com"
     },
-    "suggest":{
-        "sonata-project/doctrine-orm-admin-bundle":"*"
+    {
+      "name": "Erin Hima",
+      "email": "erinhima@gmail.com"
     },
-    "autoload":{
-        "psr-0":{
-            "Liuggio\\HelpDeskBundle":""
-        }
-    },
-    "target-dir":"Liuggio/HelpDeskBundle"
+    {
+      "name": "Tvision developers",
+      "homepage": "https://github.com/tvision"
+    }
+  ],
+  "require": {
+    "symfony/symfony": "^2.7",
+    "sonata-project/easy-extends-bundle": "^2.1",
+    "sonata-project/admin-bundle": "^2.3",
+    "friendsofsymfony/user-bundle": "^1.3",
+    "doctrine/doctrine-bundle": "^1.0"
+  },
+  "suggest": {
+    "sonata-project/doctrine-orm-admin-bundle": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Liuggio\\HelpDeskBundle": ""
+    }
+  },
+  "target-dir": "Liuggio/HelpDeskBundle",
+  "require-dev": {
+    "phpunit/phpunit": "^4.8"
+  }
 }
